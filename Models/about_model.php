@@ -1,7 +1,9 @@
 <?php
-// * The about page model
 
-class AboutModel{
+// * The about page model
+require_once __DIR__.'/model.php';
+
+class AboutModel extends Model{
 
   private $message;
 
