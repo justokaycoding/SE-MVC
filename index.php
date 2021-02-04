@@ -11,12 +11,16 @@
         require_once __DIR__.'/Models/index_model.php';
         require_once __DIR__.'/Controllers/index_controller.php';
         require_once __DIR__.'/Views/index_view.php';
+        require_once __DIR__.'/Builder/builder.php';
 
         $indexModel = New IndexModel();
         $indexController = New IndexController($indexModel);
         $indexView = New IndexView($indexController, $indexModel);
+        $Builder = New Builder($indexController, $indexModel);
 
-        $output = $indexView->index();
+        $output = $Builder->buildHead();
+        $output .= $indexView->index();
+        $output .= $Builder->buildFoot();
         echo $output;
 
     }

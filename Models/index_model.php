@@ -7,15 +7,15 @@
     {
 
         private $message = 'Welcome to Home page.';
+        private $title = 'Home';
 
-        function __construct()
-        {
+        function __construct(){
 
         }
 
-        public function welcomeMessage()
-        {
+        public function welcomeMessage(){
             return $this->message;
         }
+
 
     }
