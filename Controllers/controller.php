@@ -1,9 +1,7 @@
 <?php
 
 // The home page controller
-require_once __DIR__.'/controller.php';
-
-class IndexController extends Controller{
+class Controller{
   private $model;
 
   function __construct($model){
@@ -16,6 +14,10 @@ class IndexController extends Controller{
 
   public function getPageTitle(){
     return $this->model->pageTitle();
+  }
+
+  public function getPageID(){
+    return $this->model->pageID();
   }
 
 }

@@ -4,7 +4,7 @@
 class Model{
 
     private $message = 'Welcome to Home page.';
-    // private $title = 'Home';
+    private $pageID = 'Home';
 
     function __construct(){
 
@@ -12,6 +12,10 @@ class Model{
 
     public function welcomeMessage(){
         return $this->message;
+    }
+
+    public function pageID(){
+        return $this->pageID;
     }
 
 

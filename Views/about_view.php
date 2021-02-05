@@ -1,32 +1,28 @@
 <?php
+// The about page view
+require_once("view.php");
 
-    /**
-    * The about page view
-    */
-    class AboutView
-    {
+class AboutView extends View{
+    private $modelObj;
+    private $controller;
 
-        private $modelObj;
+    function __construct(){
+      $this->controller = $controller;
+      $this->model = $model;
 
-        private $controller;
-
-        function __construct($controller, $model)
-        {
-            $this->controller = $controller;
-
-            $this->modelObj = $model;
-
-            print "About - ";
-        }
-
-        public function now()
-        {
-            return $this->modelObj->nowADays();
-        }
-
-        public function today()
-        {
-            return $this->controller->current();
-        }
-
+      parent::__construct($this->controller, $this->model);
     }
+
+    public function index(){
+      return 'te';
+    }
+
+    public function today(){
+      return $this->controller->current();
+    }
+
+    public function message() {
+      echo "Am I a fruit or a berry? ";
+    }
+
+}

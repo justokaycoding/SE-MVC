@@ -1,9 +1,7 @@
 <?php
 
 //The home page view
-require_once("view.php");
-
-class IndexView extends View{
+class View{
     private $model;
     private $controller;
 
@@ -16,8 +14,7 @@ class IndexView extends View{
       return $this->controller->sayWelcome();
     }
 
-    // public function action(){
-    //   return $this->controller->takeAction();
-    // }
-
+    public function deliverPageID(){
+      return $this->controller->getPageID();
+    }
 }
