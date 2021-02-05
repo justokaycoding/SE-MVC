@@ -6,15 +6,15 @@
 require_once __DIR__.'/controller.php';
 
 class AboutController extends Controller{
-private $modelObj;
 
 function __construct( $model ){
-  $this->modelObj = $model;
-  parent::__construct($this->modelObj);
+  parent::__construct($model);
 }
 
 public function current(){
+
   return $this->modelObj->message = "About us today changed by aboutController.";
+
   }
 
 }

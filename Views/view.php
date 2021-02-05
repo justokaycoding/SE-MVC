@@ -17,4 +17,9 @@ class View{
     public function deliverPageID(){
       return $this->controller->getPageID();
     }
+
+    public function message() {
+      echo "Am I a GOD? ";
+    }
+
 }

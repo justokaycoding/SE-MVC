@@ -60,7 +60,7 @@
             $controllerObj  = new $controllerName( new $modelName );
             $viewObj        = new $viewName( $controllerObj, new $modelName );
 
-                    echo $viewObj->index();
+            echo $viewObj->message();
 
             // $view->index();
             // If there is a method - Second parameter
