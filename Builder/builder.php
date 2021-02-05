@@ -1,15 +1,11 @@
 
 <?php
 class  Builder{
-  private $indexController;
-  private $indexModel;
+  private $view;
 
-  public function __construct($indexController, $indexModel){
-    $this->indexController = $indexController;
-    $this->indexModel = $indexModel;
+  public function __construct($view){
+    $this->view = $view;
   }
-
-
   function buildHead(){
     $output = '<!DOCTYPE html>';
     $output .= '<html>';
@@ -22,8 +18,19 @@ class  Builder{
   }
 
   function buildFoot(){
+    $output = '';
     $output .= '</html>';
     return $output;
+  }
+  function buildBody(){
+    $output = '<body>';
+    $output .= $this->getContent();
+    $output .= '</body>';
+    return $output;
+  }
+
+  function getContent(){
+
   }
 
   function warpTag($content, $tag){
@@ -31,4 +38,11 @@ class  Builder{
     return $output;
   }
 
+  function pageBuild(){
+    $output = "";
+    $output .= $this->buildHead();
+    $output .= $this->buildBody();
+    $output .= $this->buildFoot();
+    return $output;
+  }
 }
