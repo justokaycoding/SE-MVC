@@ -1,5 +1,11 @@
 <?php
 
+  $userArray = array();
+  $productArray = array();
+
+  require_once __DIR__.'/Sql/sql.php';
+  $sql = New Sql();
+
     $output = '';
 
     $url = isset($_SERVER['PATH_INFO']) ? explode('/', ltrim($_SERVER['PATH_INFO'],'/')) : '/';
@@ -14,13 +20,11 @@
         require_once __DIR__.'/Controllers/controller.php';
         require_once __DIR__.'/Views/view.php';
         require_once __DIR__.'/Builder/builder.php';
-        require_once __DIR__.'/Sql/sql.php';
 
         $model = New Model();
         $controller = New Controller($model);
         $view = New View($controller, $model);
         $builder = New Builder($controller, $model);
-        $sql = New Sql();
 
         // $output = $Builder->buildHead();
         // $output .= $Builder->warpTag( $indexView->index(), 'body' );
@@ -50,6 +54,11 @@
         // Check if controller exists. NB:
         // You have to do that for the model and the view too
         $ctrlPath = __DIR__.'/Controllers/'.$requestedController.'_controller.php';
+
+        // array("Volvo", "BMW", "Toyota");
+        $sql->insertItem('productArray', array("Volvo", "BMW", "Toyota") );
+
+        $sql->updateItem('name', 'Cat Food', 'newVaule' ,'productArray' );
 
         if (file_exists($ctrlPath)){
             require_once __DIR__.'/Models/'.$requestedController.'_model.php';
