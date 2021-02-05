@@ -22,7 +22,6 @@ class  Sql{
     global $userArray;
     global $productArray;
 
-
     if($array == 'userArray'){
       foreach($userArray as $i=> $user){
         $index_key = array_search($key, $user);
@@ -41,24 +40,14 @@ class  Sql{
 
   }
 
-  public function updateItem($key, $new_vaule, $globalArray){
+  public function updateItem( $arrayKey, $old_vaule, $new_vaule, $globalArray){
     global $userArray;
     global $productArray;
 
-    echo '<pre style="display:snone;">';
-    var_dump($key);
-    echo '</pre>';
-    echo '<pre style="display:snone;">';
-    var_dump($new_vaule);
-    echo '</pre>';
-    echo '<pre style="display:snone;">';
-    var_dump($globalArray);
-    echo '</pre>';
-
     if($globalArray == 'userArray'){
       foreach($userArray as $i => $user){
-        if( $user['name'] == $key ){
-          $user['name'] = $new_vaule;
+        if( $user[$arrayKey] == $old_vaule ){
+          $user[$arrayKey] = $new_vaule;
         }
         break 1;
       }
@@ -66,17 +55,17 @@ class  Sql{
 
     else if($globalArray == 'productArray'){
       foreach($productArray as $i => $product){
-        if( $product['name'] == $key ){
-          $product['name'] = $new_vaule;
+        if( $product[$arrayKey] == $old_vaule ){
+          $product[$arrayKey] = $new_vaule;
         }
         break 1;
       }
     }
   }
 
-  public function getItem(){
-
-  }
+  // public function getItem(){
+  //
+  // }
 
   public function init_build(){
     //fills the base arrays on init
