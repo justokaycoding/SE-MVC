@@ -1,4 +1,5 @@
 <?php
+
     $output = '';
 
     $url = isset($_SERVER['PATH_INFO']) ? explode('/', ltrim($_SERVER['PATH_INFO'],'/')) : '/';
@@ -13,11 +14,13 @@
         require_once __DIR__.'/Controllers/controller.php';
         require_once __DIR__.'/Views/view.php';
         require_once __DIR__.'/Builder/builder.php';
+        require_once __DIR__.'/Sql/sql.php';
 
         $model = New Model();
         $controller = New Controller($model);
         $view = New View($controller, $model);
         $builder = New Builder($controller, $model);
+        $sql = New Sql();
 
         // $output = $Builder->buildHead();
         // $output .= $Builder->warpTag( $indexView->index(), 'body' );
