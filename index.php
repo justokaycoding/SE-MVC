@@ -8,6 +8,9 @@
   require_once __DIR__.'/Sql/sql.php';
   $sql = New Sql();
 
+  //Creates Error Log
+  require_once __DIR__.'/error.php';
+
   //Defining Url
   $url = isset($_SERVER['PATH_INFO']) ? explode('/', ltrim($_SERVER['PATH_INFO'],'/')) : '/';
 
