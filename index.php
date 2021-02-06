@@ -1,32 +1,16 @@
 <?php
-  //Global vars
-  $userArray = array();
-  $productArray = array();
-  $output = '';
-
+  //Start session
+  require_once 'config.php';
   //Instance Of Database
-  require_once __DIR__.'/Sql/sql.php';
   $sql = New Sql();
-
-  //Creates Error Log
-  require_once __DIR__.'/error.php';
 
   //Defining Url
   $url = isset($_SERVER['PATH_INFO']) ? explode('/', ltrim($_SERVER['PATH_INFO'],'/')) : '/';
 
     if ($url == '/'){
-
         // This is the home page
         // Initiate the home controller
         // and render the home view
-
-        require_once __DIR__.'/Models/model.php';
-        require_once __DIR__.'/Controllers/controller.php';
-        require_once __DIR__.'/Views/view.php';
-        require_once __DIR__.'/Builder/builder.php';
-        // require_once __DIR__.'/Models/'.$requestedController.'_model.php';
-        // require_once __DIR__.'/Controllers/'.$requestedController.'_controller.php';
-        // require_once __DIR__.'/Views/'.$requestedController.'_view.php';
 
         $model = New Model();
         $controller = New Controller($model);
@@ -34,10 +18,6 @@
         $builder = New Builder($view);
 
         echo $builder->pageBuild();
-
-
-        // echo $view->index();
-        // echo $output;
 
     }
 
@@ -77,7 +57,7 @@
 
             // $view->index();
             // If there is a method - Second parameter
-            if ($requestedAction != ''){
+            if ($requestedAction != '' && method_exist($viewObj, $requestedAction)){
                 // then we call the method via the view
                 // dynamic call of the view
                 $output = $viewObj->$requestedAction($requestedParams);
