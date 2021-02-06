@@ -21,8 +21,8 @@ class AboutView extends View{
       return $this->controller->current();
     }
 
-    // public function message() {
-    //   echo "Am I a fruit or a berry? ";
-    // }
+    public function message() {
+      echo "Am I a fruit or a berry? ";
+    }
 
 }
