@@ -4,7 +4,7 @@
 require_once __DIR__.'/model.php';
 
 class AboutModel extends Model{
-
+m
   function __construct(){
     parent::__construct();
   }
