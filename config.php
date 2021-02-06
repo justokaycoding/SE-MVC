@@ -5,12 +5,6 @@ session_start();
 
 ini_set('display_errors', 'On');
 
-// setting error logging to be active
-ini_set("log_errors", TRUE);
-
-// setting the logging file in php.ini
-ini_set('error_log', "./my-errors.log");
-
 // Directory constants
 define('URL', 'TEST');
 
