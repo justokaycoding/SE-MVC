@@ -18,7 +18,7 @@
         $view = New View($controller, $model);
         $builder = New Builder($view);
 
-        echo $builder->pageBuild();
+        echo $view->index();
 
     }
 
