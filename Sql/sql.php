@@ -28,22 +28,34 @@ class  Sql{
 
   //add item to array
   public function insertItem($globalArray, $array){
+    if(!is_array($array))return;
     $sessionArray = ($globalArray == 'userArray' ? 'userArray' : 'productArray');
      array_push($_SESSION[$sessionArray], $array);
   }
 
   //delete whole item from array
+  //based off unique vaule
   public function deleteItem($globalArray, $key){
+    $inArray = false;
     $sessionArray = ($globalArray == 'userArray' ? 'userArray' : 'productArray');
        foreach($_SESSION[$sessionArray] as $i=> $session){
          if(!is_array($session))continue;
          $index_key = array_search($key, $session);
-         if ($index_key) break;
+
+         if ($index_key){
+            $inArray = true;
+            break;
+          }
+          
        }
-       unset($_SESSION[$sessionArray][$i]);
+       if($inArray){
+         unset($_SESSION[$sessionArray][$i]);
+         $_SESSION[$sessionArray] = array_values($_SESSION[$sessionArray]);
+       }
     }
 
-  // find Unique vaule in subArray and change is key to new vaule;
+  //find Unique vaule in subArray and change is key to new vaule;
+  //based off unique vaule
   public function updateItem( $globalArray, $uniqueVaule, $key, $newVaule){
     $sessionArray = ($globalArray == 'userArray' ? 'userArray' : 'productArray');
        foreach($_SESSION[$sessionArray] as $i => $session){
@@ -52,5 +64,11 @@ class  Sql{
        }
       $_SESSION[$sessionArray][$i][$key] = $newVaule;
    }
+
+  public function manualRemove($globalArray, $i){
+      $sessionArray = ($globalArray == 'userArray' ? 'userArray' : 'productArray');
+      unset($_SESSION[$i]);
+      $_SESSION[$sessionArray] = array_values($_SESSION[$sessionArray]);
+  }
 
 }

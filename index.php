@@ -17,8 +17,8 @@
         $view = New View($controller, $model);
         $builder = New Builder($view);
 
-        //$sql->insertItem('userArray', ['email' => 'jim@gmail.com', 'password' => 'password']);
-        $sql->deleteItem('userArray', 'jim@gmail.com');
+        //$sql->insertItem('userArray', ['email' => 'johnH@gmail.com', 'password' => 'password']);
+        $sql->deleteItem('userArray', 'sam@gmail.com');
         echo $builder->pageBuild();
 
     }
@@ -72,7 +72,7 @@
         }
     }
 
-echo '<pre>';
-var_dump($_SESSION['userArray']);
-echo '</pre>';
+    echo '<pre>';
+    var_dump($_SESSION['userArray']);
+    echo '</pre>';
     ?>
