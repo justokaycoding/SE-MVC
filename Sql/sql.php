@@ -3,9 +3,11 @@
 
 if ( !isset($_SESSION['userArray'])) {
   $_SESSION['userArray'] = array();
-  array_push($_SESSION['userArray'],
-              ['email' => 'admin@gmail.com', 'password' => 'password'],
-              ['email' => 'user@gmail.com', 'password' => 'password']
+
+  array_push(
+            $_SESSION['userArray'],
+            ['email' => 'admin@gmail.com', 'password' => 'password'],
+            ['email' => 'user@gmail.com', 'password' => 'password']
             );
 }
 
@@ -20,70 +22,35 @@ if ( !isset($_SESSION['productArray'])) {
             );
 }
 
-
-
 class  Sql{
   public function __construct(){
-    // echo '<pre style="display:nodne;">';
-    // var_dump($_SESSION);
-    // echo '</pre>';
   }
 
-  // public function insertItem($globalArray, $array){
-  //   global $userArray;
-  //   global $productArray;
-  //
-  //   if($globalArray == 'userArray'){
-  //     array_push($userArray, $array);
-  //   }
-  //   else if($globalArray == 'productArray'){
-  //     array_push($productArray, $array);
-  //   }
-  // }
-  //
-  // public function deleteItem($key, $array){
-  //   global $userArray;
-  //   global $productArray;
-  //
-  //   if($array == 'userArray'){
-  //     foreach($userArray as $i=> $user){
-  //       $index_key = array_search($key, $user);
-  //       if ($index_key) break;
-  //     }
-  //     unset($userArray[$i]);
-  //   }
-  //
-  //   else if($array == 'productArray'){
-  //     foreach($productArray as $i=> $product){
-  //       $index_key = array_search($key, $product);
-  //       if ($index_key) break;
-  //     }
-  //     unset($productArray[$i]);
-  //   }
-  //
-  // }
-  //
-  // public function updateItem( $arrayKey, $old_vaule, $new_vaule, $globalArray){
-  //   global $userArray;
-  //   global $productArray;
-  //
-  //   if($globalArray == 'userArray'){
-  //     foreach($userArray as $i => $user){
-  //       if( $user[$arrayKey] == $old_vaule ){
-  //         $user[$arrayKey] = $new_vaule;
-  //       }
-  //       break 1;
-  //     }
-  //   }
-  //
-  //   else if($globalArray == 'productArray'){
-  //     foreach($productArray as $i => $product){
-  //       if( $product[$arrayKey] == $old_vaule ){
-  //         $product[$arrayKey] = $new_vaule;
-  //       }
-  //       break 1;
-  //     }
-  //   }
-  // }
+  //add item to array
+  public function insertItem($globalArray, $array){
+    $sessionArray = ($globalArray == 'userArray' ? 'userArray' : 'productArray');
+     array_push($_SESSION[$sessionArray], $array);
+  }
+
+  //delete whole item from array
+  public function deleteItem($globalArray, $key){
+    $sessionArray = ($globalArray == 'userArray' ? 'userArray' : 'productArray');
+       foreach($_SESSION[$sessionArray] as $i=> $session){
+         if(!is_array($session))continue;
+         $index_key = array_search($key, $session);
+         if ($index_key) break;
+       }
+       unset($_SESSION[$sessionArray][$i]);
+    }
+
+  // find Unique vaule in subArray and change is key to new vaule;
+  public function updateItem( $globalArray, $uniqueVaule, $key, $newVaule){
+    $sessionArray = ($globalArray == 'userArray' ? 'userArray' : 'productArray');
+       foreach($_SESSION[$sessionArray] as $i => $session){
+         $index_key = array_search($uniqueVaule, $session);
+         if ($index_key) break;
+       }
+      $_SESSION[$sessionArray][$i][$key] = $newVaule;
+   }
 
 }

@@ -2,7 +2,7 @@
 
 // * The about page model
 require_once __DIR__.'/model.php';
-m
+
 class AboutModel extends Model{
 
   function __construct(){

@@ -17,6 +17,8 @@
         $view = New View($controller, $model);
         $builder = New Builder($view);
 
+        //$sql->insertItem('userArray', ['email' => 'jim@gmail.com', 'password' => 'password']);
+        $sql->deleteItem('userArray', 'jim@gmail.com');
         echo $builder->pageBuild();
 
     }
@@ -69,3 +71,8 @@
             die('404 - The file - '.$ctrlPath.' - not found');
         }
     }
+
+echo '<pre>';
+var_dump($_SESSION['userArray']);
+echo '</pre>';
+    ?>
