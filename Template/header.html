@@ -4,9 +4,11 @@
 <head>
   <link rel="stylesheet/less" type="text/css" href="../Css/styles.less" />
   <link rel="stylesheet/less" type="text/css" href="../Css/style.css" />
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <script src="//cdn.jsdelivr.net/npm/less@3.13"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head><!-- End of head -->
 <div id="topHeader" class="section">
   <div class="constraint" style="">
@@ -15,9 +17,12 @@
         <img src="../Images/logo.png">
       </div>
     </div>
-        <div id="" class="column width-6">
+    <div id="" class="column width-6">
       <div class="wrapper text">
-        <i class="fas fa-shopping-cart"></i>
+        <a href="#">
+          <i class="fas fa-shopping-cart"></i>
+        </a>
+        <a href="#"> Login </a>
       </div>
     </div>
   </div>
@@ -25,7 +30,7 @@
 <div id="pageTitle" class="section" style="background-image: url(../Images/HERO.jpg);">
   <div class="column width-12">
     <div class="wrapper text">
-      <h1>{title}</h1>
+      <h1><?php echo $this->controller->getPageID(); ?></h1>
     </div>
   </div>
 </div>

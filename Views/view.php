@@ -11,10 +11,25 @@ class View{
     }
 
     public function index(){
-      $file_name = URL.'/Template/header.html';
-      $file_content = str_replace("{title}",$this->controller->getPageID(), file_get_contents($file_name));
+      $template_html = $this->head();
+      $template_html .= $this->foot();
+      return $template_html;
+    }
 
-      return $file_content;
+    public function head(){
+      ob_start();
+      include(URL.'/Template/header.html');
+      $template_html = ob_get_contents();
+      ob_end_clean();
+      return $template_html;
+    }
+
+    public function foot(){
+      ob_start();
+      include(URL.'/Template/footer.html');
+      $template_html = ob_get_contents();
+      ob_end_clean();
+      return $template_html;
     }
 
     public function deliverPageID(){

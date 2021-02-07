@@ -1,13 +1,67 @@
+@green-color: #50923e;
+@color-red: #923e50;
+@color-orange:#92603e;
+@color-blue:#3e6292;
+
+@Righteous: 'Righteous', cursive;
+@Roboto: 'Roboto';
+
+*{
+  font-family: @Roboto;
+}
+
+#topHeader{
+  .wrapper{
+    margin: 0 auto;
+  }
+   .img {
+    max-width: 150px;
+    margin-left: 0;
+  }
+  .text{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    a{
+      display: inline-block;
+      &:nth-of-type(1){
+        margin: 0 20px;
+      }
+      &:nth-of-type(2){
+        font-size: 18px;
+            border-radius: 0;
+            border: 2px solid #3e6292;
+            display: inline-block;
+            padding: 6px 28px;
+            background-color: #fff;
+            color: #3e6292;
+            transition: all 0.2s ease-in-out;
+            text-transform: uppercase;
+        &:hover{
+          background-color: @color-blue;
+          color:#fff;
+        }
+      }
+    }
+  }
+  .fa-shopping-cart {
+    font-size: 24px;
+    color: @color-blue;
+  }
+}
+
 #pageTitle {
-    padding: 3.7vw;
-    min-height: 120px;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-    background-size: cover;
-    &::before {
+  padding: 3.7vw 0;
+  min-height: 120px;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  background-size: cover;
+
+  &::before {
     width: 100%;
-    background-color: #6879c6;
+    background-color: @color-orange;
     position: absolute;
     content: '';
     height: 100%;
@@ -15,27 +69,28 @@
     top: 0;
     opacity: 0.4;
   }
+
   .text {
     text-align: center;
+    background-color: ~'rgb(255 255 255 / 63%)';
   }
+
   h1 {
-    background-color: rgb(255 255 255 / 58%);
+    color: #fff;
     border-radius: 8px;
     padding: 16px;
-    border: 2px solid #fff;
-    text-shadow: 1px 2px 2px #6879c6;
-  }
-}
-
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: normal;
-    color: #68c2e8;
-    margin-bottom: 0;
-    font-weight: 700;
+    text-shadow: 1px 1px 7px #000;
+    text-transform: uppercase;
+    letter-spacing: 3px;
     position: relative;
-    z-index: 2;
-    display: inline-block;
-    margin-bottom: 1ch;
+    font-size: 46px;
+  }
+
+  .img {
+    max-width: 150px;
+    margin-left: 0;
+  }
+  .width-12{
+    padding: 0;
+  }
 }
