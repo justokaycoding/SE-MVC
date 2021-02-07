@@ -14,7 +14,7 @@ if ( !isset($_SESSION['userArray'])) {
 if ( !isset($_SESSION['productArray'])) {
   $_SESSION['productArray'] = array();
   array_push($_SESSION['productArray'],
-              ['name' => 'Cat Food', 'image' => 'catfood.jpg', 'price' => '5.20', 'sale_price' => '4.20', 'on_sale' => 'false', 'category' => 'Pet Food'],
+              ['name' => 'Cat Food', 'image'   => 'catfood.jpg', 'price' => '5.20', 'sale_price' => '4.20', 'on_sale' => 'false', 'category' => 'Pet Food'],
               ['name' => 'Cat sFoods', 'image' => 'catfood.jpg', 'price' => '5.20', 'sale_price' => '4.20', 'on_sale' => 'false', 'category' => 'Pet Food'],
               ['name' => 'Cat sFoods', 'image' => 'catfood.jpg', 'price' => '5.20', 'sale_price' => '4.20', 'on_sale' => 'false', 'category' => 'Pet Food'],
               ['name' => 'Cat aFoods', 'image' => 'catfood.jpg', 'price' => '5.20', 'sale_price' => '4.20', 'on_sale' => 'false', 'category' => 'Pet Food'],
@@ -46,7 +46,7 @@ class  Sql{
             $inArray = true;
             break;
           }
-          
+
        }
        if($inArray){
          unset($_SESSION[$sessionArray][$i]);
@@ -65,10 +65,29 @@ class  Sql{
       $_SESSION[$sessionArray][$i][$key] = $newVaule;
    }
 
+  //Used for testing
   public function manualRemove($globalArray, $i){
       $sessionArray = ($globalArray == 'userArray' ? 'userArray' : 'productArray');
       unset($_SESSION[$i]);
       $_SESSION[$sessionArray] = array_values($_SESSION[$sessionArray]);
+  }
+
+  //return item array
+  public function getItem($globalArray, $uniqueVaule){
+        $inArray = false;
+        $output = 'Not In Array';
+        $sessionArray = ($globalArray == 'userArray' ? 'userArray' : 'productArray');
+        foreach($_SESSION[$sessionArray] as $i => $session){
+          $index_key = array_search($uniqueVaule, $session);
+          if($index_key){
+            $inArray = true;
+            break;
+          }
+        }
+        if($inArray){
+          $output = $_SESSION[$sessionArray][$i];
+        }
+        return $output;
   }
 
 }

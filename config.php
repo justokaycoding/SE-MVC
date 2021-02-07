@@ -10,6 +10,7 @@ define('URL', 'TEST');
 
 // AUTOLOADING
 require_once __DIR__.'/Sql/sql.php';
+require_once __DIR__.'/Cart/cart.php';
 require_once __DIR__.'/Models/model.php';
 require_once __DIR__.'/Controllers/controller.php';
 require_once __DIR__.'/Views/view.php';

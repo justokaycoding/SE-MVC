@@ -3,6 +3,7 @@
   require_once 'config.php';
   //Instance Of Database
   $sql = New Sql();
+  $cart = New Cart();
 
   //Defining Url
   $url = isset($_SERVER['PATH_INFO']) ? explode('/', ltrim($_SERVER['PATH_INFO'],'/')) : '/';
@@ -17,8 +18,6 @@
         $view = New View($controller, $model);
         $builder = New Builder($view);
 
-        //$sql->insertItem('userArray', ['email' => 'johnH@gmail.com', 'password' => 'password']);
-        $sql->deleteItem('userArray', 'sam@gmail.com');
         echo $builder->pageBuild();
 
     }
@@ -71,8 +70,4 @@
             die('404 - The file - '.$ctrlPath.' - not found');
         }
     }
-
-    echo '<pre>';
-    var_dump($_SESSION['userArray']);
-    echo '</pre>';
     ?>
