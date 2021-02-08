@@ -3,7 +3,7 @@
 require_once("view.php");
 
 class CartsView extends View{
-  
+
   function __construct($controller, $model){
       parent::__construct($controller, $model);
     }

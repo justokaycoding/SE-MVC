@@ -18,7 +18,6 @@ class View{
     }
 
     public function head(){
-      echo $this->controller->getPageID();
       ob_start();
       include(URL.'/Template/header.html');
       $template_html = ob_get_contents();
