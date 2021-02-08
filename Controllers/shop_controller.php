@@ -11,10 +11,4 @@ function __construct( $model ){
   parent::__construct($model);
 }
 
-public function current(){
-
-  return $this->modelObj->message = "About us today changed by aboutController.";
-
-  }
-
 }

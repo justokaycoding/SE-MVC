@@ -3,13 +3,8 @@
 require_once("view.php");
 
 class LoginView extends View{
-    // private $modelObj;
-    // private $controller;
 
   function __construct($controller, $model){
-      // $this->controller = $controller;
-      // $this->modelObj = $modelObj;
-
       parent::__construct($controller, $model);
     }
 
@@ -21,21 +16,14 @@ class LoginView extends View{
     }
 
     public function content(){
+      // echo '------------';
+      // echo $this->controller->getPageID();
+      // echo '------------';
       ob_start();
       include(URL.'/Template/login.html');
       $template_html = ob_get_contents();
       ob_end_clean();
       return $template_html;
-    }
-
-
-
-    public function today(){
-      return $this->controller->current();
-    }
-
-    public function message() {
-      echo "Am I a fruit or a berry? ";
     }
 
 }

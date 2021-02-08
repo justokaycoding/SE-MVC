@@ -1,6 +1,6 @@
 <?php
 
-// * The about page model
+// * The checkout page model
 require_once __DIR__.'/model.php';
 
 class CheckoutModel extends Model{

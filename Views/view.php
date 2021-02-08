@@ -11,10 +11,14 @@ class View{
     }
 
     public function index(){
-      return "Running Main Index File";
+      $template_html = $this->head();
+      $template_html .= $this->contentIdWrap($this->content());
+      $template_html .= $this->foot();
+      return $template_html;
     }
 
     public function head(){
+      echo $this->controller->getPageID();
       ob_start();
       include(URL.'/Template/header.html');
       $template_html = ob_get_contents();
@@ -31,7 +35,11 @@ class View{
     }
 
     public function content(){
-      return 'Base Info';
+      ob_start();
+      include(URL.'/Template/login.html');
+      $template_html = ob_get_contents();
+      ob_end_clean();
+      return $template_html;
     }
 
     public function contentIdWrap($content){

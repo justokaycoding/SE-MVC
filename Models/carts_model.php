@@ -1,6 +1,6 @@
 <?php
 
-// * The about page model
+// * The cart page model
 require_once __DIR__.'/model.php';
 
 class CartsModel extends Model{

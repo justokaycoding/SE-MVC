@@ -12,10 +12,6 @@ class Controller{
     return $this->model->welcomeMessage();
   }
 
-  public function getPageTitle(){
-    return $this->model->pageTitle();
-  }
-
   public function getPageID(){
     return $this->model->pageID();
   }
