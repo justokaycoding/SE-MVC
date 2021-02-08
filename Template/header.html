@@ -10,28 +10,46 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head><!-- End of head -->
+
 <body>
-<div id="topHeader" class="section">
-  <div class="constraint" style="">
-    <div id="" class="column width-6">
-      <div class="wrapper img">
-        <img src="../Images/logo.png">
+  <header>
+    <div id="topHeader" class="section">
+      <div class="constraint" style="">
+        <div id="" class="column width-6">
+          <div class="wrapper img">
+            <a href="<?php echo '/';?>">
+              <img src="../Images/logo.png">
+            </a>
+          </div>
+        </div>
+        <div id="" class="column width-6">
+          <div class="wrapper text">
+            <a href="<?php echo '/shopping-cart';?>">
+              <i class="fas fa-shopping-cart"></i>
+            </a>
+            <a href="<?php echo '/login';?>"> Login </a>
+          </div>
+        </div>
       </div>
     </div>
-    <div id="" class="column width-6">
-      <div class="wrapper text">
-        <a href="#">
-          <i class="fas fa-shopping-cart"></i>
-        </a>
-        <a href="#"> Login </a>
+    <div id="menu" class="section">
+      <div class="constraint" style="">
+        <div class="column width-12">
+          <div class="wrapper text">
+            <nav>
+              <a href="<?php echo '/';?>">Home</a>
+              <a href="/shop">Shop</a>
+              <a href="/shopping-cart">Cart</a>
+            </nav>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<div id="pageTitle" class="section" style="background-image: url(../Images/HERO.jpg);">
-  <div class="column width-12">
-    <div class="wrapper text">
-      <h1><?php echo $this->controller->getPageID(); ?></h1>
+    <div id="pageTitle" class="section" style="background-image: url(../Images/HERO.jpg);">
+      <div class="column width-12">
+        <div class="wrapper text">
+          <h1><?php echo $this->controller->getPageID(); ?></h1>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  </header>
