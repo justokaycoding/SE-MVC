@@ -13,9 +13,22 @@ class LoginView extends View{
       parent::__construct($controller, $model);
     }
 
-    // public function index(){
-    //   return 'te';
-    // }
+    public function index(){
+      $template_html = $this->head();
+      $template_html .= $this->contentIdWrap($this->content());
+      $template_html .= $this->foot();
+      return $template_html;
+    }
+
+    public function content(){
+      ob_start();
+      include(URL.'/Template/login.html');
+      $template_html = ob_get_contents();
+      ob_end_clean();
+      return $template_html;
+    }
+
+
 
     public function today(){
       return $this->controller->current();

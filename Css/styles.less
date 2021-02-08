@@ -11,7 +11,22 @@
   font-family: @Roboto;
   box-sizing: border-box;
 }
-
+.button{
+  display: inline-block;
+  font-size: 18px;
+  border-radius: 0;
+  border: 2px solid #3e6292;
+  display: inline-block;
+  padding: 6px 28px;
+  background-color: #fff;
+  color: #3e6292;
+  transition: all 0.2s ease-in-out;
+  text-transform: uppercase;
+  &:hover{
+    background-color: #3e6292;
+    color: #fff;
+  }
+}
 #topHeader{
   .wrapper{
     margin: 0 auto;
@@ -144,5 +159,97 @@
         }
       }
     }
+  }
+}
+
+
+//////////////////////Login Form
+#formSignIn{
+   label {
+    display: block;
+  }
+}
+
+#signInForm{
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+   input[type="radio"] {
+    display: none;
+    &:checked{
+      + label{
+        &:before{
+          background-color: @green-color;
+        }
+      }
+    }
+  }
+  label{
+    cursor: pointer;
+    &[for="signIn"],&[for="signUp"]{
+      padding: 15px 30px;
+      display: inline-block;
+      text-transform: uppercase;
+      position: relative;
+      &::before{
+        content: '';
+        width: 20px;
+        height: 20px;
+        border: 1px solid;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+  #formSignIn {
+    display: none;
+  }
+  #formSignUp {
+    display: none;
+    label{
+      display: block;
+    }
+  }
+  input[type="submit"]{
+    display: none;
+    margin-top: 15px;
+  }
+}
+
+#signIn{
+  &:checked{
+    ~ #formSignIn{
+      display: block;
+    }
+    ~ input[type="submit"]{
+      display: block;
+    }
+  }
+}
+
+#signUp{
+  &:checked{
+    ~ #formSignUp{
+      display: block;
+    }
+    ~ input[type="submit"]{
+      display: block;
+    }
+  }
+}
+
+.customForm{
+  input,select{
+    width: 100%;
+    padding: 10px 5px;
+    margin-bottom: 10px;
+    border: 1px solid @color-black;
+  }
+  label{
+    text-align: left;
+    padding: 10px 0;
+    color: @green-color;
   }
 }

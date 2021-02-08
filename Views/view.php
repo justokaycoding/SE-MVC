@@ -11,9 +11,7 @@ class View{
     }
 
     public function index(){
-      $template_html = $this->head();
-      $template_html .= $this->foot();
-      return $template_html;
+      return "Running Main Index File";
     }
 
     public function head(){
@@ -32,12 +30,17 @@ class View{
       return $template_html;
     }
 
+    public function content(){
+      return 'Base Info';
+    }
+
+    public function contentIdWrap($content){
+      return '<div id="content_wrap">'.$content.'</div>';
+    }
+
     public function deliverPageID(){
       return $this->controller->getPageID();
     }
 
-    public function message() {
-      echo "Am I a GOD? ";
-    }
 
 }
