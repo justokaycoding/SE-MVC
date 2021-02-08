@@ -3,7 +3,7 @@
 // The home page controller
 class Controller{
   private $model;
-  
+
   function __construct($model){
     $this->model = $model;
   }
@@ -18,10 +18,5 @@ class Controller{
 
   public function getPageID(){
     return $this->model->pageID();
-  }
-
-  public function getMenu(){
-
-    return '';
   }
 }

@@ -2,7 +2,7 @@
 // The about page view
 require_once("view.php");
 
-class AboutView extends View{
+class ShopView extends View{
     // private $modelObj;
     // private $controller;
 
