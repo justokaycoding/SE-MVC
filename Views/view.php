@@ -4,10 +4,12 @@
 class View{
     private $model;
     private $controller;
+    private $sql;
 
     function __construct($controller, $model){
       $this->controller = $controller;
       $this->model = $model;
+      $this->sql = new Sql;
     }
 
     public function index(){
@@ -47,6 +49,16 @@ class View{
 
     public function deliverPageID(){
       return $this->controller->getPageID();
+    }
+
+    public function loginInfo(){
+
+      if(isset($_POST)){
+        echo '<pre style="display:nodne;">';
+        var_dump($_POST);
+        echo '</pre>';
+      }
+      
     }
 
 

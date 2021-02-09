@@ -6,8 +6,8 @@ if ( !isset($_SESSION['userArray'])) {
 
   array_push(
             $_SESSION['userArray'],
-            ['email' => 'admin@gmail.com', 'password' => 'password'],
-            ['email' => 'user@gmail.com', 'password' => 'password']
+            ['email' => 'admin@gmail.com', 'password' => 'password', 'name' => 'john', 'phone' => '555-555-5555', 'address' => '555 south street', 'city' => 'GreenVille', 'state' => "Ohio", 'zip' => '64058'],
+            ['email' => 'user@gmail.com', 'password' => 'password', 'name' => 'john', 'phone' => '555-555-5555', 'address' => '555 south street', 'city' => 'GreenVille', 'state' => "Ohio", 'zip' => '64058']
             );
 }
 
@@ -20,6 +20,10 @@ if ( !isset($_SESSION['productArray'])) {
               ['name' => 'Cat aFoods', 'image' => 'catfood.jpg', 'price' => '5.20', 'sale_price' => '4.20', 'on_sale' => 'false', 'category' => 'Pet Food'],
               ['name' => 'Cat Food', 'image' => 'catfood.jpg', 'price' => '5.20', 'sale_price' => '4.20', 'on_sale' => 'false', 'category' => ['Pet Food', 'Chile'] ],
             );
+}
+
+if ( !isset($_SESSION['user'])) {
+  $_SESSION['user'] = '';
 }
 
 class  Sql{
@@ -90,4 +94,11 @@ class  Sql{
         return $output;
   }
 
+  public function setUser(){
+    // $_POST
+    // $_SESSION['user'] =
+  }
+  public function getUser(){
+
+  }
 }

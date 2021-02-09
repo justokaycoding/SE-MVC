@@ -17,7 +17,7 @@ class LoginView extends View{
 
     public function content(){
       // echo '------------';
-      // echo $this->controller->getPageID();
+      // echo $this->controller->getPageTemplate();
       // echo '------------';
       ob_start();
       include(URL.'/Template/login.html');

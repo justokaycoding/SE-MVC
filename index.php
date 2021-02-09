@@ -16,8 +16,7 @@
         $model = New Model();
         $controller = New Controller($model);
         $view = New View($controller, $model);
-        $builder = New Builder($view);
-
+        
         echo $view->index();
 
     }
