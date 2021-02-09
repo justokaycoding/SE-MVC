@@ -53,12 +53,35 @@ class View{
 
     public function loginInfo(){
 
-      if(isset($_POST)){
-        echo '<pre style="display:nodne;">';
-        var_dump($_POST);
-        echo '</pre>';
+      if(!empty($_POST)){
+        $type = $_POST["formType"];
+        switch ($type) {
+          case "signUp":
+            //add users
+            $result = $this->sql->getItem('userArray',$_POST['sign_up_email']);
+            if(empty($result)){
+
+              $newUser = [
+                          'email'     => $_POST['sign_up_email'],
+                          'password' => $_POST['sign_up_password'],
+                          'name'     => $_POST['sign_up_name'],
+                          'phone'    => $_POST['sign_up_phone'],
+                          'address'  => $_POST['sign_up_address'],
+                          'city'     => $_POST['sign_up_city'],
+                          'state'    => $_POST['sign_up_state'],
+                          'zip'      => $_POST['sign_up_zip']
+                        ];
+
+              $this->sql->insertItem('userArray', $newUser);
+              $this->sql->setUser($_POST['name']);
+            }
+            break;
+          case "signIn":
+            $result = $this->sql->getItem('userArray', $_POST['sign_in_email']);
+            $this->sql->setUser($result['name']);
+            break;
+        }
       }
-      
     }
 
 

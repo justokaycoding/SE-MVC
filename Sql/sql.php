@@ -7,7 +7,7 @@ if ( !isset($_SESSION['userArray'])) {
   array_push(
             $_SESSION['userArray'],
             ['email' => 'admin@gmail.com', 'password' => 'password', 'name' => 'john', 'phone' => '555-555-5555', 'address' => '555 south street', 'city' => 'GreenVille', 'state' => "Ohio", 'zip' => '64058'],
-            ['email' => 'user@gmail.com', 'password' => 'password', 'name' => 'john', 'phone' => '555-555-5555', 'address' => '555 south street', 'city' => 'GreenVille', 'state' => "Ohio", 'zip' => '64058']
+            ['email' => 'user@gmail.com', 'password' => 'password', 'name' => 'James', 'phone' => '555-555-5555', 'address' => '555 south street', 'city' => 'GreenVille', 'state' => "Ohio", 'zip' => '64058']
             );
 }
 
@@ -90,15 +90,17 @@ class  Sql{
         }
         if($inArray){
           $output = $_SESSION[$sessionArray][$i];
+        } else{
+          $output = "";
         }
         return $output;
   }
 
-  public function setUser(){
-    // $_POST
-    // $_SESSION['user'] =
+  public function setUser($name){
+    $_SESSION['user'] = $name;
   }
-  public function getUser(){
 
+  public function getUser(){
+    return $_SESSION['user'];
   }
 }

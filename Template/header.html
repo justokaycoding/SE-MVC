@@ -1,4 +1,17 @@
-<!DOCTYPE html>
+<?php
+  if($_SESSION['user'] == '' && !empty($_POST)){
+    $name = $this->loginInfo();
+  }
+  else{
+    $name = $this->sql->getUser();
+  }
+
+  if($name != ''){
+     $output = '<span>Welcome ' . $name .'</span>';
+     $output .= '<button class="button" type="button" onclick="logout()">Sign Out</button>';
+  }
+?>
+
 <html>
 
 <head>
@@ -17,7 +30,7 @@
       <div class="constraint" style="">
         <div id="" class="column width-12">
           <div class="text">
-            <p><?php echo $this->loginInfo(); ?></p>
+            <p><?php echo $output; ?></p>
           </div>
         </div>
       </div>
