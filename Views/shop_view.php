@@ -43,7 +43,7 @@ class ShopView extends View{
       foreach($_SESSION['productArray'] as $product){
         if( is_array($product['category']) ){
           foreach($product['category'] as $cat){
-            $catList .= $cat .' ';
+            $catList .= ' '.$cat;
           }
         }
         else{
@@ -55,14 +55,17 @@ class ShopView extends View{
         }
 
         $output .= '<article class="'.$catList.'">';
-        $output .= '<img src="'.$product['image'].'">';
+        $output .= '<div class="img"><img src="../../Images/'.$product['image'].'"></div>';
+        $output .= '<div class="content">';
         $output .= '<p class="productTitle">'.$product['name'].'</p>';
         if($product["on_sale"] == 'false'){
-          $output .= '<p class="price">'.$product["price"].'</p>';
+          $output .= '<p class="price">$'.$product["price"].'</p>';
         }
         else{
-          $output .= '<p class="price">'.$product["sale_price"].'</p>';
+          $output .= '<p class="price">$'.$product["sale_price"].'</p>';
         }
+        $output .= '<a class="button" href="#">Add To Cart</a>';
+        $output .= '</div>';
         $output .= '</article>';
       }
       return $output;

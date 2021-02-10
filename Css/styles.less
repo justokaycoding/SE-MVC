@@ -168,6 +168,16 @@
    label {
     display: block;
   }
+  h2{
+    span{
+      &:nth-of-type(1){
+        padding-top: 20px;
+      }
+      display: block;
+      color: #e91e63;
+      text-transform: uppercase;
+    }
+  }
 }
 
 #signInForm{
@@ -269,5 +279,39 @@
   }
   .text{
     text-align: right;
+  }
+}
+
+.shop{
+  .width-12{
+    display: flex;
+    flex-wrap: wrap;
+    article{
+      width: ~'calc(25% - 30px)';
+      margin: 20px 15px;
+      overflow: hidden;
+      img{
+        max-width: 250px;
+      }
+      .img{
+        text-align: center;
+      }
+      .content{
+        text-align: center;
+      }
+      .productTitle {
+        font-size: 18px;
+        color: #50923e;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+      p{
+        margin: 10px auto;
+      }
+      .price {
+        font-size: 20px;
+        font-weight: 600;
+      }
+    }
   }
 }

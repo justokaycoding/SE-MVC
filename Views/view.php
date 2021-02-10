@@ -20,6 +20,7 @@ class View{
     }
 
     public function head(){
+      $this->loginInfo();
       ob_start();
       include(URL.'/Template/header.html');
       $template_html = ob_get_contents();
