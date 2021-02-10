@@ -12,7 +12,7 @@ class Model{
     public function pageID(){
       return $this->pageID;
     }
-    
+
     public function pageTemplate(){
       return $this->pageTemplate;
     }

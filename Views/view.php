@@ -21,7 +21,6 @@ class View{
 
     public function head(){
       $this->loginInfo();
-      $this->getPageTemplateC();
       ob_start();
       include(URL.'/Template/header.html');
       $template_html = ob_get_contents();
@@ -40,8 +39,8 @@ class View{
     public function content(){
       $template_html = '';
       ob_start();
-    //  include(URL.'/Template/login.html');
-    //  $template_html = ob_get_contents();
+       // include(URL.'/Template/login.html');
+       // $template_html = ob_get_contents();
       ob_end_clean();
       return $template_html;
     }
