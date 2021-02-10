@@ -11,8 +11,4 @@ class ShopModel extends Model{
     parent::__construct();
   }
 
-  public function pageID(){
-      return $this->pageID;
-  }
-
 }

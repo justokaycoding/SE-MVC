@@ -4,6 +4,7 @@
 class Model{
 
     private $pageID = 'Home';
+    private $pageTemplate ='home';
 
     function __construct(){
     }
@@ -11,6 +12,9 @@ class Model{
     public function pageID(){
       return $this->pageID;
     }
-
+    
+    public function pageTemplate(){
+      return $this->pageTemplate;
+    }
 
 }

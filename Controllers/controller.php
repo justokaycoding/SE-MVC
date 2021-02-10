@@ -15,4 +15,7 @@ class Controller{
   public function getPageID(){
     return $this->model->pageID();
   }
+  public function getPageTemplate(){
+    return $this->model->pageTemplate();
+  }
 }

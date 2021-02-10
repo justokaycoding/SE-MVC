@@ -64,7 +64,8 @@ class ShopView extends View{
         else{
           $output .= '<p class="price">$'.$product["sale_price"].'</p>';
         }
-        $output .= '<a class="button" href="#">Add To Cart</a>';
+        $output .= '<span class="button add">Add To Cart</span>';
+        $output .= '<span class="button added">Added</span>';
         $output .= '</div>';
         $output .= '</article>';
       }

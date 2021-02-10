@@ -11,12 +11,4 @@ class LoginModel extends Model{
     parent::__construct();
   }
 
-  public function pageID(){
-    return $this->pageID;
-  }
-
-  public function pageTemplate(){
-    return $this->pageTemplate;
-  }
-
 }
