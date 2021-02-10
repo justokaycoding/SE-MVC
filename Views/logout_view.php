@@ -8,6 +8,7 @@ class LogoutView extends View{
   function __construct($controller, $model){
       parent::__construct($controller, $model);
       $this->sql = new Sql;
+      $this->sql->removeUser();
     }
 
     public function index(){
@@ -18,7 +19,6 @@ class LogoutView extends View{
     }
 
     public function content(){
-      $_SESSION['user'] = '';
+      return'';
     }
-
 }

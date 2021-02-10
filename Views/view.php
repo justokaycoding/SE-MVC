@@ -36,9 +36,10 @@ class View{
     }
 
     public function content(){
+      $template_html = '';
       ob_start();
-      include(URL.'/Template/login.html');
-      $template_html = ob_get_contents();
+    //  include(URL.'/Template/login.html');
+    //  $template_html = ob_get_contents();
       ob_end_clean();
       return $template_html;
     }
@@ -72,7 +73,7 @@ class View{
                         ];
 
               $this->sql->insertItem('userArray', $newUser);
-              $this->sql->setUser($_POST['name']);
+              $this->sql->setUser($_POST['sign_up_name']);
             }
             break;
           case "signIn":
@@ -84,6 +85,4 @@ class View{
         }
       }
     }
-
-
 }

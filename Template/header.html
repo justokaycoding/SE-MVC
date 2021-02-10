@@ -1,18 +1,12 @@
 <?php
-
-  $output='';
-  if($_SESSION['user'] == '' && !empty($_POST)){
+  $output = '';
+  if(!empty($_POST) || $_SESSION['user'] == ''){
     $name = $this->loginInfo();
-    echo '1';
-  }
-  else{
-    $name = $this->sql->getUser();
-    echo '2';
   }
 
-  if($name != ''){
-     $output = '<span>Welcome ' . $name .'</span>';
-     $output .= '<a href="/logout" id="logoutButton" class="button" type="button">Sign Out</a>';
+  if($_SESSION['user'] != ''){
+     $output = '<span>Welcome ' . $_SESSION['user'] .'</span>';
+     $output .= '<a href="/logout" id="logoutButton" class="button">Sign Out</a>';
   }
 ?>
 
@@ -51,7 +45,7 @@
         </div>
         <div id="" class="column width-6">
           <div class="wrapper text">
-            <a href="<?php echo '/carts';?>">
+            <a href="<?php echo '/shop/cart';?>">
               <i class="fas fa-shopping-cart"></i>
             </a>
             <a href="<?php echo '/login';?>"> Login </a>
@@ -66,7 +60,7 @@
             <nav>
               <a href="<?php echo '/';?>">Home</a>
               <a href="/shop">Shop</a>
-              <a href="/carts">Cart</a>
+              <a href="/shop/cart">Cart</a>
             </nav>
           </div>
         </div>

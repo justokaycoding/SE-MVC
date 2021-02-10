@@ -16,11 +16,65 @@ class ShopView extends View{
     }
 
     public function content(){
-      ob_start();
-      // include(URL.'/Template/login.html');
-      // $template_html = ob_get_contents();
-      ob_end_clean();
+      $template_html = '';
+      switch ($_SERVER['REQUEST_URI']) {
+        case '/shop':
+          ob_start();
+          include(URL.'/Template/shop.html');
+          $template_html = ob_get_contents();
+          ob_end_clean();
+          break;
+        case '/shop/cart':
+          // code...
+          break;
+        case '/shop/checkout':
+          // code...
+          break;
+
+        default:
+          // code...
+          break;
+      }
       return $template_html;
+    }
+
+    public function shopLoop(){
+      $output = '';
+      $catList = '';
+      foreach($_SESSION['productArray'] as $product){
+        if( is_array($product['category']) ){
+          foreach($product['category'] as $cat){
+            $catList .= $cat .' ';
+          }
+        }
+        else{
+          $catList = $product['category'];
+        }
+
+        if($product["sale_price"] == 'false'){
+          $catList = 'sale';
+        }
+
+        $output .= '<article class="'.$catList.'">';
+        $output .= '<img src="'.$product['image'].'">';
+        $output .= '<p class="productTitle">'.$product['name'].'</p>';
+        if($product["on_sale"] == 'false'){
+          $output .= '<p class="price">'.$product["price"].'</p>';
+        }
+        else{
+          $output .= '<p class="price">'.$product["sale_price"].'</p>';
+        }
+        $output .= '</article>';
+      }
+      return $output;
+    }
+
+    public function cart(){
+      echo '<p>d</p>';
+    }
+
+    public function checkOut(){
+      echo 'est';
     }
 
 }

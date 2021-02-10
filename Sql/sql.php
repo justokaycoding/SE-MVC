@@ -104,6 +104,6 @@ class  Sql{
     return $_SESSION['user'];
   }
   public function removeUser(){
-    $_SESSION['user'] == 'nope';
+    $_SESSION['user'] = '';
   }
 }

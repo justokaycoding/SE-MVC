@@ -16,7 +16,7 @@
         $model = New Model();
         $controller = New Controller($model);
         $view = New View($controller, $model);
-        
+
         echo $view->index();
 
     }
@@ -57,7 +57,7 @@
 
             // $view->index();
             // If there is a method - Second parameter
-            if ($requestedAction != '' && method_exist($viewObj, $requestedAction)){
+            if ($requestedAction != ''){
                 // then we call the method via the view
                 // dynamic call of the view
                 $output = $viewObj->$requestedAction($requestedParams);
