@@ -1,7 +1,14 @@
+<?php
+  $output = '';
+  if(!empty($_POST)){
+    $this->loginInfo();
+  }
+?>
+
 <div id="" class="section">
   <div class="constraint" style="">
     <div id="" class="column width-12">
-      <form action="/" method="post" id="signInForm">
+      <form action="" method="post" id="signInForm">
         <input type="radio" id="signIn" name="formType" value="signIn" checked="checked">
         <label for="signIn">Existing User</label>
         <input type="radio" id="signUp" name="formType" value="signUp">
@@ -10,11 +17,11 @@
           <h2>SIGN IN</h2>
           <div>
             <label for="signInEmail"><b>Email</b></label>
-            <input id="signInEmail" type="text" placeholder="" name="sign_in_email">
+            <input id="signInEmail" type="text" placeholder="" name="sign_in_email" required>
           </div>
           <div>
             <label for="signInpsw"><b>Password</b></label>
-            <input id="signInpsw" type="password" placeholder="" name="sign_in_password">
+            <input id="signInpsw" type="password" placeholder="" name="sign_in_password" required>
           </div>
         </div>
         <div id="formSignUp" class="customForm">

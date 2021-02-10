@@ -6,19 +6,41 @@ if ( !isset($_SESSION['userArray'])) {
 
   array_push(
             $_SESSION['userArray'],
-            ['email' => 'admin@gmail.com', 'password' => 'password', 'name' => 'john', 'phone' => '555-555-5555', 'address' => '555 south street', 'city' => 'GreenVille', 'state' => "Ohio", 'zip' => '64058'],
-            ['email' => 'user@gmail.com', 'password' => 'password', 'name' => 'James', 'phone' => '555-555-5555', 'address' => '555 south street', 'city' => 'GreenVille', 'state' => "Ohio", 'zip' => '64058']
+            ['email' => 'admin@gmail.com',
+              'password' => 'password',
+              'name' => 'john',
+              'phone' => '555-555-5555',
+              'address' => '555 south street',
+              'city' => 'GreenVille',
+              'state' => "Ohio",
+              'zip' => '64058'],
+
+            ['email' => 'user@gmail.com',
+             'password' => 'password',
+             'name' => 'James',
+             'phone' => '555-555-5555',
+             'address' => '555 south street',
+             'city' => 'GreenVille',
+             'state' => "Ohio",
+             'zip' => '64058']
             );
 }
 
 if ( !isset($_SESSION['productArray'])) {
   $_SESSION['productArray'] = array();
   array_push($_SESSION['productArray'],
-              ['name' => 'Cat Food', 'image'   => 'catfood.jpg', 'price' => '5.20', 'sale_price' => '4.20', 'on_sale' => 'false', 'category' => 'Pet Food'],
-              ['name' => 'Cat sFoods', 'image' => 'catfood.jpg', 'price' => '5.20', 'sale_price' => '4.20', 'on_sale' => 'false', 'category' => 'Pet Food'],
-              ['name' => 'Cat sFoods', 'image' => 'catfood.jpg', 'price' => '5.20', 'sale_price' => '4.20', 'on_sale' => 'false', 'category' => 'Pet Food'],
-              ['name' => 'Cat aFoods', 'image' => 'catfood.jpg', 'price' => '5.20', 'sale_price' => '4.20', 'on_sale' => 'false', 'category' => 'Pet Food'],
-              ['name' => 'Cat Food', 'image' => 'catfood.jpg', 'price' => '5.20', 'sale_price' => '4.20', 'on_sale' => 'false', 'category' => ['Pet Food', 'Chile'] ],
+              ['name' => 'Meow Mix Original Choice Dry Cat Food',
+              'image'   => 'meowmixoriginalchoicedrycatfood.jpg',
+              'price' => '15.98', 'sale_price' => '14.20',
+              'on_sale' => 'false',
+              'category' => 'cat Food'],
+
+              ['name' => 'McCormick Sloppy Joes Seasoning Mix 1.31oz',
+               'image' => 'mccormicksloppyjoesseasoningmix131oz.jpg',
+               'price' => '1.19',
+               'sale_price' => '.5',
+               'on_sale' => 'true',
+               'category' => 'seasoning'],
             );
 }
 

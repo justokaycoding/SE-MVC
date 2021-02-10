@@ -1,7 +1,6 @@
 <?php
 // The about page view
 require_once("view.php");
-
 class ShopView extends View{
 
   function __construct($controller, $model){

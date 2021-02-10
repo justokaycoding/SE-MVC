@@ -1,9 +1,5 @@
 <?php
   $output = '';
-  if(!empty($_POST) || $_SESSION['user'] == ''){
-    $name = $this->loginInfo();
-  }
-
   if($_SESSION['user'] != ''){
      $output = '<span>Welcome ' . $_SESSION['user'] .'</span>';
      $output .= '<a href="/logout" id="logoutButton" class="button">Sign Out</a>';
