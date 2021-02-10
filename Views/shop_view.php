@@ -2,7 +2,6 @@
 // The about page view
 require_once("view.php");
 class ShopView extends View{
-
   function __construct($controller, $model){
       parent::__construct($controller, $model);
     }
@@ -24,7 +23,10 @@ class ShopView extends View{
           ob_end_clean();
           break;
         case '/shop/cart':
-          // code...
+          ob_start();
+          include(URL.'/Template/cart.html');
+          $template_html = ob_get_contents();
+          ob_end_clean();
           break;
         case '/shop/checkout':
           // code...
@@ -72,12 +74,48 @@ class ShopView extends View{
       return $output;
     }
 
+    public function cartLoop(){
+      $grandTotal = 0;
+      $output = '';
+      $output = '<table>';
+      $output .= '<tr>';
+      $output .= '<th>Image</th>';
+      $output .= '<th>Product</th>';
+      $output .= '<th>Price</th>';
+      $output .= '<th>Quantity</th>';
+      $output .= '<th>Amount</th>';
+      $output .= '</tr>';
+
+      $value = array_count_values($this->cart->returnCart());
+      foreach($value as $vaule => $singleCart){
+        $item = $this->sql->getItem('productArray',$vaule);
+        $output .='<tr>';
+        $output .='<td>'.$item['image'].'</td>';
+        $output .='<td>'.$item['name'].'</td>';
+        if($item['on_sale'] == 'false'){
+          $price = $item['price'];
+        } else{
+          $price = $item['sale_price'];
+        }
+        $output .='<td>'.$price.'</td>';
+        $output .='<td>'.$singleCart.'</td>';
+
+        $itemPrice = (float)$price * $singleCart;
+        $grandTotal += $itemPrice;
+        $output .= '<th>'.number_format((float)$itemPrice, 2).'</th>';
+        $output .='</tr>';
+      }
+      $output .= '</table>';
+      $output .= '<p>$'.number_format($grandTotal,2).'</p>';
+      return $output;
+    }
+
     public function cart(){
-      echo '<p>d</p>';
+      // echo '<p>d</p>';
     }
 
     public function checkOut(){
-      echo 'est';
+      // echo 'est';
     }
 
 }

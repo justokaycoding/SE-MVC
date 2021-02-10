@@ -26,11 +26,12 @@
           title: title
         },
         success: function(response) {
-          console.log(response);
-          alert(title + 'add to cart');
+          let num = parseInt( $("span.cartCount").text() );
+           $("span.cartCount").text(num + 1);
+
         },
         error: function() {
-          alert('There was some error performing the AJAX call!');
+          console.log('There was some error performing the AJAX call!');
         }
       });
     }

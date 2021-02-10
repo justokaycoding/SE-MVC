@@ -4,6 +4,11 @@
      $output = '<span>Welcome ' . $_SESSION['user'] .'</span>';
      $output .= '<a href="/logout" id="logoutButton" class="button">Sign Out</a>';
   }
+
+  if($_SESSION['cart'] != ''){
+    $cart = new Cart();
+    $cart->getCartSize();
+  }
 ?>
 
 <html>
@@ -42,6 +47,7 @@
         <div id="" class="column width-6">
           <div class="wrapper text">
             <a href="<?php echo '/shop/cart';?>">
+              <span class="cartCount"><?php echo $cart->getCartSize();?></span>
               <i class="fas fa-shopping-cart"></i>
             </a>
             <a href="<?php echo '/login';?>"> Login </a>

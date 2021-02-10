@@ -31,6 +31,10 @@ class Cart{
        }
   }
 
+  public function returnCart(){
+    return $_SESSION['cart'];
+  }
+
   public function getCartSize(){
     return sizeof($_SESSION['cart']);
   }

@@ -2,14 +2,16 @@
 
 //The home page view
 class View{
-    private $model;
-    private $controller;
-    private $sql;
+    public $model;
+    public $controller;
+    public $sql;
+    public $cart;
 
     function __construct($controller, $model){
       $this->controller = $controller;
       $this->model = $model;
       $this->sql = new Sql;
+      $this->cart = new Cart;
     }
 
     public function index(){
@@ -87,7 +89,4 @@ class View{
       }
     }
 
-    public function getPageTemplateC(){
-      return $this->controller->getPageTemplate();
-    }
 }

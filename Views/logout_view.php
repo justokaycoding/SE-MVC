@@ -3,11 +3,10 @@
 require_once("view.php");
 
 class LogoutView extends View{
-  private $sql;
 
   function __construct($controller, $model){
       parent::__construct($controller, $model);
-      $this->sql = new Sql;
+      // $this->sql = new Sql;
       $this->sql->removeUser();
     }
 

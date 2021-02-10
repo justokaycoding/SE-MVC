@@ -31,7 +31,8 @@ if ( !isset($_SESSION['productArray'])) {
   array_push($_SESSION['productArray'],
               ['name' => 'Meow Mix Original Choice Dry Cat Food',
               'image'   => 'meowmixoriginalchoicedrycatfood.jpg',
-              'price' => '15.98', 'sale_price' => '14.20',
+              'price' => '15.98',
+              'sale_price' => '14.20',
               'on_sale' => 'false',
               'category' => 'cat Food'],
 

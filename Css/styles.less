@@ -22,6 +22,7 @@
   color: #3e6292;
   transition: all 0.2s ease-in-out;
   text-transform: uppercase;
+  cursor: pointer;
   &:hover{
     background-color: #3e6292;
     color: #fff;
@@ -323,10 +324,25 @@
         transform: translate(-50%);
         background-color: #3e6292;
         color: #fff;
+        cursor: none;
+        pointer-events: none;
         &.clicked{
           bottom: 0px;
         }
       }
     }
+  }
+}
+
+
+.cartCount {
+    display: inline-block;
+    border-radius: 100%;
+    background: #50923c;
+    color: #fff;
+    padding: 5px;
+    font-size: 15px;
+    &:empty {
+    display: none;
   }
 }
