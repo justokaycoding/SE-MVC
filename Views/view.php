@@ -52,7 +52,6 @@ class View{
     }
 
     public function loginInfo(){
-
       if(!empty($_POST)){
         $type = $_POST["formType"];
         switch ($type) {
@@ -77,9 +76,11 @@ class View{
             }
             break;
           case "signIn":
-            $result = $this->sql->getItem('userArray', $_POST['sign_in_email']);
-            $this->sql->setUser($result['name']);
-            break;
+          $result = $this->sql->getItem('userArray', $_POST['sign_in_email']);
+            if(!empty($result)){
+              $this->sql->setUser($result['name']);
+            }
+          break;
         }
       }
     }

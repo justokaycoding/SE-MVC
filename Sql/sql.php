@@ -103,4 +103,7 @@ class  Sql{
   public function getUser(){
     return $_SESSION['user'];
   }
+  public function removeUser(){
+    $_SESSION['user'] == 'nope';
+  }
 }

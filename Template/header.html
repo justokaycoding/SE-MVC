@@ -1,14 +1,18 @@
 <?php
+
+  $output='';
   if($_SESSION['user'] == '' && !empty($_POST)){
     $name = $this->loginInfo();
+    echo '1';
   }
   else{
     $name = $this->sql->getUser();
+    echo '2';
   }
 
   if($name != ''){
      $output = '<span>Welcome ' . $name .'</span>';
-     $output .= '<button class="button" type="button" onclick="logout()">Sign Out</button>';
+     $output .= '<a href="/logout" id="logoutButton" class="button" type="button">Sign Out</a>';
   }
 ?>
 
@@ -22,6 +26,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="../Js/ajax.js"></script>
 </head><!-- End of head -->
 
 <body>
