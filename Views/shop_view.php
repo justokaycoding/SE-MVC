@@ -90,7 +90,7 @@ class ShopView extends View{
       foreach($value as $vaule => $singleCart){
         $item = $this->sql->getItem('productArray',$vaule);
         $output .='<tr>';
-        $output .='<td>'.$item['image'].'</td>';
+        $output .='<td><img src="../../Images/'.$item['image'].'"></td>';
         $output .='<td>'.$item['name'].'</td>';
         if($item['on_sale'] == 'false'){
           $price = $item['price'];
@@ -106,7 +106,7 @@ class ShopView extends View{
         $output .='</tr>';
       }
       $output .= '</table>';
-      $output .= '<p>$'.number_format($grandTotal,2).'</p>';
+      $output .= '<p class="grandCost">Grand Total: $'.number_format($grandTotal,2).'</p>';
       return $output;
     }
 
