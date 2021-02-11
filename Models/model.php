@@ -3,8 +3,8 @@
 // The home page model
 class Model{
 
-    private $pageID = 'Home';
-    private $pageTemplate ='home';
+    protected $pageID = 'Home';
+    protected $pageTemplate ='home';
 
     function __construct(){
     }

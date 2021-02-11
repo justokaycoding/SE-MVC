@@ -4,11 +4,11 @@
 require_once __DIR__.'/model.php';
 
 class ShopModel extends Model{
-  private $pageID = 'Shop';
-  private $pageTemplate = 'shop';
 
   function __construct(){
     parent::__construct();
+    $this->pageID = 'Shop';
+    $this->$pageTemplate ='shop';
   }
 
   public function pageID(){

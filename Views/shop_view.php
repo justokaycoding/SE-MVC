@@ -57,7 +57,7 @@ class ShopView extends View{
         }
 
         $output .= '<article class="'.$catList.'">';
-        $output .= '<div class="img"><img src="../../Images/'.$product['image'].'"></div>';
+        $output .= '<div class="img"><div style="background-image: url(../../Images/'.$product['image'].');"></div>';
         $output .= '<div class="content">';
         $output .= '<p class="productTitle">'.$product['name'].'</p>';
         if($product["on_sale"] == 'false'){

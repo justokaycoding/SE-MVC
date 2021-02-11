@@ -4,11 +4,11 @@
 require_once __DIR__.'/model.php';
 
 class LoginModel extends Model{
-  private $pageID = 'Login';
-  private $pageTemplate ='login';
 
   function __construct(){
     parent::__construct();
+    $this->pageID = 'Login';
+    $this->$pageTemplate ='login';
   }
 
   public function pageID(){
