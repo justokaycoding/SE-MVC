@@ -18,6 +18,7 @@
         $view = New View($controller, $model);
 
         echo $view->index();
+        echo $view->foot();
 
     }
 
@@ -62,7 +63,7 @@
                 // dynamic call of the view
                 $output = $viewObj->$requestedAction($requestedParams);
             }
-
+            echo $viewObj->foot();
         }
         else{
             header('HTTP/1.1 404 Not Found');

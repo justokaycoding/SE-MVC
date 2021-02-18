@@ -6,15 +6,9 @@ class LogoutView extends View{
 
   function __construct($controller, $model){
       parent::__construct($controller, $model);
-      // $this->sql = new Sql;
+      $this->controller = $controller;
+      $this->model = $model;
       $this->sql->removeUser();
-    }
-
-    public function index(){
-      $template_html = $this->head();
-      $template_html .= $this->content();
-      $template_html .= $this->foot();
-      return $template_html;
     }
 
     public function content(){

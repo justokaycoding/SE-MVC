@@ -9,6 +9,7 @@ class ShopController extends Controller{
 
 function __construct( $model ){
   parent::__construct($model);
+  $this->model = $model;
 }
 
 }

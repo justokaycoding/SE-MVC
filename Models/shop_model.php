@@ -8,7 +8,7 @@ class ShopModel extends Model{
   function __construct(){
     parent::__construct();
     $this->pageID = 'Shop';
-    $this->$pageTemplate ='shop';
+    $this->pageTemplate ='shop';
   }
 
   public function pageID(){

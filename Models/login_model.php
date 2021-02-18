@@ -8,7 +8,7 @@ class LoginModel extends Model{
   function __construct(){
     parent::__construct();
     $this->pageID = 'Login';
-    $this->$pageTemplate ='login';
+    $this->pageTemplate ='login';
   }
 
   public function pageID(){

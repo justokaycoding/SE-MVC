@@ -2,10 +2,10 @@
 
 //The home page view
 class View{
-    public $model;
-    public $controller;
-    public $sql;
-    public $cart;
+    protected $model;
+    protected $controller;
+    protected $sql;
+    protected $cart;
 
     function __construct($controller, $model){
       $this->controller = $controller;
@@ -15,9 +15,11 @@ class View{
     }
 
     public function index(){
+      $content = $this->content();
       $template_html = $this->head();
-      $template_html .= $this->contentIdWrap($this->content());
-      $template_html .= $this->foot();
+      if(!empty($content)){
+        $template_html .= $this->contentIdWrap($content);
+      }
       return $template_html;
     }
 
@@ -89,4 +91,14 @@ class View{
       }
     }
 
+    public function pageTitle(){
+      $str = $_SERVER['REQUEST_URI'];
+      $last_word_start = strrpos ( $str , "/") + 1;
+      $last_word_end = strlen($str) - 1;
+      $last_word = substr($str, $last_word_start, $last_word_end);
+      if($last_word == ''){
+        $last_word = 'Home';
+      }
+      return $last_word;
+    }
 }

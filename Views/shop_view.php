@@ -4,38 +4,20 @@ require_once("view.php");
 class ShopView extends View{
   function __construct($controller, $model){
       parent::__construct($controller, $model);
-    }
-
-    public function index(){
-      $template_html = $this->head();
-      $template_html .= $this->contentIdWrap($this->content());
-      $template_html .= $this->foot();
-      return $template_html;
+      $this->controller = $controller;
+      $this->model = $model;
     }
 
     public function content(){
       $template_html = '';
-      switch ($_SERVER['REQUEST_URI']) {
-        case '/shop':
-          ob_start();
-          include(URL.'/Template/shop.html');
-          $template_html = ob_get_contents();
-          ob_end_clean();
-          break;
-        case '/shop/cart':
-          ob_start();
-          include(URL.'/Template/cart.html');
-          $template_html = ob_get_contents();
-          ob_end_clean();
-          break;
-        case '/shop/checkout':
-          // code...
-          break;
 
-        default:
-          // code...
-          break;
+      if($_SERVER['REQUEST_URI'] == '/shop'){
+        ob_start();
+        include(URL.'/Template/shop.html');
+        $template_html = ob_get_contents();
+        ob_end_clean();
       }
+
       return $template_html;
     }
 
@@ -98,7 +80,7 @@ class ShopView extends View{
           $price = $item['sale_price'];
         }
         $output .='<td>'.$price.'</td>';
-        $output .='<td>'.$singleCart.'</td>';
+        $output .='<td><input type="number" id="fname" min="1" name="fname" value="'.$singleCart.'"></td>';
 
         $itemPrice = (float)$price * $singleCart;
         $grandTotal += $itemPrice;
@@ -111,7 +93,11 @@ class ShopView extends View{
     }
 
     public function cart(){
-      // echo '<p>d</p>';
+      ob_start();
+      include(URL.'/Template/cart.html');
+      $template_html = ob_get_contents();
+      ob_end_clean();
+      echo $this->contentIdWrap($template_html);
     }
 
     public function checkOut(){
