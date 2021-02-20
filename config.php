@@ -14,4 +14,4 @@ require_once __DIR__.'/Cart/cart.php';
 require_once __DIR__.'/Models/model.php';
 require_once __DIR__.'/Controllers/controller.php';
 require_once __DIR__.'/Views/view.php';
-require_once __DIR__.'/getData.php';
+require_once __DIR__.'/ajax_calls.php';

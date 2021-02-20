@@ -20,7 +20,7 @@
 
     if (title != '') {
       $.ajax({
-        url: 'getData.php',
+        url: 'ajax_calls.php',
         type: 'post',
         data: {
           title: title
@@ -35,6 +35,22 @@
         }
       });
     }
+
+  });
+
+  $(document).on("change", ".product_quantity input", function(e) {
+    // let title = $(this).siblings('.productTitle').text();
+    let title = $(this).parent().siblings('.product_name').text();
+    //
+    // $.ajax({
+    //   traditional: true,
+    //   type: "POST",
+    //   data: custom,
+    //   success: ok,
+    //   dataType: "json"
+    // });
+
+
 
   });
 

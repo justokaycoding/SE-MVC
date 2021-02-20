@@ -72,19 +72,19 @@ class ShopView extends View{
       foreach($value as $vaule => $singleCart){
         $item = $this->sql->getItem('productArray',$vaule);
         $output .='<tr>';
-        $output .='<td><img src="../../Images/'.$item['image'].'"></td>';
-        $output .='<td>'.$item['name'].'</td>';
+        $output .='<td class="product_image"><img src="../../Images/'.$item['image'].'"></td>';
+        $output .='<td class="product_name">'.$item['name'].'</td>';
         if($item['on_sale'] == 'false'){
           $price = $item['price'];
         } else{
           $price = $item['sale_price'];
         }
-        $output .='<td>'.$price.'</td>';
-        $output .='<td><input type="number" id="fname" min="1" name="fname" value="'.$singleCart.'"></td>';
+        $output .='<td class="product_price">'.$price.'</td>';
+        $output .='<td class="product_quantity"><input type="number" id="fname" min="1" name="fname" value="'.$singleCart.'"></td>';
 
         $itemPrice = (float)$price * $singleCart;
         $grandTotal += $itemPrice;
-        $output .= '<th>'.number_format((float)$itemPrice, 2).'</th>';
+        $output .= '<th class="product_grandCost">'.number_format((float)$itemPrice, 2).'</th>';
         $output .='</tr>';
       }
       $output .= '</table>';
