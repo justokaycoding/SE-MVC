@@ -80,7 +80,7 @@ class ShopView extends View{
           $price = $item['sale_price'];
         }
         $output .='<td class="product_price">'.$price.'</td>';
-        $output .='<td class="product_quantity"><input type="number" id="fname" min="1" name="fname" value="'.$singleCart.'"></td>';
+        $output .='<td class="product_quantity"><input type="number" id="product_price" min="1" name="product_price" value="'.$singleCart.'"></td>';
 
         $itemPrice = (float)$price * $singleCart;
         $grandTotal += $itemPrice;
@@ -93,11 +93,19 @@ class ShopView extends View{
     }
 
     public function cart(){
-      ob_start();
-      include(URL.'/Template/cart.html');
-      $template_html = ob_get_contents();
-      ob_end_clean();
-      echo $this->contentIdWrap($template_html);
+      if(!empty($_SESSION['cart'])){
+        ob_start();
+        include(URL.'/Template/cart.html');
+        $template_html = ob_get_contents();
+        ob_end_clean();
+        echo $this->contentIdWrap($template_html);
+      } else{
+        ob_start();
+        include(URL.'/Template/emptyCart.html');
+        $template_html = ob_get_contents();
+        ob_end_clean();
+        echo $this->contentIdWrap($template_html);
+      }
     }
 
     public function checkOut(){

@@ -28,7 +28,6 @@
         success: function(response) {
           let num = parseInt( $("span.cartCount").text() );
            $("span.cartCount").text(num + 1);
-
         },
         error: function() {
           console.log('There was some error performing the AJAX call!');
@@ -39,20 +38,16 @@
   });
 
   $(document).on("change", ".product_quantity input", function(e) {
-    // let title = $(this).siblings('.productTitle').text();
     let title = $(this).parent().siblings('.product_name').text();
-    //
-    // $.ajax({
-    //   traditional: true,
-    //   type: "POST",
-    //   data: custom,
-    //   success: ok,
-    //   dataType: "json"
-    // });
-
+    console.log(title);
+    setTimeout(
+      function(){
+       console.log("test");
+     }, 1000);
 
 
   });
+
 
 
 })(jQuery)
