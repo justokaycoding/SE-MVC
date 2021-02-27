@@ -37,7 +37,6 @@
 
   });
 
-
   $(document).on("click", ".amount .fa-minus", function(e) {
     let total = $(this).siblings('span.total').text();
     if(parseInt(total) > 1){
@@ -52,5 +51,8 @@
     console.log(total);
   });
 
+  $(document).on("click", ".product_image .fa-times", function(e) {
+    $(this).closest('tr').detach();
+  });
 
 })(jQuery)
