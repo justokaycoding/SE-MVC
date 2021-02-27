@@ -291,13 +291,6 @@ h1, h2, h3, h4, h5, h6 {
   color: #50923e;
 }
 
-#content_wrap p,
-#content_wrap a,
-#content_wrap label,
-#content_wrap li {
-  font-size: 18px
-}
-
 /*End Template Constraints*/
 img {
   max-width: 100%;
