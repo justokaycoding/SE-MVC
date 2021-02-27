@@ -61,7 +61,7 @@ class ShopView extends View{
       $output = '';
       $output = '<table>';
       $output .= '<tr>';
-      $output .= '<th>Image</th>';
+      $output .= '<th></th>';
       $output .= '<th>Product</th>';
       $output .= '<th>Price</th>';
       $output .= '<th>Quantity</th>';
@@ -72,23 +72,40 @@ class ShopView extends View{
       foreach($value as $vaule => $singleCart){
         $item = $this->sql->getItem('productArray',$vaule);
         $output .='<tr>';
-        $output .='<td class="product_image"><img src="../../Images/'.$item['image'].'"></td>';
+        $output .='<td class="product_image"><i class="fas fa-times"></i><img src="../../Images/'.$item['image'].'"></td>';
         $output .='<td class="product_name">'.$item['name'].'</td>';
         if($item['on_sale'] == 'false'){
           $price = $item['price'];
         } else{
           $price = $item['sale_price'];
         }
-        $output .='<td class="product_price">'.$price.'</td>';
-        $output .='<td class="product_quantity"><input type="number" id="product_price" min="1" name="product_price" value="'.$singleCart.'"></td>';
+        $output .='<td class="product_price">$'.$price.'</td>';
+        $output .='<td class="product_quantity"><div class="amount"><i class="fas fa-minus"></i><span class="total">'.$singleCart.'</span><i class="fas fa-plus"></i></td>';
 
         $itemPrice = (float)$price * $singleCart;
         $grandTotal += $itemPrice;
-        $output .= '<th class="product_grandCost">'.number_format((float)$itemPrice, 2).'</th>';
+        $output .= '<td class="product_grandCost">$'.number_format((float)$itemPrice, 2).'</td>';
         $output .='</tr>';
       }
       $output .= '</table>';
-      $output .= '<p class="grandCost">Grand Total: $'.number_format($grandTotal,2).'</p>';
+
+      $output .= '<div class="cart-collaterals">';
+      $output .= '<h2>Cart totals</h2>';
+      $output .= '<table>';
+      $output .='<tr>';
+      $output .='<td class="">Subtotal:</td>';
+      $output .='<td class="">$'.number_format($grandTotal,2).'</td>';
+      $output .='</tr>';
+      $output .='<tr>';
+      $output .='<td class="taxCost">Tax:</td>';
+      $output .='<td class="taxCost">$0.00</td>';
+      $output .='</tr>';
+      $output .='<tr>';
+      $output .='<td class="GrandCost">Tax:</td>';
+      $output .='<td class="GrandCost">$'.number_format($grandTotal,2).'</td>';
+      $output .='</tr>';
+      $output .= '</table>';
+      $output .= '</div>';
       return $output;
     }
 

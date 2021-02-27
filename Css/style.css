@@ -194,8 +194,12 @@ textarea {
 }
 
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
+  border: 1px solid rgba(0,0,0,.1);
+  margin: 0 -1px 24px 0;
+  text-align: left;
+  width: 100%;
+  border-collapse: separate;
+  border-radius: 5px;
 }
 
 *, *:after, *:before {
@@ -307,7 +311,6 @@ table {
 }
 
 table td, table th {
-  border: 1px solid #ddd;
   padding: 8px;
 }
 
@@ -319,8 +322,9 @@ table th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #50923c;
+  background-color: #92603e;
   color: white;
+  font-size: 20px;
 }
 
 /*Media Queries*/

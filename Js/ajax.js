@@ -37,17 +37,20 @@
 
   });
 
-  $(document).on("change", ".product_quantity input", function(e) {
-    let title = $(this).parent().siblings('.product_name').text();
-    console.log(title);
-    setTimeout(
-      function(){
-       console.log("test");
-     }, 1000);
 
-
+  $(document).on("click", ".amount .fa-minus", function(e) {
+    let total = $(this).siblings('span.total').text();
+    if(parseInt(total) > 1){
+      $(this).siblings('span.total').text( total - 1 );
+    }
+    console.log(total);
   });
 
+  $(document).on("click", ".amount .fa-plus", function(e) {
+    let total = $(this).siblings('span.total').text();
+    $(this).siblings('span.total').text( parseInt(total) + 1 );
+    console.log(total);
+  });
 
 
 })(jQuery)
