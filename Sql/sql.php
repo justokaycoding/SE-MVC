@@ -46,7 +46,7 @@ if ( !isset($_SESSION['productArray'])) {
 }
 
 if ( !isset($_SESSION['user'])) {
-  $_SESSION['user'] = '';
+  $_SESSION['user'] = array();
 }
 
 class  Sql{
