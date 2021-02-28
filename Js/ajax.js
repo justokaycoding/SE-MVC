@@ -43,6 +43,24 @@
     let total = $(this).siblings('span.total').text();
     if(parseInt(total) > 1){
       $(this).siblings('span.total').text( total - 1 );
+      let product_remove = $(this).closest('td').siblings('.product_name').text();
+
+      if (product_remove != '') {
+        $.ajax({
+          url: '../ajax_calls.php',
+          type: 'post',
+          data: {
+            product_remove: product_remove
+          },
+          success: function(response) {
+            let num = parseInt( $("span.cartCount").text() );
+             $("span.cartCount").text(num - 1);
+          },
+          error: function() {
+            console.log('There was some error performing the AJAX call!');
+          }
+        });
+      }
       reload();
     }
   });
@@ -50,13 +68,55 @@
   $(document).on("click", ".amount .fa-plus", function(e) {
     let total = $(this).siblings('span.total').text();
     $(this).siblings('span.total').text( parseInt(total) + 1 );
-    console.log(total);
+
+    let product_add = $(this).closest('td').siblings('.product_name').text();
+
+    if (product_add != '') {
+      $.ajax({
+        url: '../ajax_calls.php',
+        type: 'post',
+        data: {
+          product_add: product_add
+        },
+        success: function(response) {
+          let num = parseInt( $("span.cartCount").text() );
+           $("span.cartCount").text(num + 1);
+        },
+        error: function() {
+          console.log('There was some error performing the AJAX call!');
+        }
+      });
+    }
 
     reload();
   });
 
   $(document).on("click", ".product_image .fa-times", function(e) {
-    $(this).closest('tr').detach();
+
+    let product_total_remove = $(this).closest('td').siblings('.product_name').text();
+    let total_remove = $(this).closest('td').siblings('.product_quantity').find('.total').text();
+
+    if (product_total_remove != '') {
+      $.ajax({
+        url: '../ajax_calls.php',
+        type: 'post',
+        data: {
+          product_total_remove: product_total_remove
+        },
+        success: function(response) {
+          let num = parseInt( $("span.cartCount").text() );
+          if(parseInt(num) > 0){
+           $("span.cartCount").text(parseInt(num) - parseInt(total_remove));
+           }
+          location.reload();
+        },
+        error: function() {
+          console.log('There was some error performing the AJAX call!');
+        }
+      });
+    }
+
+    // $(this).closest('tr').detach();
   });
 
   function reload(){
