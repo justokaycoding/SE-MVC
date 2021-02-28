@@ -1,4 +1,6 @@
 (function($) {
+  var timerId;
+
 
   $(document).on("click", "label[for='signIn']", function(e) {
     $('#formSignUp input').removeAttr("required");
@@ -41,18 +43,29 @@
     let total = $(this).siblings('span.total').text();
     if(parseInt(total) > 1){
       $(this).siblings('span.total').text( total - 1 );
+      reload();
     }
-    console.log(total);
   });
 
   $(document).on("click", ".amount .fa-plus", function(e) {
     let total = $(this).siblings('span.total').text();
     $(this).siblings('span.total').text( parseInt(total) + 1 );
     console.log(total);
+
+    reload();
   });
 
   $(document).on("click", ".product_image .fa-times", function(e) {
     $(this).closest('tr').detach();
   });
+
+  function reload(){
+    clearTimeout(timerId);
+    timerId = setTimeout(timerExpired, 2000);
+  }
+
+  function timerExpired() {
+    location.reload();
+  }
 
 })(jQuery)
