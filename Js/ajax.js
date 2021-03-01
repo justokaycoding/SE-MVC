@@ -1,7 +1,6 @@
 (function($) {
   var timerId;
 
-
   $(document).on("click", "label[for='signIn']", function(e) {
     $('#formSignUp input').removeAttr("required");
     $('#formSignIn input').prop('required', true);

@@ -65,9 +65,6 @@ class View{
   }
 
   public function loginInfo(){
-      echo '<pre style="display:dnone;">';
-      var_dump($_POST);
-      echo '</pre>';
       if(!empty($_POST) && !$this->sql->isAdmin()){
         $type = $_POST["formType"];
         switch ($type) {
@@ -100,6 +97,25 @@ class View{
           break;
         }
       }
+      else{
+        //is admin and adds new item
+        if( !empty($_POST) && isset($_POST['productAdd']) && isset($_POST['productName']) && !empty($_POST['productName']) ) {
+
+          if( isset($_POST["productOnSale"]) ){
+            $checked = 'true';
+          }
+
+
+          $newProduct = ['name' => $_POST["productName"],
+                         'image'   => 'meowmixoriginalchoicedrycatfood.jpg',
+                         'price' => $_POST["productPrice"],
+                         'sale_price' => $_POST["productSalePrice"],
+                         'on_sale' => $checked,
+                         'category' => $_POST["productCategory"]
+                       ];
+          $this->sql->insertItem('productArray', $newProduct);
+        }
+      }
     }
 
   public function pageTitle(){
@@ -127,6 +143,15 @@ class View{
       $output .= '</div>';
       $output .= '</article>';
     }
+      $output .= '<article>';
+      $output .= '<div class="img"><div style="background-image: url(../../Images/newitem.png);"></div>';
+      $output .= '<div class="content">';
+      $output .= '<span class="button edit">Add New</span>';
+      $output .= '<div class="productLightbox">';
+      $output .= $this->singleFormGenEmpty();
+      $output .= '</div>';
+      $output .= '</div>';
+      $output .= '</article>';
       return $output;
   }
 
@@ -139,14 +164,29 @@ class View{
 
     $checked = $this->is_true($product['on_sale']) ? 'checked' : '';
 
-    $output = '<form action="" method="post">';
+    // echo '<pre style="display:nonse;">';
+    // var_dump($product);
+    // echo '</pre>';
+
+    $output = '<form  class="adminSingleProduct" action="" method="post">';
+    $output .= '<i class="far fa-times-circle"></i>';
     $output .= '<input type="hidden" name="productChange" value="productChange">';
     $output .= '<label for="productName">Product Name:</label>';
     $output .= '<input type="hidden" name="orginalProductName" value="'.$product['name'].'">';
     $output .= '<input type="text" id="productName" name="productName" value="'.$product['name'].'">';
 
     $output .= '<label for="productImage">Product Image:</label>';
-    $output .= '<input type="text" id="productImage" name="productImage" value="'.$product['name'].'">';
+
+    $output .= '<div class="img_container">';
+      $output .= '<div class="inner img">';
+        $output .= '<img src="../../Images/'.$product['image'].'">';
+      $output .= '</div>';
+      $output .= '<div class="inner imgEdit">';
+        $output .= '<input type="file" name="fileToUpload" id="fileToUpload">';
+        $output .= '<input class="button" type="submit" value="Upload Image" name="submit">';
+      $output .= '</div>';
+    $output .= '</div>';
+    // $output .= '<input type="text" id="productImage" name="productImage" value="'.$product['image'].'">';
 
     $output .= '<label for="productPrice">Price:</label>';
     $output .= '<input type="text" id="productPrice" name="productPrice" value="'.$product['price'].'">';
@@ -170,4 +210,44 @@ class View{
     return $output;
   }
 
+  public function singleFormGenEmpty(){
+    $output = '<form  class="adminSingleProduct" action="" method="post">';
+    $output .= '<i class="far fa-times-circle"></i>';
+    $output .= '<input type="hidden" name="productAdd" value="productAdd">';
+    $output .= '<label for="productName">Product Name:</label>';
+    $output .= '<input type="text" id="productName" name="productName" value="">';
+
+    $output .= '<label for="productImage">Product Image:</label>';
+
+    $output .= '<div class="img_container">';
+      $output .= '<div class="inner img">';
+      $output .= '</div>';
+      $output .= '<div class="inner imgEdit">';
+        $output .= '<input type="file" name="fileToUpload" id="fileToUpload">';
+        $output .= '<input class="button" type="submit" value="Upload Image" name="submit">';
+      $output .= '</div>';
+    $output .= '</div>';
+    // $output .= '<input type="text" id="productImage" name="productImage" value="'.$product['image'].'">';
+
+    $output .= '<label for="productPrice">Price:</label>';
+    $output .= '<input type="text" id="productPrice" name="productPrice" value="">';
+
+    $output .= '<label for="productSalePrice">Sale Price:</label>';
+    $output .= '<input type="text" id="productSalePrice" name="productSalePrice" value="">';
+
+    $output .= '<div class="formContainer">';
+    $output .= '<label for="productOnSale">On Sale:</label>';
+    $output .= '<input type="checkbox" id="productOnSale" name="productOnSale">';
+    $output .= '</div>';
+
+    $output .= '<label for="productCategory">Category:</label>';
+    $output .= '<input type="text" id="productCategory" name="productCategory" value="">';
+
+    $output .= '<div class="formControl">';
+    $output .= '<span class="close button">Cancel</span>';
+    $output .= '<input class="button" type="submit" value="Submit">';
+    $output .= '</div>';
+    $output .= '</form>';
+    return $output;
+  }
 }
