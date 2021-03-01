@@ -95,6 +95,7 @@ class  Sql{
    }
 
   //Used for testing
+
   public function manualRemove($globalArray, $i){
       $sessionArray = ($globalArray == 'userArray' ? 'userArray' : 'productArray');
       unset($_SESSION[$i]);
@@ -102,6 +103,7 @@ class  Sql{
   }
 
   //return item array
+
   public function getItem($globalArray, $uniqueVaule){
         $inArray = false;
         $output = 'Not In Array';
@@ -128,6 +130,7 @@ class  Sql{
   public function getUser(){
     return $_SESSION['user'];
   }
+
   public function getUserName(){
     return $_SESSION['user']['name'] ?? null;
   }
