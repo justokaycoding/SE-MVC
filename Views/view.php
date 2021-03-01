@@ -2,69 +2,72 @@
 
 //The home page view
 class View{
-    protected $model;
-    protected $controller;
-    protected $sql;
-    protected $cart;
+  protected $model;
+  protected $controller;
+  protected $sql;
+  protected $cart;
 
-    function __construct($controller, $model){
-      $this->controller = $controller;
-      $this->model = $model;
-      $this->sql = new Sql;
-      $this->cart = new Cart;
+  function __construct($controller, $model){
+    $this->controller = $controller;
+    $this->model = $model;
+    $this->sql = new Sql;
+    $this->cart = new Cart;
+  }
+
+  public function index(){
+    $content = $this->content();
+    $template_html = $this->head();
+    if(!empty($content)){
+      $template_html .= $this->contentIdWrap($content);
     }
+    return $template_html;
+  }
 
-    public function index(){
-      $content = $this->content();
-      $template_html = $this->head();
-      if(!empty($content)){
-        $template_html .= $this->contentIdWrap($content);
-      }
-      return $template_html;
-    }
+  public function head(){
+    $this->loginInfo();
+    ob_start();
+    include(URL.'/Template/header.html');
+    $template_html = ob_get_contents();
+    ob_end_clean();
+    return $template_html;
+  }
 
-    public function head(){
-      $this->loginInfo();
+  public function foot(){
+    ob_start();
+    include(URL.'/Template/footer.html');
+    $template_html = ob_get_contents();
+    ob_end_clean();
+    return $template_html;
+  }
+
+  public function content(){
+    $template_html = '';
+    if($this->sql->isAdmin()){
       ob_start();
-      include(URL.'/Template/header.html');
-      $template_html = ob_get_contents();
+       include(URL.'/Template/adminLoop.html');
+       $template_html = ob_get_contents();
       ob_end_clean();
-      return $template_html;
-    }
-
-    public function foot(){
+    }else{
       ob_start();
-      include(URL.'/Template/footer.html');
-      $template_html = ob_get_contents();
+       include(URL.'/Template/home.html');
+       $template_html = ob_get_contents();
       ob_end_clean();
-      return $template_html;
     }
+    return $template_html;
+  }
 
-    public function content(){
-      $template_html = '';
-      if($this->sql->isAdmin()){
-        ob_start();
-         include(URL.'/Template/adminLoop.html');
-         $template_html = ob_get_contents();
-        ob_end_clean();
-      }else{
-        ob_start();
-         include(URL.'/Template/home.html');
-         $template_html = ob_get_contents();
-        ob_end_clean();
-      }
-      return $template_html;
-    }
+  public function contentIdWrap($content){
+    return '<div id="content_wrap">'.$content.'</div>';
+  }
 
-    public function contentIdWrap($content){
-      return '<div id="content_wrap">'.$content.'</div>';
-    }
+  public function deliverPageID(){
+    return $this->controller->getPageID();
+  }
 
-    public function deliverPageID(){
-      return $this->controller->getPageID();
-    }
-
-    public function loginInfo(){
+  public function loginInfo(){
+      echo '<pre style="display:dnone;">';
+      var_dump($_POST);
+      echo '</pre>';
       if(!empty($_POST) && !$this->sql->isAdmin()){
         $type = $_POST["formType"];
         switch ($type) {
@@ -99,7 +102,7 @@ class View{
       }
     }
 
-    public function pageTitle(){
+  public function pageTitle(){
       $str = $_SERVER['REQUEST_URI'];
       $last_word_start = strrpos ( $str , "/") + 1;
       $last_word_end = strlen($str) - 1;
@@ -110,20 +113,20 @@ class View{
       return $last_word;
     }
 
-    public function adminLoop(){
-      $output = '';
-      foreach($_SESSION['productArray'] as $product){
-        $output .= '<article>';
-        $output .= '<div class="img"><div style="background-image: url(../../Images/'.$product['image'].');"></div>';
-        $output .= '<div class="content">';
-        $output .= '<p class="productTitle">'.$product['name'].'</p>';
-        $output .= '<span class="button edit">Edit</span>';
-        $output .= '<div class="productLightbox">';
-        $output .= $this->singleFormGen($product);
-        $output .= '</div>';
-        $output .= '</div>';
-        $output .= '</article>';
-      }
+  public function adminLoop(){
+    $output = '';
+    foreach($_SESSION['productArray'] as $product){
+      $output .= '<article>';
+      $output .= '<div class="img"><div style="background-image: url(../../Images/'.$product['image'].');"></div>';
+      $output .= '<div class="content">';
+      $output .= '<p class="productTitle">'.$product['name'].'</p>';
+      $output .= '<span class="button edit">Edit</span>';
+      $output .= '<div class="productLightbox">';
+      $output .= $this->singleFormGen($product);
+      $output .= '</div>';
+      $output .= '</div>';
+      $output .= '</article>';
+    }
       return $output;
   }
 
@@ -137,6 +140,7 @@ class View{
     $checked = $this->is_true($product['on_sale']) ? 'checked' : '';
 
     $output = '<form action="" method="post">';
+    $output .= '<input type="hidden" name="productChange" value="productChange">';
     $output .= '<label for="productName">Product Name:</label>';
     $output .= '<input type="hidden" name="orginalProductName" value="'.$product['name'].'">';
     $output .= '<input type="text" id="productName" name="productName" value="'.$product['name'].'">';
