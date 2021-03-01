@@ -9,6 +9,7 @@ if ( !isset($_SESSION['userArray'])) {
             ['email' => 'admin@gmail.com',
               'password' => 'password',
               'name' => 'john',
+              'type' => 'admin',
               'phone' => '555-555-5555',
               'address' => '555 south street',
               'city' => 'GreenVille',
@@ -18,6 +19,7 @@ if ( !isset($_SESSION['userArray'])) {
             ['email' => 'user@gmail.com',
              'password' => 'password',
              'name' => 'James',
+             'type' => 'client',
              'phone' => '555-555-5555',
              'address' => '555 south street',
              'city' => 'GreenVille',
@@ -126,7 +128,20 @@ class  Sql{
   public function getUser(){
     return $_SESSION['user'];
   }
+  public function getUserName(){
+    return $_SESSION['user']['name'] ?? null;
+  }
+
   public function removeUser(){
-    $_SESSION['user'] = '';
+    $_SESSION['user'] = [];
+  }
+
+  public function isAdmin(){
+    if (in_array("admin", $this->getUser())){
+      return True;
+    }
+    else{
+      return False;
+    }
   }
 }

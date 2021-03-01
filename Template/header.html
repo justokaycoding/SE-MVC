@@ -1,7 +1,8 @@
 <?php
   $output = '';
-  if($_SESSION['user'] != ''){
-     $output = '<span>Welcome ' . $_SESSION['user'] .'</span>';
+  $sql = new SQL();
+  if( $sql->getUserName() != ''){
+     $output = '<span>Welcome ' .   $sql->getUserName() .'</span>';
      $output .= '<a href="/logout" id="logoutButton" class="button">Sign Out</a>';
   }
 
@@ -60,11 +61,17 @@
       <div class="constraint" style="">
         <div class="column width-12">
           <div class="wrapper text">
-            <nav>
-              <a href="<?php echo '/';?>">Home</a>
-              <a href="/shop">Shop</a>
-              <a href="/shop/cart">Cart</a>
-            </nav>
+            <?php if( $sql->isAdmin() ){ ?>
+              <nav>
+                <a href="/inventory">Inventory</a>
+              </nav>
+            <?php } else { ?>
+              <nav>
+                <a href="<?php echo '/';?>">Home</a>
+                <a href="/shop">Shop</a>
+                <a href="/shop/cart">Cart</a>
+              </nav>
+              <?php } ?>
           </div>
         </div>
       </div>

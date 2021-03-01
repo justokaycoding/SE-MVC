@@ -70,6 +70,7 @@ class View{
                           'email'     => $_POST['sign_up_email'],
                           'password' => $_POST['sign_up_password'],
                           'name'     => $_POST['sign_up_name'],
+                          'type'     => 'client',
                           'phone'    => $_POST['sign_up_phone'],
                           'address'  => $_POST['sign_up_address'],
                           'city'     => $_POST['sign_up_city'],
@@ -78,13 +79,13 @@ class View{
                         ];
 
               $this->sql->insertItem('userArray', $newUser);
-              $this->sql->setUser($_POST['sign_up_name']);
+              $this->sql->setUser($_POST);
             }
             break;
           case "signIn":
           $result = $this->sql->getItem('userArray', $_POST['sign_in_email']);
             if(!empty($result)){
-              $this->sql->setUser($result['name']);
+              $this->sql->setUser($result);
             }
           break;
         }
