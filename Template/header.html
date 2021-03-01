@@ -26,7 +26,13 @@
     <script src="../Js/sizing.js"></script>
 </head><!-- End of head -->
 
-<body>
+<?php
+if($sql->isAdmin()){
+  $class="admin";
+}
+?>
+
+<body class="<?php echo $class; ?>">
   <header>
     <div id="loginData" class="section">
       <div class="constraint" style="">
@@ -46,6 +52,7 @@
             </a>
           </div>
         </div>
+        <?php if( !$sql->isAdmin() ){ ?>
         <div id="" class="column width-6">
           <div class="wrapper text">
             <a href="<?php echo '/shop/cart';?>">
@@ -54,6 +61,7 @@
             </a>
             <a href="<?php echo '/login';?>"> Login </a>
           </div>
+        <?php } ?>
         </div>
       </div>
     </div>
@@ -63,7 +71,7 @@
           <div class="wrapper text">
             <?php if( $sql->isAdmin() ){ ?>
               <nav>
-                <a href="/inventory">Inventory</a>
+                <span>Admin Level </span>
               </nav>
             <?php } else { ?>
               <nav>
@@ -76,6 +84,7 @@
         </div>
       </div>
     </div>
+    <?php if( !$sql->isAdmin() ){ ?>
     <div id="pageTitle" class="section" style="background-image: url(../Images/HERO.jpg);">
       <div class="column width-12">
         <div class="wrapper text">
@@ -83,4 +92,5 @@
         </div>
       </div>
     </div>
+    <?php } ?>
   </header>

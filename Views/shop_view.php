@@ -71,7 +71,7 @@ class ShopView extends View{
 
       $value = array_count_values($this->cart->returnCart());
       krsort($value);
-      
+
       foreach($value as $vaule => $singleCart){
         $item = $this->sql->getItem('productArray',$vaule);
         $output .='<tr>';

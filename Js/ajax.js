@@ -7,6 +7,16 @@
     $('#formSignIn input').prop('required', true);
   });
 
+  $(document).on("click", "span.button.edit", function(e) {
+    $(this).siblings('.productLightbox').toggleClass('active');
+    $('body').toggleClass('lightbox');
+  });
+
+  $(document).on("click", "span.close.button", function(e) {
+    $(this).closest('.productLightbox').toggleClass('active');
+    $('body').toggleClass('lightbox');
+  });
+
   $(document).on("click", "label[for='signUp']", function(e) {
     $('#formSignIn input').removeAttr("required");
     $('#formSignUp input').prop('required', true);

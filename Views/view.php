@@ -42,10 +42,17 @@ class View{
 
     public function content(){
       $template_html = '';
-      ob_start();
-       include(URL.'/Template/home.html');
-       $template_html = ob_get_contents();
-      ob_end_clean();
+      if($this->sql->isAdmin()){
+        ob_start();
+         include(URL.'/Template/adminLoop.html');
+         $template_html = ob_get_contents();
+        ob_end_clean();
+      }else{
+        ob_start();
+         include(URL.'/Template/home.html');
+         $template_html = ob_get_contents();
+        ob_end_clean();
+      }
       return $template_html;
     }
 
@@ -58,7 +65,7 @@ class View{
     }
 
     public function loginInfo(){
-      if(!empty($_POST)){
+      if(!empty($_POST) && !$this->sql->isAdmin()){
         $type = $_POST["formType"];
         switch ($type) {
           case "signUp":
@@ -102,4 +109,61 @@ class View{
       }
       return $last_word;
     }
+
+    public function adminLoop(){
+      $output = '';
+      foreach($_SESSION['productArray'] as $product){
+        $output .= '<article>';
+        $output .= '<div class="img"><div style="background-image: url(../../Images/'.$product['image'].');"></div>';
+        $output .= '<div class="content">';
+        $output .= '<p class="productTitle">'.$product['name'].'</p>';
+        $output .= '<span class="button edit">Edit</span>';
+        $output .= '<div class="productLightbox">';
+        $output .= $this->singleFormGen($product);
+        $output .= '</div>';
+        $output .= '</div>';
+        $output .= '</article>';
+      }
+      return $output;
+  }
+
+  function is_true($val, $return_null=false){
+    $boolval = ( is_string($val) ? filter_var($val, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) : (bool) $val );
+    return ( $boolval===null && !$return_null ? false : $boolval );
+  }
+
+  public function singleFormGen($product){
+
+    $checked = $this->is_true($product['on_sale']) ? 'checked' : '';
+
+    $output = '<form action="" method="post">';
+    $output .= '<label for="productName">Product Name:</label>';
+    $output .= '<input type="hidden" name="orginalProductName" value="'.$product['name'].'">';
+    $output .= '<input type="text" id="productName" name="productName" value="'.$product['name'].'">';
+
+    $output .= '<label for="productImage">Product Image:</label>';
+    $output .= '<input type="text" id="productImage" name="productImage" value="'.$product['name'].'">';
+
+    $output .= '<label for="productPrice">Price:</label>';
+    $output .= '<input type="text" id="productPrice" name="productPrice" value="'.$product['price'].'">';
+
+    $output .= '<label for="productSalePrice">Sale Price:</label>';
+    $output .= '<input type="text" id="productSalePrice" name="productSalePrice" value="'.$product['sale_price'].'">';
+
+    $output .= '<div class="formContainer">';
+    $output .= '<label for="productOnSale">On Sale:</label>';
+    $output .= '<input type="checkbox" id="productOnSale" name="productOnSale" '.$checked.'>';
+    $output .= '</div>';
+
+    $output .= '<label for="productCategory">Category:</label>';
+    $output .= '<input type="text" id="productCategory" name="productCategory" value="'.$product['category'].'">';
+
+    $output .= '<div class="formControl">';
+    $output .= '<span class="close button">Cancel</span>';
+    $output .= '<input class="button" type="submit" value="Submit">';
+    $output .= '</div>';
+    $output .= '</form>';
+    return $output;
+  }
+
 }

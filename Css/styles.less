@@ -19,6 +19,18 @@ body {
   justify-content: space-between;
   overflow-x: hidden;
   font-size: 24px;
+  position: relative;
+  &.lightbox:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    opacity: .8;
+  }
 }
 
 .button {
@@ -160,7 +172,8 @@ body {
     justify-content: center;
     align-items: center;
 
-    a {
+    a,
+    span {
       display: inline-block;
       font-weight: 600;
       text-transform: uppercase;
@@ -330,68 +343,68 @@ body {
   .width-12 {
     display: flex;
     flex-wrap: wrap;
+  }
+}
 
-    article {
-      width: ~'calc(25% - 30px)';
-      margin: 20px 15px;
-      overflow: hidden;
+article {
+  width: ~'calc(25% - 30px)';
+  margin: 20px 15px;
+  overflow: hidden;
 
-      img {
-        max-width: 250px;
-      }
+  img {
+    max-width: 250px;
+  }
 
-      .img {
-        text-align: center;
+  .img {
+    text-align: center;
 
-        div:nth-of-type(1) {
-          height: 200px;
-          width: 200px;
-          background-size: contain;
-          background-position: center;
-          margin: 0 auto;
-          background-repeat: no-repeat;
-        }
-      }
+    > div:nth-of-type(1) {
+      height: 200px;
+      width: 200px;
+      background-size: contain;
+      background-position: center;
+      margin: 0 auto;
+      background-repeat: no-repeat;
+    }
+  }
 
-      .content {
-        text-align: center;
-        position: relative;
-      }
+  .content {
+    text-align: center;
+    position: relative;
+  }
 
-      .button {
-        width: 200px;
-      }
+  .button {
+    width: 200px;
+  }
 
-      .productTitle {
-        font-size: 18px;
-        color: #50923e;
-        font-weight: 600;
-        text-transform: uppercase;
-      }
+  .productTitle {
+    font-size: 18px;
+    color: #50923e;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
 
-      p {
-        margin: 10px auto;
-      }
+  p {
+    margin: 10px auto;
+  }
 
-      .price {
-        font-size: 20px;
-        font-weight: 600;
-      }
+  .price {
+    font-size: 20px;
+    font-weight: 600;
+  }
 
-      .added {
-        position: absolute;
-        left: 50%;
-        bottom: -50px;
-        transform: translate(-50%);
-        background-color: #3e6292;
-        color: #fff;
-        cursor: none;
-        pointer-events: none;
+  .added {
+    position: absolute;
+    left: 50%;
+    bottom: -50px;
+    transform: translate(-50%);
+    background-color: #3e6292;
+    color: #fff;
+    cursor: none;
+    pointer-events: none;
 
-        &.clicked {
-          bottom: 0;
-        }
-      }
+    &.clicked {
+      bottom: 0;
     }
   }
 }
@@ -494,8 +507,9 @@ body {
   }
 }
 
-.product_image{
+.product_image {
   position: relative;
+
   .fa-times {
     color: red;
     position: absolute;
@@ -507,31 +521,95 @@ body {
     width: 28px;
     text-align: center;
     cursor: pointer;
-    &:hover{
+
+    &:hover {
       background-color: red;
-      color:#fff;
+      color: #fff;
     }
   }
 }
 
+.grid {
+  .width-3 {
+    background-color: #f2f2f2;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+    width: 33%;
 
-.grid{
-   .width-3 {
-     background-color: #f2f2f2;
-     padding: 10px;
-     display: flex;
-     flex-wrap: wrap;
-     justify-content: start;
-     align-items: center;
-     width: 33%;
     span {
       width: 50%;
       text-align: center;
       padding: 10px;
     }
   }
-   .width-9 {
-     width: 66%;
-     padding: 0px 48px;
-   }
+
+  .width-9 {
+    width: 66%;
+    padding: 0 48px;
+  }
+}
+
+.admin {
+  article {
+    overflow: inherit;
+
+    .productLightbox {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 400px;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      &.active {
+        display: block;
+      }
+    }
+    form {
+      border: 2px solid;
+      border-radius: 8px;
+      background-color: #fff;
+      input:not(input[type="submit"]):not(input[type="checkbox"]) {
+          border: 1px solid #000;
+          width: ~'calc(100% - 20px)';
+          padding: 4px;
+          margin: 0 10px;
+          display: block;
+          font-size: 16px;
+      }
+      label {
+        display: block;
+        text-align: left;
+        width: ~'calc(100% - 20px)';
+        margin: 11px 10px 6px;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+    }
+    .formControl{
+      display: flex;
+      .button {
+        margin: 10px;
+          &.close{
+            border: 2px solid @color-red;
+            color: @color-red;
+            &:hover{
+              background-color: @color-red;
+              color:#fff;
+            }
+          }
+      }
+    }
+    .formContainer{
+      text-align: left;
+      label,input {
+        display: inline-block;
+        width: 100px;
+      }
+    }
+  }
 }
