@@ -39,7 +39,7 @@ if( !empty($_POST['product_total_remove']) ){
 }
 
 if( !empty($_POST['admin_product_total_remove']) ){
-  $admin_product_total_remove = strval($_POST['admin_product_total_remove']);
+  $admin_product_total_remove = $_POST['admin_product_total_remove'];
   $i = 0;
   foreach($_SESSION['productArray'] as $item){
     if($item["name"] == $admin_product_total_remove){
