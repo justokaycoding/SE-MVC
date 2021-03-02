@@ -100,7 +100,7 @@
     reload();
   });
 
-  $(document).on("click", ".product_image .fa-times", function(e) {
+  $(document).on("click", ".cart .product_image .fa-times", function(e) {
 
     let product_total_remove = $(this).closest('td').siblings('.product_name').text();
     let total_remove = $(this).closest('td').siblings('.product_quantity').find('.total').text();
@@ -117,6 +117,30 @@
           if(parseInt(num) > 0){
            $("span.cartCount").text(parseInt(num) - parseInt(total_remove));
            }
+          location.reload();
+        },
+        error: function() {
+          console.log('There was some error performing the AJAX call!');
+        }
+      });
+    }
+
+    // $(this).closest('tr').detach();
+  });
+
+  $(document).on("click", ".productLightbox .itemRemove", function(e) {
+
+    let admin_product_total_remove = $(this).siblings('input[name="orginalProductName"]').val();
+    console.log(admin_product_total_remove);
+
+    if (admin_product_total_remove != '') {
+      $.ajax({
+        url: '../ajax_calls.php',
+        type: 'post',
+        data: {
+          admin_product_total_remove: admin_product_total_remove
+        },
+        success: function(response) {
           location.reload();
         },
         error: function() {

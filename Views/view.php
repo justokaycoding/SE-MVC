@@ -169,7 +169,7 @@ class View{
     // echo '</pre>';
 
     $output = '<form  class="adminSingleProduct" action="" method="post">';
-    $output .= '<i class="far fa-times-circle"></i>';
+    $output .= '<span class="itemRemove"><i class="far fa-times-circle"></i> Remove Product</span>';
     $output .= '<input type="hidden" name="productChange" value="productChange">';
     $output .= '<label for="productName">Product Name:</label>';
     $output .= '<input type="hidden" name="orginalProductName" value="'.$product['name'].'">';
@@ -212,7 +212,6 @@ class View{
 
   public function singleFormGenEmpty(){
     $output = '<form  class="adminSingleProduct" action="" method="post">';
-    $output .= '<i class="far fa-times-circle"></i>';
     $output .= '<input type="hidden" name="productAdd" value="productAdd">';
     $output .= '<label for="productName">Product Name:</label>';
     $output .= '<input type="text" id="productName" name="productName" value="">';
