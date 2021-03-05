@@ -71,7 +71,8 @@ if($sql->isAdmin()){
           <div class="wrapper text">
             <?php if( $sql->isAdmin() ){ ?>
               <nav>
-                <span>Admin Level </span>
+                <a href="/admin">View All Products</a>
+                <a href="/admin/add">Add New Item</a>
               </nav>
             <?php } else { ?>
               <nav>

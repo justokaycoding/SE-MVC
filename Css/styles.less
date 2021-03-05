@@ -18,9 +18,11 @@ body {
   overflow-x: hidden;
   font-size: 24px;
   position: relative;
-  &.lightbox{
+
+  &.lightbox {
     overflow: hidden;
-    &:before{
+
+    &:before {
       content: '';
       position: absolute;
       top: 0;
@@ -29,7 +31,7 @@ body {
       z-index: 2;
       width: 100%;
       height: 100%;
-      opacity: .8;
+      opacity: 0.8;
     }
   }
 }
@@ -453,6 +455,9 @@ article {
 
   .product_name {
     width: 36%;
+    h2{
+      margin: 0 auto;
+    }
   }
 
   th {
@@ -565,23 +570,27 @@ article {
       width: 400px;
       transform: translate(-50%, -50%);
       z-index: 3;
+
       &.active {
         display: block;
       }
     }
+
     form {
       border: 2px solid;
       border-radius: 8px;
       background-color: #fff;
       position: relative;
+
       input:not(input[type="submit"]):not(input[type="checkbox"]) {
-          border: 1px solid #000;
-          width: ~'calc(100% - 20px)';
-          padding: 4px;
-          margin: 0 10px;
-          display: block;
-          font-size: 16px;
+        border: 1px solid #000;
+        width: ~'calc(100% - 20px)';
+        padding: 4px;
+        margin: 0 10px;
+        display: block;
+        font-size: 16px;
       }
+
       label {
         display: block;
         text-align: left;
@@ -590,31 +599,39 @@ article {
         font-size: 18px;
         font-weight: 700;
       }
+
       .itemRemove {
-          position: absolute;
-          right: 0;
-          top: 0;
-          transform: translateY(-100%);
-          color: red;
+        position: absolute;
+        right: 0;
+        top: 0;
+        transform: translateY(-100%);
+        color: red;
       }
     }
-    .formControl{
+
+    .formControl {
       display: flex;
+
       .button {
         margin: 10px;
-          &.close{
-            border: 2px solid @color-red;
-            color: @color-red;
-            &:hover{
-              background-color: @color-red;
-              color:#fff;
-            }
+
+        &.close {
+          border: 2px solid @color-red;
+          color: @color-red;
+
+          &:hover {
+            background-color: @color-red;
+            color: #fff;
           }
+        }
       }
     }
-    .formContainer{
+
+    .formContainer {
       text-align: left;
-      label,input {
+
+      input,
+      label {
         display: inline-block;
         width: 100px;
       }
@@ -622,28 +639,72 @@ article {
   }
 }
 
-.adminSingleProduct{
-  img{
+.adminSingleProduct {
+  img {
     max-width: 100px;
   }
-  .inner{
+
+  .inner {
     width: 70%;
     display: inline-block;
+
     &.img {
       text-align: left;
       padding: 10px;
       width: 30%;
     }
-    .button{
+
+    .button {
       margin-top: 6px;
       width: 162px;
       font-size: 16px;
       padding: 3px;
     }
   }
+
   .img_container {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+}
+
+.newProduct {
+  width: 100%;
+  border: 2px solid #000;
+  border-radius: 20px;
+  padding: 20px;
+
+  input[type="text"] {
+    width: 100%;
+  }
+
+  > div {
+    padding: 10px 0;
+
+    label {
+      padding-bottom: 6px;
+      display: block;
+    }
+  }
+
+  .inner.img:empty {
+    display: none;
+  }
+
+  .inner {
+    width: 70%;
+    display: inline-block;
+    text-align: center;
+  }
+}
+
+.productOutOfStock{
+  position: relative;
+  &:before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
   }
 }

@@ -1,7 +1,14 @@
 <div id="" class="section shop">
   <div class="constraint" style="">
     <div id="" class="column width-12">
-      <?php echo $this->adminLoop(); ?>
+      <?php
+      if (strpos($_SERVER['REQUEST_URI'], 'add') !== false) {
+        echo $this->singleFormGenEmpty();
+      } else{
+        echo $this->adminLoop();
+      }
+      ?>
+
     </div>
   </div>
 </div>

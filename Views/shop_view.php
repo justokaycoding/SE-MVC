@@ -68,27 +68,39 @@ class ShopView extends View{
       $output .= '<th>Amount</th>';
       $output .= '</tr>';
 
-
       $value = array_count_values($this->cart->returnCart());
       krsort($value);
 
       foreach($value as $vaule => $singleCart){
         $item = $this->sql->getItem('productArray',$vaule);
-        $output .='<tr>';
-        $output .='<td class="product_image"><i class="fas fa-times"></i><img src="../../Images/'.$item['image'].'"></td>';
-        $output .='<td class="product_name">'.$item['name'].'</td>';
-        if($item['on_sale'] == 'false'){
-          $price = $item['price'];
-        } else{
-          $price = $item['sale_price'];
-        }
-        $output .='<td class="product_price">$'.$price.'</td>';
-        $output .='<td class="product_quantity"><div class="amount"><i class="fas fa-minus"></i><span class="total">'.$singleCart.'</span><i class="fas fa-plus"></i></td>';
+        if(!empty($item)){
+          $output .='<tr>';
+          $output .='<td class="product_image"><i class="fas fa-times"></i><img src="../../Images/'.$item['image'].'"></td>';
+          $output .='<td class="product_name">'.$item['name'].'</td>';
+          if($item['on_sale'] == 'false'){
+            $price = $item['price'];
+          } else{
+            $price = $item['sale_price'];
+          }
+          $output .='<td class="product_price">$'.$price.'</td>';
+          $output .='<td class="product_quantity"><div class="amount"><i class="fas fa-minus"></i><span class="total">'.$singleCart.'</span><i class="fas fa-plus"></i></td>';
 
-        $itemPrice = (float)$price * $singleCart;
-        $grandTotal += $itemPrice;
-        $output .= '<td class="product_grandCost">$'.number_format((float)$itemPrice, 2).'</td>';
-        $output .='</tr>';
+          $itemPrice = (float)$price * $singleCart;
+          $grandTotal += $itemPrice;
+          $output .= '<td class="product_grandCost">$'.number_format((float)$itemPrice, 2).'</td>';
+          $output .='</tr>';
+        }
+
+        else{
+          $output .='<tr>';
+          $output .='<td class="product_image"><img src="../../Images/placeholder.png"></td>';
+          $output .='<td class="product_name"><h2>Sorry, '.$vaule.' is no longer in stock</h2></td>';
+          $output .='<td class="product_price"></td>';
+          $output .='<td class="product_quantity"></td>';
+          $output .= '<td class="product_grandCost"></td>';
+          $output .='</tr>';
+        }
+
       }
       $output .= '</table>';
 
