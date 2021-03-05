@@ -131,7 +131,8 @@ class ShopView extends View{
         $template_html = ob_get_contents();
         ob_end_clean();
         echo $this->contentIdWrap($template_html);
-      } else{
+      }
+      else{
         ob_start();
         include(URL.'/Template/emptyCart.html');
         $template_html = ob_get_contents();

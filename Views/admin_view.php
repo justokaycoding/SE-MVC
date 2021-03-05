@@ -22,7 +22,7 @@ class AdminView extends View{
     public function add(){
       $checked = '';
 
-      if( (!empty($_POST) && !empty($_POST['productName'])) && empty($this->sql->getItem('productArray',$_POST['productName'] )) ) {
+      if( (!empty($_POST) && !empty($_POST['productName'])) && empty( $this->sql->getItem('productArray',$_POST['productName']) ) ) {
 
         if( isset($_POST["productOnSale"]) ){
           $checked = 'true';

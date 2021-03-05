@@ -128,30 +128,6 @@
     // $(this).closest('tr').detach();
   });
 
-  $(document).on("click", ".productLightbox .itemRemove", function(e) {
-
-    let admin_product_total_remove = $(this).siblings('input[name="orginalProductName"]').val();
-    console.log(admin_product_total_remove);
-
-    if (admin_product_total_remove != '') {
-      $.ajax({
-        url: '../ajax_calls.php',
-        type: 'post',
-        data: {
-          admin_product_total_remove: admin_product_total_remove
-        },
-        success: function(response) {
-          location.reload();
-        },
-        error: function() {
-          console.log('There was some error performing the AJAX call!');
-        }
-      });
-    }
-
-    // $(this).closest('tr').detach();
-  });
-
   function reload(){
     clearTimeout(timerId);
     timerId = setTimeout(timerExpired, 2000);

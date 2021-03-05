@@ -1,4 +1,7 @@
 <?php
+require_once __DIR__.'/Sql/sql.php';
+$sql = new Sql();
+
 if(!isset($_SESSION)) {
   session_start();
 }
@@ -38,15 +41,9 @@ if( !empty($_POST['product_total_remove']) ){
   return;
 }
 
-if( !empty($_POST['admin_product_total_remove']) ){
-  $admin_product_total_remove = $_POST['admin_product_total_remove'];
-  $i = 0;
-  foreach($_SESSION['productArray'] as $item){
-    if($item["name"] == $admin_product_total_remove){
-      unset($_SESSION['productArray'][$i]);
-    }
-    $i++;
-  }
+if( !empty($_POST['admin_product_remove']) ){
+  $admin_product_remove = $_POST['admin_product_remove'];
+  $sql->deleteItem('productArray', $admin_product_remove);
   return;
 }
 
