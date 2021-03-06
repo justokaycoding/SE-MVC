@@ -38,7 +38,7 @@ class ShopView extends View{
           $catList = 'sale';
         }
 
-        $output .= '<article class="'.$catList.'">';
+        $output .= '<article class="'.strtolower($catList).'">';
         $output .= '<div class="img"><div style="background-image: url(../../Images/products/'.$product['image'].');"></div>';
         $output .= '<div class="content">';
         $output .= '<p class="productTitle">'.$product['name'].'</p>';
@@ -146,7 +146,7 @@ class ShopView extends View{
       include(URL.'/Template/basefile.html');
       $template_html = ob_get_contents();
       ob_end_clean();
-      
+
       $template_html = $this->contentFill($template_html, 'test');
       echo $this->contentIdWrap($template_html);
     }
