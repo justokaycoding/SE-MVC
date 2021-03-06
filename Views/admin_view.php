@@ -165,7 +165,6 @@ class AdminView extends View{
     }
 
     public function adminLoop(){
-
       if(!empty($_POST) && isset($_POST['productRemove'])){
         $this->sql->deleteItem('productArray', $_POST['orginalProductName']);
       }
@@ -178,9 +177,9 @@ class AdminView extends View{
         $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'category', $_POST['productCategory']);
 
         if(isset($_POST['productOnSale'])){
-          $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'on_sale', 'false');
-        } else{
           $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'on_sale', 'true');
+        } else{
+          $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'on_sale', 'false');
         }
         if(!empty($name)){
           $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'image', $name);
