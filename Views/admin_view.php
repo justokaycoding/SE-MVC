@@ -43,8 +43,15 @@ class AdminView extends View{
 
       $checked = $this->is_true($product['on_sale']) ? 'checked' : '';
 
-      $output = '<form  class="adminSingleProduct" action="" method="post">';
-      $output .= '<span class="itemRemove"><i class="far fa-times-circle"></i> Remove Product</span>';
+      $output = '<form  class="adminSingleProduct remove" action="" method="post">';
+      $output .= '<input type="hidden" name="productRemove" value="productRemove">';
+      $output .= '<input type="hidden" name="orginalProductName" value="'.$product['name'].'">';
+      $output .= '<span class="itemRemove"><i class="far fa-times-circle"></i>';
+      $output .= '<input class="button" type="submit" value="REMOVE PRODUCT">';
+      $output .= '</span>';
+      $output .= '</form>';
+
+      $output .= '<form  class="adminSingleProduct" action="" method="post">';
       $output .= '<input type="hidden" name="productChange" value="productChange">';
       $output .= '<label for="productName">Product Name:</label>';
       $output .= '<input type="hidden" name="orginalProductName" value="'.$product['name'].'">';
@@ -61,7 +68,6 @@ class AdminView extends View{
           $output .= '<input class="button" type="submit" value="Upload Image" name="submit">';
         $output .= '</div>';
       $output .= '</div>';
-      // $output .= '<input type="text" id="productImage" name="productImage" value="'.$product['image'].'">';
 
       $output .= '<label for="productPrice">Price:</label>';
       $output .= '<input type="text" id="productPrice" name="productPrice" value="'.$product['price'].'">';
@@ -131,6 +137,27 @@ class AdminView extends View{
     }
 
     public function adminLoop(){
+      if(!empty($_POST) && isset($_POST['productRemove'])){
+        $this->sql->deleteItem('productArray', $_POST['orginalProductName']);
+      }
+
+      if(!empty($_POST) && isset($_POST['productChange'])){
+        $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'name', $_POST['productName']);
+        $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'image', $_POST['productName']);
+        $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'price', $_POST['productPrice']);
+        $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'sale_price', $_POST['productSalePrice']);
+        $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'category', $_POST['productCategory']);
+
+        if(isset($_POST['productOnSale'])){
+          echo '<pre style="display:none;">';
+          var_dump();
+          echo '</pre>';
+          $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'on_sale', 'false');
+        } else{
+          $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'on_sale', 'true');
+        }
+      }
+
       $output = '';
       foreach($_SESSION['productArray'] as $product){
         $output .= '<article>';

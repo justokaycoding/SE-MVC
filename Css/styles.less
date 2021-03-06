@@ -602,11 +602,16 @@ article {
       }
 
       .itemRemove {
-        position: absolute;
-        right: 0;
-        top: 0;
-        transform: translateY(-100%);
-        color: red;
+        position: relative;
+
+        i {
+          position: absolute;
+          left: 37px;
+          top: 50%;
+          transform: translateY(-50%);
+          pointer-events: none;
+          color: red;
+        }
       }
     }
 
@@ -641,6 +646,21 @@ article {
 }
 
 .adminSingleProduct {
+  &.remove {
+    background-color: transparent;
+    border-width: 0;
+    margin: 0 auto;
+
+    .button {
+      background-color: transparent;
+      color: red;
+      border-width: 0;
+      padding: 10px 10px 10px 37px;
+      width: 300;
+      font-size: 22px;
+    }
+  }
+
   img {
     max-width: 100px;
   }

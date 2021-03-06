@@ -68,24 +68,15 @@ class  Sql{
     $inArray = false;
     $sessionArray = ($globalArray == 'userArray' ? 'userArray' : 'productArray');
        foreach($_SESSION[$sessionArray] as $i=> $session){
-         echo '<pre style="display:nodne;">';
-         var_dump('one');
-         echo '</pre>';
          if(!is_array($session))continue;
          $index_key = array_search($key, $session);
          if ($index_key){
             $inArray = true;
-            echo '<pre style="display:nodne;">';
-            var_dump('two');
-            echo '</pre>';
             break;
           }
 
        }
        if($inArray){
-         echo '<pre style="display:nodne;">';
-         var_dump($_SESSION[$sessionArray][$i]);
-         echo '</pre>';
          unset($_SESSION[$sessionArray][$i]);
          $_SESSION[$sessionArray] = array_values($_SESSION[$sessionArray]);
        }
@@ -103,7 +94,6 @@ class  Sql{
    }
 
   //Used for testing
-
   public function manualRemove($globalArray, $i){
       $sessionArray = ($globalArray == 'userArray' ? 'userArray' : 'productArray');
       unset($_SESSION[$i]);
@@ -111,7 +101,6 @@ class  Sql{
   }
 
   //return item array
-
   public function getItem($globalArray, $uniqueVaule){
         $inArray = false;
         $output = 'Not In Array';
