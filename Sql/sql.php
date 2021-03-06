@@ -36,14 +36,60 @@ if ( !isset($_SESSION['productArray'])) {
               'price' => '15.98',
               'sale_price' => '14.20',
               'on_sale' => 'false',
-              'category' => 'cat Food'],
+              'category' => 'cat Food'
+            ],
 
               ['name' => 'McCormick Sloppy Joes Seasoning Mix 1.31oz',
                'image' => 'mccormicksloppyjoesseasoningmix131oz.jpg',
                'price' => '1.19',
                'sale_price' => '.5',
                'on_sale' => 'true',
-               'category' => 'seasoning'],
+               'category' => 'seasoning'
+             ],
+
+              ['name' => 'Til the Cows Come Home Dough-Mo Arigato, Mr. Roboto Ice Cream',
+                'image' => '0075450222460_CF_default_default_large.jpeg',
+                'price' => '17.19',
+                'sale_price' => '5.5',
+                'on_sale' => 'true',
+                'category' => 'Ice Cream'
+              ],
+
+              ['name' => 'Gala Apples (1 Pound)',
+                'image' => '0000000041330_CL_hyvee_default_large.jpeg',
+                'price' => '.5',
+                'sale_price' => '.25',
+                'on_sale' => 'false',
+                'category' => 'fruit'
+              ],
+              ['name' => 'Light & Fit Strawberry Cheesecake Greek Yogurt 4Pk Cups',
+                'image' => '0036632028480_CF_default_default_large.jpeg',
+                'price' => '2.50',
+                'sale_price' => '1.25',
+                'on_sale' => 'false',
+                'category' => 'Yogurt'
+              ],
+              ['name' => 'Jennie-O Turkey Bacon',
+                'image' => '0042222870000_CF_default_default_large.jpeg',
+                'price' => '3.99',
+                'sale_price' => '2.25',
+                'on_sale' => 'false',
+                'category' => 'bacon'
+              ],
+              ['name' => 'Bacon Cheddar Twice Baked Potato',
+                'image' => '0237505000000_CF_hyvee2_default_large.png',
+                'price' => '1.50',
+                'sale_price' => '1.15',
+                'on_sale' => 'false',
+                'category' => 'otato'
+              ],
+              ['name' => '5oz Alaska Snow Crab Clusters',
+                'image' => '0238913000000_CL_hyvee_default_large.jpeg',
+                'price' => '.5',
+                'sale_price' => '.25',
+                'on_sale' => 'false',
+                'category' => 'crab legs'
+              ],
             );
 }
 

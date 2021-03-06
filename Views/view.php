@@ -120,6 +120,11 @@ class View{
       return $output;
   }
 
+  public function contentFill($template_html, $content){
+    $template_html = str_replace('[.CONTENT.]',$content,$template_html);
+    return $template_html;
+  }
+
   function is_true($val, $return_null=false){
     $boolval = ( is_string($val) ? filter_var($val, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) : (bool) $val );
     return ( $boolval===null && !$return_null ? false : $boolval );

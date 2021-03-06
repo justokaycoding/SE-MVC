@@ -142,7 +142,13 @@ class ShopView extends View{
     }
 
     public function checkOut(){
-      echo 'VHOST';
+      ob_start();
+      include(URL.'/Template/basefile.html');
+      $template_html = ob_get_contents();
+      ob_end_clean();
+      $template_html = $this->contentFill($template_html, 'test');
+
+      echo $this->contentIdWrap($template_html);
     }
 
 }
