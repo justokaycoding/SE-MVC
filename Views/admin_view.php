@@ -19,16 +19,46 @@ class AdminView extends View{
       return $template_html;
     }
 
-    public function add(){
-      $checked = '';
+    public function uploadImage(){
+      echo '<pre style="display:none;">';
+      var_dump($_FILES);
+      echo '</pre>';
+      if(isset($_FILES["fileToUpload"]) && $_FILES["fileToUpload"]["error"] == 0){
+        $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
+        $filename = $_FILES["fileToUpload"]["name"];
+        $filetype = $_FILES["fileToUpload"]["type"];
+        $filesize = $_FILES["fileToUpload"]["size"];
 
+        $ImageFolder = URL.'/Images/products/';
+
+        // Verify file extension
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+
+        if(!array_key_exists($ext, $allowed)) die("Error: Please select a valid file format.");
+
+        // Verify file size - 5MB maximum
+        $maxsize = 5 * 1024 * 1024;
+        if($filesize > $maxsize) die("Error: File size is larger than the allowed limit.");
+
+        if(in_array($filetype, $allowed)){
+          if(!file_exists($ImageFolder . $filename)){
+              move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $ImageFolder . $filename);
+          }
+        }
+        return $filename;
+      }
+    }
+
+    public function add(){
       if( (!empty($_POST) && !empty($_POST['productName'])) && empty( $this->sql->getItem('productArray',$_POST['productName']) ) ) {
+
+        $name = $this->uploadImage();
 
         if( isset($_POST["productOnSale"]) ){
           $checked = 'true';
         }
           $newProduct = ['name' => $_POST["productName"],
-                         'image'   => 'meowmixoriginalchoicedrycatfood.jpg',
+                         'image'   => $name,
                          'price' => $_POST["productPrice"],
                          'sale_price' => $_POST["productSalePrice"],
                          'on_sale' => $checked,
@@ -43,7 +73,7 @@ class AdminView extends View{
 
       $checked = $this->is_true($product['on_sale']) ? 'checked' : '';
 
-      $output = '<form  class="adminSingleProduct remove" action="" method="post">';
+      $output = '<form  class="adminSingleProduct remove" action="" method="post" enctype="multipart/form-data">';
       $output .= '<input type="hidden" name="productRemove" value="productRemove">';
       $output .= '<input type="hidden" name="orginalProductName" value="'.$product['name'].'">';
       $output .= '<span class="itemRemove"><i class="far fa-times-circle"></i>';
@@ -51,7 +81,7 @@ class AdminView extends View{
       $output .= '</span>';
       $output .= '</form>';
 
-      $output .= '<form  class="adminSingleProduct" action="" method="post">';
+      $output .= '<form  class="adminSingleProduct" action="" method="post" enctype="multipart/form-data">';
       $output .= '<input type="hidden" name="productChange" value="productChange">';
       $output .= '<label for="productName">Product Name:</label>';
       $output .= '<input type="hidden" name="orginalProductName" value="'.$product['name'].'">';
@@ -61,11 +91,11 @@ class AdminView extends View{
 
       $output .= '<div class="img_container">';
         $output .= '<div class="inner img">';
-          $output .= '<img src="../../Images/'.$product['image'].'">';
+          $output .= '<img src="../../Images/products/'.$product['image'].'">';
         $output .= '</div>';
         $output .= '<div class="inner imgEdit">';
-          $output .= '<input type="file" name="fileToUpload" id="fileToUpload">';
-          $output .= '<input class="button" type="submit" value="Upload Image" name="submit">';
+        $output .= '<input type="file" name="fileToUpload" id="fileToUpload">';
+        $output .= '<p><strong>Note:</strong> Only .jpg, .jpeg, .gif, .png formats allowed to a max size of 5 MB.</p>';
         $output .= '</div>';
       $output .= '</div>';
 
@@ -92,7 +122,8 @@ class AdminView extends View{
     }
 
     public function singleFormGenEmpty(){
-      $output = '<form  class="adminSingleProduct newProduct" action="" method="post">';
+
+      $output = '<form  class="adminSingleProduct newProduct" action="" method="post" enctype="multipart/form-data">';
       $output .= '<input type="hidden" name="productAdd" value="productAdd">';
 
       $output .= '<div>';
@@ -108,11 +139,10 @@ class AdminView extends View{
       $output .= '</div>';
       $output .= '<div class="inner imgEdit">';
       $output .= '<input type="file" name="fileToUpload" id="fileToUpload">';
-      $output .= '<input class="button" type="submit" value="Upload Image" name="submit">';
+      $output .= '<p><strong>Note:</strong> Only .jpg, .jpeg, .gif, .png formats allowed to a max size of 5 MB.</p>';
       $output .= '</div>';
       $output .= '</div>';
       $output .= '</div>';
-      // $output .= '<input type="text" id="productImage" name="productImage" value="'.$product['image'].'">';
       $output .= '<div>';
       $output .= '<label for="productPrice">Price:</label>';
       $output .= '<input type="text" id="productPrice" name="productPrice" value="">';
@@ -137,21 +167,19 @@ class AdminView extends View{
     }
 
     public function adminLoop(){
+
       if(!empty($_POST) && isset($_POST['productRemove'])){
         $this->sql->deleteItem('productArray', $_POST['orginalProductName']);
       }
-
       if(!empty($_POST) && isset($_POST['productChange'])){
+        $name = $this->uploadImage();
         $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'name', $_POST['productName']);
-        $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'image', $_POST['productName']);
+        $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'image', $name);
         $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'price', $_POST['productPrice']);
         $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'sale_price', $_POST['productSalePrice']);
         $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'category', $_POST['productCategory']);
 
         if(isset($_POST['productOnSale'])){
-          echo '<pre style="display:none;">';
-          var_dump();
-          echo '</pre>';
           $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'on_sale', 'false');
         } else{
           $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'on_sale', 'true');
@@ -161,7 +189,7 @@ class AdminView extends View{
       $output = '';
       foreach($_SESSION['productArray'] as $product){
         $output .= '<article>';
-        $output .= '<div class="img"><div style="background-image: url(../../Images/'.$product['image'].');"></div>';
+        $output .= '<div class="img"><div style="background-image: url(../../Images/products/'.$product['image'].');"></div>';
         $output .= '<div class="content">';
         $output .= '<p class="productTitle">'.$product['name'].'</p>';
         $output .= '<span class="button edit">Edit</span>';

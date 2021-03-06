@@ -39,7 +39,7 @@ class ShopView extends View{
         }
 
         $output .= '<article class="'.$catList.'">';
-        $output .= '<div class="img"><div style="background-image: url(../../Images/'.$product['image'].');"></div>';
+        $output .= '<div class="img"><div style="background-image: url(../../Images/products/'.$product['image'].');"></div>';
         $output .= '<div class="content">';
         $output .= '<p class="productTitle">'.$product['name'].'</p>';
         if($product["on_sale"] == 'false'){
@@ -75,7 +75,7 @@ class ShopView extends View{
         $item = $this->sql->getItem('productArray',$vaule);
         if(!empty($item)){
           $output .='<tr>';
-          $output .='<td class="product_image"><i class="fas fa-times"></i><img src="../../Images/'.$item['image'].'"></td>';
+          $output .='<td class="product_image"><i class="fas fa-times"></i><img src="../../Images/products/'.$item['image'].'"></td>';
           $output .='<td class="product_name">'.$item['name'].'</td>';
           if($item['on_sale'] == 'false'){
             $price = $item['price'];
@@ -93,7 +93,7 @@ class ShopView extends View{
 
         else{
           $output .='<tr>';
-          $output .='<td class="product_image"><img src="../../Images/placeholder.png"></td>';
+          $output .='<td class="product_image"><img src="../../Images/products/placeholder.png"></td>';
           $output .='<td class="product_name"><h2>Sorry, '.$vaule.' is no longer in stock</h2></td>';
           $output .='<td class="product_price"></td>';
           $output .='<td class="product_quantity"></td>';
