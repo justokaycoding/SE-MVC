@@ -20,9 +20,6 @@ class AdminView extends View{
     }
 
     public function uploadImage(){
-      echo '<pre style="display:none;">';
-      var_dump($_FILES);
-      echo '</pre>';
       if(isset($_FILES["fileToUpload"]) && $_FILES["fileToUpload"]["error"] == 0){
         $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
         $filename = $_FILES["fileToUpload"]["name"];
