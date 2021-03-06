@@ -88,13 +88,14 @@ class AdminView extends View{
 
       $output .= '<div class="img_container">';
         $output .= '<div class="inner img">';
-          $output .= '<img src="../../Images/products/'.$product['image'].'">';
+        $output .= '<img src="../../Images/products/'.$product['image'].'">';
         $output .= '</div>';
         $output .= '<div class="inner imgEdit">';
         $output .= '<input type="file" name="fileToUpload" id="fileToUpload">';
         $output .= '<p><strong>Note:</strong> Only .jpg, .jpeg, .gif, .png formats allowed to a max size of 5 MB.</p>';
         $output .= '</div>';
       $output .= '</div>';
+
 
       $output .= '<label for="productPrice">Price:</label>';
       $output .= '<input type="text" id="productPrice" name="productPrice" value="'.$product['price'].'">';
@@ -170,8 +171,8 @@ class AdminView extends View{
       }
       if(!empty($_POST) && isset($_POST['productChange'])){
         $name = $this->uploadImage();
+
         $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'name', $_POST['productName']);
-        $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'image', $name);
         $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'price', $_POST['productPrice']);
         $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'sale_price', $_POST['productSalePrice']);
         $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'category', $_POST['productCategory']);
@@ -180,6 +181,9 @@ class AdminView extends View{
           $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'on_sale', 'false');
         } else{
           $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'on_sale', 'true');
+        }
+        if(!empty($name)){
+          $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'image', $name);
         }
       }
 

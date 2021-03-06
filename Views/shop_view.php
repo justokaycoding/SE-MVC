@@ -125,11 +125,6 @@ class ShopView extends View{
     }
 
     public function cart(){
-
-      echo '<pre style="display:nsone;">';
-      var_dump($_SESSION['cart']);
-      echo '</pre>';
-
       if(!empty($_SESSION['cart'])){
         ob_start();
         include(URL.'/Template/cart.html');
@@ -147,7 +142,7 @@ class ShopView extends View{
     }
 
     public function checkOut(){
-      // echo 'est';
+      echo 'VHOST';
     }
 
 }
