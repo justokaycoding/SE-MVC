@@ -13,14 +13,14 @@ class AdminView extends View{
 
     public function content(){
       $template_html = '';
-      if($this->sql->isAdmin()){
+      // if($this->sql->isAdmin()){
         ob_start();
         include(URL.'/Template/adminLoop.html');
         $template_html = ob_get_contents();
         ob_end_clean();
-      } else{
-        echo '<script>window.location.href = "/";</script>';
-      }
+      // } else{
+      //   echo '<script>window.location.href = "/";</script>';
+      // }
       return $template_html;
     }
 

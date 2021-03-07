@@ -21,7 +21,7 @@
     if($_POST["formType"] == 'signIn'){
       $data = $sql->getItem('userArray', $_POST["sign_in_email"] );
       if( !empty($data) && ( $data["password"] == $_POST['sign_in_password']) ){
-        echo '<script>window.location.href = "/";</script>';
+        echo '<script>window.location.href = "/admin";</script>';
       }
       else{
         echo '<script>
