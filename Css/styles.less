@@ -662,15 +662,7 @@ article {
 
       .itemRemove {
         position: relative;
-
-        i {
-          position: absolute;
-          left: 37px;
-          top: 50%;
-          transform: translateY(-50%);
-          pointer-events: none;
-          color: @color-red;
-        }
+        top: -10px;
       }
     }
 
@@ -711,12 +703,15 @@ article {
     margin: 0 auto;
 
     .button {
-      background-color: transparent;
       color: @color-red;
       border-width: 0;
-      padding: 10px 10px 10px 37px;
+      padding: 10px 10px 10px 10px;
       width: 300;
       font-size: 22px;
+      &:hover{
+        background-color: @color-red;
+        color:#fff;
+      }
     }
   }
 

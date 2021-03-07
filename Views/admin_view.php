@@ -13,14 +13,14 @@ class AdminView extends View{
 
     public function content(){
       $template_html = '';
-      // if($this->sql->isAdmin()){
+      if($this->sql->isAdmin()){
         ob_start();
         include(URL.'/Template/adminLoop.html');
         $template_html = ob_get_contents();
         ob_end_clean();
-      // } else{
-      //   echo '<script>window.location.href = "/";</script>';
-      // }
+      } else{
+        echo '<script>window.location.href = "/";</script>';
+      }
       return $template_html;
     }
 
@@ -97,7 +97,7 @@ class AdminView extends View{
       $output = '<form  class="adminSingleProduct remove" action="" method="post" enctype="multipart/form-data">';
       $output .= '<input type="hidden" name="productRemove" value="productRemove">';
       $output .= '<input type="hidden" name="orginalProductName" value="'.$product['name'].'">';
-      $output .= '<span class="itemRemove"><i class="far fa-times-circle"></i>';
+      $output .= '<span class="itemRemove">';
       $output .= '<input class="button" type="submit" value="REMOVE PRODUCT">';
       $output .= '</span>';
       $output .= '</form>';
