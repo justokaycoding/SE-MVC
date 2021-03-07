@@ -1,6 +1,15 @@
-<div id="" class="section shop">
+<div id="" class="section shop search">
   <div class="constraint" style="">
     <div id="" class="column width-12">
+      <div class="search">
+        <?php echo $this->searchItem(); ?>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="" class="section shop">
+  <div class="constraint" style="">
+    <div id="" class="column width-12 shopLoop">
       <?php echo $this->shopLoop(); ?>
     </div>
   </div>

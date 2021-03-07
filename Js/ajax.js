@@ -37,8 +37,8 @@
           title: title
         },
         success: function(response) {
-          let num = parseInt( $("span.cartCount").text() );
-           $("span.cartCount").text(num + 1);
+          let num = parseInt($("span.cartCount").text());
+          $("span.cartCount").text(num + 1);
         },
         error: function() {
           console.log('There was some error performing the AJAX call!');
@@ -50,8 +50,8 @@
 
   $(document).on("click", ".amount .fa-minus", function(e) {
     let total = $(this).siblings('span.total').text();
-    if(parseInt(total) > 1){
-      $(this).siblings('span.total').text( total - 1 );
+    if (parseInt(total) > 1) {
+      $(this).siblings('span.total').text(total - 1);
       let product_remove = $(this).closest('td').siblings('.product_name').text();
 
       if (product_remove != '') {
@@ -62,8 +62,8 @@
             product_remove: product_remove
           },
           success: function(response) {
-            let num = parseInt( $("span.cartCount").text() );
-             $("span.cartCount").text(num - 1);
+            let num = parseInt($("span.cartCount").text());
+            $("span.cartCount").text(num - 1);
           },
           error: function() {
             console.log('There was some error performing the AJAX call!');
@@ -76,7 +76,7 @@
 
   $(document).on("click", ".amount .fa-plus", function(e) {
     let total = $(this).siblings('span.total').text();
-    $(this).siblings('span.total').text( parseInt(total) + 1 );
+    $(this).siblings('span.total').text(parseInt(total) + 1);
 
     let product_add = $(this).closest('td').siblings('.product_name').text();
 
@@ -88,8 +88,8 @@
           product_add: product_add
         },
         success: function(response) {
-          let num = parseInt( $("span.cartCount").text() );
-           $("span.cartCount").text(num + 1);
+          let num = parseInt($("span.cartCount").text());
+          $("span.cartCount").text(num + 1);
         },
         error: function() {
           console.log('There was some error performing the AJAX call!');
@@ -113,10 +113,10 @@
           product_total_remove: product_total_remove
         },
         success: function(response) {
-          let num = parseInt( $("span.cartCount").text() );
-          if(parseInt(num) > 0){
-           $("span.cartCount").text(parseInt(num) - parseInt(total_remove));
-           }
+          let num = parseInt($("span.cartCount").text());
+          if (parseInt(num) > 0) {
+            $("span.cartCount").text(parseInt(num) - parseInt(total_remove));
+          }
           location.reload();
         },
         error: function() {
@@ -128,7 +128,24 @@
     // $(this).closest('tr').detach();
   });
 
-  function reload(){
+  $(document).on("keyup", "input.seach", function(e) {
+    if ($(this).val() && $(this).val() != '') {
+      var textBits = $(this).val().indexOf(' ') >= 0 ? $(this).val().split(' ') : [$(this).val()];
+      $('p.productTitle').each(function() {
+        for (var i = 0; i < textBits.length; i++) {
+          if ($(this).text().toLowerCase().indexOf(textBits[i].toLowerCase()) == -1) {
+            $(this).closest('article').hide();
+          } else {
+            $(this).closest('article').show();
+          }
+        }
+      });
+    } else if ($(this).val() == '') {
+      $('article').show();
+    }
+  });
+
+  function reload() {
     clearTimeout(timerId);
     timerId = setTimeout(timerExpired, 2000);
   }

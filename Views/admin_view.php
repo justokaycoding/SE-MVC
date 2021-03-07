@@ -12,10 +12,15 @@ class AdminView extends View{
     }
 
     public function content(){
-      ob_start();
-      include(URL.'/Template/adminLoop.html');
-      $template_html = ob_get_contents();
-      ob_end_clean();
+      $template_html = '';
+      if($this->sql->isAdmin()){
+        ob_start();
+        include(URL.'/Template/adminLoop.html');
+        $template_html = ob_get_contents();
+        ob_end_clean();
+      } else{
+        echo '<script>window.location.href = "/";</script>';
+      }
       return $template_html;
     }
 
@@ -48,22 +53,41 @@ class AdminView extends View{
 
     public function add(){
       if( (!empty($_POST) && !empty($_POST['productName'])) && empty( $this->sql->getItem('productArray',$_POST['productName']) ) ) {
-
         $name = $this->uploadImage();
+
+        if(empty($name )){
+          $name = 'placeholder.png';
+        }
 
         if( isset($_POST["productOnSale"]) ){
           $checked = 'true';
         }
-          $newProduct = ['name' => $_POST["productName"],
-                         'image'   => $name,
-                         'price' => $_POST["productPrice"],
-                         'sale_price' => $_POST["productSalePrice"],
-                         'on_sale' => $checked,
-                         'category' => $_POST["productCategory"]
-                       ];
+
+        $newProduct = ['name' => $_POST["productName"],
+                       'image'   => $name,
+                       'price' => $_POST["productPrice"],
+                       'sale_price' => $_POST["productSalePrice"],
+                       'on_sale' => $checked,
+                       'category' => $_POST["productCategory"]
+                     ];
 
           $this->sql->insertItem('productArray', $newProduct);
+
+          echo '<script>
+                $( document ).ready(function() {
+                  var text = "<span>Added Item Successfully</span>";
+                  $(".newProduct").prepend(text);
+                });
+                </script>';
         }
+    else if((!empty($_POST) && !empty($_POST['productName']))){
+      echo '<script>
+            $( document ).ready(function() {
+              var text = "<p>Issue Creating Product</p>";
+              $(".newProduct").prepend(text);
+            });
+            </script>';
+          }
     }
 
     public function singleFormGen($product){

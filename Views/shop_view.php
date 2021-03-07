@@ -34,11 +34,14 @@ class ShopView extends View{
           $catList = $product['category'];
         }
 
-        if($product["sale_price"] == 'false'){
-          $catList = 'sale';
+        if($product["on_sale"] != 'false'){
+          $catList .= ' sale';
         }
 
         $output .= '<article class="'.strtolower($catList).'">';
+        if($product["on_sale"] != 'false'){
+          $output .= '<div class="sale" style="background-image: url(../../Images/sale.png);"></div>';
+        }
         $output .= '<div class="img"><div style="background-image: url(../../Images/products/'.$product['image'].');"></div>';
         $output .= '<div class="content">';
         $output .= '<p class="productTitle">'.$product['name'].'</p>';
@@ -151,4 +154,11 @@ class ShopView extends View{
       echo $this->contentIdWrap($template_html);
     }
 
+    public function searchItem(){
+      $output = '';
+      $output .= '<div class="searchContainer"><i class="fas fa-search"></i>';
+      $output .= '<input class="seach" type="text" placeholder="Search a product" value="">';
+      $output .= '</div>';
+      return $output;
+    }
 }

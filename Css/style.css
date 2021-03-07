@@ -30,6 +30,9 @@ audio:not([controls]) {
   display: none;
   height: 0;
 }
+*{
+  outline: none;
+}
 
 /* ==========================================================================
    Base
@@ -288,7 +291,7 @@ a {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #50923e;
+  color: #3e6292;
 }
 
 /*End Template Constraints*/
@@ -315,7 +318,7 @@ table th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #92603e;
+  background-color: #4f7ab4;
   color: white;
   font-size: 20px;
 }

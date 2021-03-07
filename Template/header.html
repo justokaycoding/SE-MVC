@@ -12,9 +12,14 @@
   }
 ?>
 
-<html>
+<html lang="en-US">
 
 <head>
+  <meta charset="UTF-8">
+  <title>In And Out Grocery</title>
+  <link rel="shortcut icon" href="../Images/logo.png"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link rel="stylesheet/less" type="text/css" href="../Css/styles.less" />
   <link rel="stylesheet/less" type="text/css" href="../Css/style.css" />
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
@@ -22,13 +27,16 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
   <script src="../Js/ajax.js"></script>
-    <script src="../Js/sizing.js"></script>
+  <script src="../Js/sizing.js"></script>
 </head><!-- End of head -->
 
 <?php
 if($sql->isAdmin()){
   $class="admin";
+} else{
+  $class ="client";
 }
 ?>
 
