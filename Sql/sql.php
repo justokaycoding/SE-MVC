@@ -90,6 +90,22 @@ if ( !isset($_SESSION['productArray'])) {
                 'on_sale' => 'false',
                 'category' => 'otato'
               ],
+              ['name' => 'Charmin Ultra Strong Toilet Paper Mega Roll',
+                'image' => '0037000568040_CL_default_default_large.jpeg',
+                'price' => '13.99',
+                'quantity' => '46',
+                'sale_price' => '12.00',
+                'on_sale' => 'false',
+                'category' => 'toilet paper'
+              ],
+              ['name' => 'Safeguard Alcohol Hand Sanitizer, Fresh Clean Scent 2 fl oz',
+                'image' => '0037000744390_CL_default_default_large.jpeg',
+                'price' => '1.69',
+                'quantity' => '46',
+                'sale_price' => '.50',
+                'on_sale' => 'true',
+                'category' => 'clean'
+              ],
               ['name' => '5oz Alaska Snow Crab Clusters',
                 'image' => '0238913000000_CL_hyvee_default_large.jpeg',
                 'price' => '.5',
@@ -146,15 +162,6 @@ class  Sql{
        }
       $_SESSION[$sessionArray][$i][$key] = $newVaule;
    }
-
-  // public function updateItemIncreatment( $globalArray, $uniqueVaule, $key, $newVaule, $sign){
-  //  $sessionArray = ($globalArray == 'userArray' ? 'userArray' : 'productArray');
-  //     foreach($_SESSION[$sessionArray] as $i => $session){
-  //       $index_key = array_search($uniqueVaule, $session);
-  //       if ($index_key) break;
-  //     }
-  //    $_SESSION[$sessionArray][$i][$key] = $newVaule;
-  // }
 
   //Used for testing
   public function manualRemove($globalArray, $i){
