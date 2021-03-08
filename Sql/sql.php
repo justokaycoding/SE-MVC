@@ -147,6 +147,15 @@ class  Sql{
       $_SESSION[$sessionArray][$i][$key] = $newVaule;
    }
 
+  public function updateItemIncreatment( $globalArray, $uniqueVaule, $key, $newVaule, $sign){
+   $sessionArray = ($globalArray == 'userArray' ? 'userArray' : 'productArray');
+      foreach($_SESSION[$sessionArray] as $i => $session){
+        $index_key = array_search($uniqueVaule, $session);
+        if ($index_key) break;
+      }
+     $_SESSION[$sessionArray][$i][$key] = $newVaule;
+  }
+
   //Used for testing
   public function manualRemove($globalArray, $i){
       $sessionArray = ($globalArray == 'userArray' ? 'userArray' : 'productArray');

@@ -1,18 +1,16 @@
 <?php
+require_once __DIR__.'/Sql/sql.php';
+$sql = new Sql();
+
 if(!isset($_SESSION)) {
   session_start();
 }
 
+//add button on shop page
 if( !empty($_POST['title']) ){
   $title = $_POST['title'];
+  
   array_push( $_SESSION['cart'], $title );
-  var_dump($_SESSION['cart']);
-  return;
-}
-
-if( !empty($_POST['product_add']) ){
-  $product_add = $_POST['product_add'];
-  array_push( $_SESSION['cart'], $product_add );
   return;
 }
 
@@ -37,5 +35,7 @@ if( !empty($_POST['product_total_remove']) ){
   }
   return;
 }
+
+
 
 ?>
