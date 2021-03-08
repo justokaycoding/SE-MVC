@@ -22,8 +22,11 @@
   });
 
   $(document).on("click", "article .button.add", function(e) {
+    e.preventDefault();
     let title = $(this).siblings('.productTitle').text();
     $(this).siblings('.added').addClass('clicked');
+    var $this = $(this);
+    let ajaxnum;
 
     setTimeout(() => {
       $(this).siblings('.added').removeClass('clicked');
@@ -40,7 +43,24 @@
         success: function(response) {
           let num = parseInt($("span.cartCount").text());
           console.log(response);
-          $("span.cartCount").text(num + 1);
+
+          switch(response) {
+            case 'true':
+              ajaxnum = $this.siblings('.productTitle').attr("data-quantity");
+              console.log(num);
+              ajaxnum = ajaxnum - 1;
+              $this.siblings('.productTitle').attr('data-quantity',ajaxnum);
+              // $('body').css('display','none');
+              break;
+            case 'false':
+              if( !$this.closest('article').hasClass('soldOut')) {
+                $this.closest('article').addClass('soldOut');
+              }
+              break;
+          }
+          if(ajaxnum >= 0){
+            $("span.cartCount").text(num + 1);
+          }
         },
         error: function() {
           console.log('There was some error performing the AJAX call!');
@@ -61,7 +81,8 @@
           url: '../ajax_calls.php',
           type: 'post',
           data: {
-            product_remove: product_remove
+            product_remove: product_remove,
+            num : total
           },
           success: function(response) {
             let num = parseInt($("span.cartCount").text());
@@ -72,13 +93,13 @@
           }
         });
       }
-      reload();
+      // reload();
     }
   });
 
   $(document).on("click", ".amount .fa-plus", function(e) {
     let total = $(this).siblings('span.total').text();
-    $(this).siblings('span.total').text(parseInt(total) + 1);
+    let $this = $(this);
 
     let product_add = $(this).closest('td').siblings('.product_name').text();
 
@@ -87,11 +108,18 @@
         url: '../ajax_calls.php',
         type: 'post',
         data: {
-          product_add: product_add
+          product_add: product_add,
+          num : total
         },
         success: function(response) {
+          console.log(response)
+          if(response == 'true'){
           let num = parseInt($("span.cartCount").text());
-          $("span.cartCount").text(num + 1);
+            $("span.cartCount").text(num + 1);
+            $this.siblings('span.total').text(parseInt(total) + 1);
+          } else{
+
+          }
         },
         error: function() {
           console.log('There was some error performing the AJAX call!');
@@ -99,7 +127,7 @@
       });
     }
 
-    reload();
+    // reload();
   });
 
   $(document).on("click", ".cart .product_image .fa-times", function(e) {
@@ -112,9 +140,11 @@
         url: '../ajax_calls.php',
         type: 'post',
         data: {
-          product_total_remove: product_total_remove
+          product_total_remove: product_total_remove,
+          num : total_remove
         },
         success: function(response) {
+          console.log(response)
           let num = parseInt($("span.cartCount").text());
           if (parseInt(num) > 0) {
             $("span.cartCount").text(parseInt(num) - parseInt(total_remove));
@@ -127,7 +157,7 @@
       });
     }
 
-    // $(this).closest('tr').detach();
+    $(this).closest('tr').detach();
   });
 
   $(document).on("keyup", "input.seach", function(e) {

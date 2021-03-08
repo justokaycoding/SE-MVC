@@ -24,6 +24,7 @@ class ShopView extends View{
     public function shopLoop(){
       $output = '';
       $catList = '';
+      $soldOut = '<p class="soldOutText">Sorry, we do not have enough in stock to fulfil your order</p>';
       foreach($_SESSION['productArray'] as $product){
         if( is_array($product['category']) ){
           foreach($product['category'] as $cat){
@@ -38,7 +39,14 @@ class ShopView extends View{
           $catList .= ' sale';
         }
 
+        if($product["quantity"] <= 0){
+          $catList .= ' soldOut ';
+        }
+
         $output .= '<article class="'.strtolower($catList).'">';
+
+        $output .= $soldOut;
+
         if($product["on_sale"] != 'false'){
           $output .= '<div class="sale" style="background-image: url(../../Images/sale.png);"></div>';
         }

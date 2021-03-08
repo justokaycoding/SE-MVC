@@ -806,3 +806,32 @@ article {
 #fileToUpload + p {
   font-size: 15px;
 }
+
+.soldOut {
+  .img{
+    opacity: .2;
+    pointer-events: none;
+  }
+  > p{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    background-color: #3e6292;
+    color: #fff;
+    padding: 20px;
+    z-index: 9;
+    font-size: 19px;
+    text-align: center;
+  }
+  .soldOutText{
+    display: block;
+  }
+  .sale{
+    opacity: .4;
+  }
+}
+.soldOutText{
+  display: none;
+}
