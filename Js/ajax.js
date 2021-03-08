@@ -32,12 +32,14 @@
     if (title != '') {
       $.ajax({
         url: 'ajax_calls.php',
-        type: 'post',
+        dataType: 'text',
+        type: 'POST',
         data: {
           title: title
         },
         success: function(response) {
           let num = parseInt($("span.cartCount").text());
+          console.log(response);
           $("span.cartCount").text(num + 1);
         },
         error: function() {

@@ -66,6 +66,7 @@ class AdminView extends View{
         $newProduct = ['name' => $_POST["productName"],
                        'image'   => $name,
                        'price' => $_POST["productPrice"],
+                       'quantity' => $_POST["productQuantity"],
                        'sale_price' => $_POST["productSalePrice"],
                        'on_sale' => $checked,
                        'category' => $_POST["productCategory"]
@@ -124,6 +125,9 @@ class AdminView extends View{
       $output .= '<label for="productPrice">Price:</label>';
       $output .= '<input type="text" id="productPrice" name="productPrice" value="'.$product['price'].'">';
 
+      $output .= '<label for="productQuantity">Quantity:</label>';
+      $output .= '<input type="number" id="productQuantity" name="productQuantity" value="'.$product['quantity'].'">';
+
       $output .= '<label for="productSalePrice">Sale Price:</label>';
       $output .= '<input type="text" id="productSalePrice" name="productSalePrice" value="'.$product['sale_price'].'">';
 
@@ -170,6 +174,10 @@ class AdminView extends View{
       $output .= '<input type="text" id="productPrice" name="productPrice" value="">';
       $output .= '</div>';
       $output .= '<div>';
+      $output .= '<label for="productQuantity">Quantity:</label>';
+      $output .= '<input type="number" id="productQuantity" name="productQuantity" value="">';
+      $output .= '</div>';
+      $output .= '<div>';
       $output .= '<label for="productSalePrice">Sale Price:</label>';
       $output .= '<input type="text" id="productSalePrice" name="productSalePrice" value="">';
       $output .= '</div>';
@@ -197,6 +205,7 @@ class AdminView extends View{
 
         $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'name', $_POST['productName']);
         $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'price', $_POST['productPrice']);
+        $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'quantity', $_POST['productQuantity']);
         $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'sale_price', $_POST['productSalePrice']);
         $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'category', $_POST['productCategory']);
 

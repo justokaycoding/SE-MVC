@@ -38,6 +38,4 @@ if( !empty($_POST['product_total_remove']) ){
   return;
 }
 
-
-
 ?>
