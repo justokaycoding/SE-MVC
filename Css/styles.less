@@ -597,24 +597,31 @@ article {
 
 .grid {
   .width-3 {
+    width: 34%;
+    > div{
     background-color: #f2f2f2;
     padding: 10px;
     display: flex;
     flex-wrap: wrap;
     justify-content: start;
     align-items: center;
-    width: 33%;
-
     span {
       width: 50%;
       text-align: center;
       padding: 10px;
+      @media all and (max-width: 1366px){
+        width: 100%;
+      }
     }
   }
+}
 
   .width-9 {
     width: 66%;
     padding: 0 48px;
+    @media all and (max-width: 1024px){
+      width: 100%;
+    }
   }
 }
 
