@@ -103,23 +103,6 @@ class View{
       return $last_word;
     }
 
-  public function adminLoop(){
-    $output = '';
-    foreach($_SESSION['productArray'] as $product){
-      $output .= '<article>';
-      $output .= '<div class="img"><div style="background-image: url(../../Images/'.$product['image'].');"></div>';
-      $output .= '<div class="content">';
-      $output .= '<p class="productTitle">'.$product['name'].'</p>';
-      $output .= '<span class="button edit">Edit</span>';
-      $output .= '<div class="productLightbox">';
-      $output .= $this->singleFormGen($product);
-      $output .= '</div>';
-      $output .= '</div>';
-      $output .= '</article>';
-    }
-      return $output;
-  }
-
   public function contentFill($template_html, $content){
     $template_html = str_replace('[.CONTENT.]',$content,$template_html);
     return $template_html;
