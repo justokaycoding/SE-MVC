@@ -158,8 +158,16 @@ class ShopView extends View{
       $template_html = ob_get_contents();
       ob_end_clean();
 
-      $template_html = $this->contentFill($template_html, 'mason');
+
+      $var = $this->formBuild();
+      $template_html = $this->contentFill($template_html, $var);
       echo $this->contentIdWrap($template_html);
+    }
+
+    public function formBuild(){
+      $var = '<form>';
+      $var .= '</form>';
+      return $var;
     }
 
     public function searchItem(){
