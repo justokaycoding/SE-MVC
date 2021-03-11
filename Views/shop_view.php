@@ -158,7 +158,7 @@ class ShopView extends View{
       $template_html = ob_get_contents();
       ob_end_clean();
 
-      $template_html = $this->contentFill($template_html, 'test');
+      $template_html = $this->contentFill($template_html, 'mason');
       echo $this->contentIdWrap($template_html);
     }
 
