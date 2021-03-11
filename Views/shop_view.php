@@ -183,12 +183,12 @@ class ShopView extends View{
     }
 
     public function product($item){
-    if(is_array($item)){
-      ob_start();
-      include(URL.'/Template/singleItem.html');
-      $template_html = ob_get_contents();
-      ob_end_clean();
-      echo $this->contentIdWrap($template_html);
-      }
+      if(is_array($item)){
+        ob_start();
+        include(URL.'/Template/singleItem.html');
+        $template_html = ob_get_contents();
+        ob_end_clean();
+        echo $this->contentIdWrap($template_html);
+        }
     }
 }
