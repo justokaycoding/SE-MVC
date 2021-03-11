@@ -44,7 +44,7 @@ if ( !isset($_SESSION['productArray'])) {
                'image' => 'mccormicksloppyjoesseasoningmix131oz.jpg',
                'price' => '1.19',
                'quantity' => '15',
-               'sale_price' => '.5',
+               'sale_price' => '0.50',
                'on_sale' => 'true',
                'category' => 'seasoning'
              ],
@@ -53,16 +53,16 @@ if ( !isset($_SESSION['productArray'])) {
                 'image' => '0075450222460_CF_default_default_large.jpeg',
                 'price' => '17.19',
                 'quantity' => '16',
-                'sale_price' => '5.5',
+                'sale_price' => '5.50',
                 'on_sale' => 'true',
                 'category' => 'Ice Cream'
               ],
 
               ['name' => 'Gala Apples (1 Pound)',
                 'image' => '0000000041330_CL_hyvee_default_large.jpeg',
-                'price' => '.5',
+                'price' => '0.50',
                 'quantity' => '100',
-                'sale_price' => '.25',
+                'sale_price' => '0.25',
                 'on_sale' => 'false',
                 'category' => 'fruit'
               ],
@@ -102,15 +102,15 @@ if ( !isset($_SESSION['productArray'])) {
                 'image' => '0037000744390_CL_default_default_large.jpeg',
                 'price' => '1.69',
                 'quantity' => '46',
-                'sale_price' => '.50',
+                'sale_price' => '0.50',
                 'on_sale' => 'true',
                 'category' => 'clean'
               ],
               ['name' => '5oz Alaska Snow Crab Clusters',
                 'image' => '0238913000000_CL_hyvee_default_large.jpeg',
-                'price' => '.5',
+                'price' => '0.50',
                 'quantity' => '5',
-                'sale_price' => '.25',
+                'sale_price' => '0.25',
                 'on_sale' => 'false',
                 'category' => 'crab legs'
               ],
