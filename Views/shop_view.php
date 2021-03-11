@@ -50,7 +50,11 @@ class ShopView extends View{
         if($product["on_sale"] != 'false'){
           $output .= '<div class="sale" style="background-image: url(../../Images/sale.png);"></div>';
         }
+
+        $url =
+        $output .= '<a href="/shop/product/'. $this->clean($product['name']).'">';
         $output .= '<div class="img"><div style="background-image: url(../../Images/products/'.$product['image'].');"></div>';
+        $output .= '</a>';
         $output .= '<div class="content">';
         $output .= '<p class="productTitle" data-quantity="'.$product["quantity"].'">'.$product['name'].'</p>';
         if($product["on_sale"] == 'false'){
@@ -176,5 +180,15 @@ class ShopView extends View{
       $output .= '<input class="seach" type="text" placeholder="Search a product" value="">';
       $output .= '</div>';
       return $output;
+    }
+
+    public function product($item){
+    if(is_array($item)){
+      ob_start();
+      include(URL.'/Template/singleItem.html');
+      $template_html = ob_get_contents();
+      ob_end_clean();
+      echo $this->contentIdWrap($template_html);
+      }
     }
 }

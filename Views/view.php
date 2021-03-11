@@ -108,8 +108,14 @@ class View{
     return $template_html;
   }
 
-  function is_true($val, $return_null=false){
+  public function is_true($val, $return_null=false){
     $boolval = ( is_string($val) ? filter_var($val, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) : (bool) $val );
     return ( $boolval===null && !$return_null ? false : $boolval );
+  }
+
+  public function clean($string) {
+   $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
+
+   return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
   }
 }
