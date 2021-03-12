@@ -38,6 +38,8 @@ if($sql->isAdmin()){
 } else{
   $class ="client";
 }
+
+$class .=  str_replace('/',' ', $_SERVER['REQUEST_URI'])
 ?>
 
 <body class="<?php echo $class; ?>">
@@ -93,13 +95,18 @@ if($sql->isAdmin()){
         </div>
       </div>
     </div>
-    <?php if( !$sql->isAdmin()){ ?>
-    <div id="pageTitle" class="section" style="background-image: url(/../Images/HERO.jpg);">
-      <div class="column width-12">
-        <div class="wrapper text">
-          <h1><?php echo $this->pageTitle(); ?></h1>
+    <?php if( !$sql->isAdmin()){
+      if(strpos($_SERVER['REQUEST_URI'], 'product') !== false){?>
+
+        <?php }
+    else{?>
+      <div id="pageTitle" class="section" style="background-image: url(/../Images/HERO.jpg);">
+        <div class="column width-12">
+          <div class="wrapper text">
+            <h1><?php echo $this->pageTitle(); ?></h1>
+          </div>
         </div>
       </div>
-    </div>
+    <?php } ?>
     <?php } ?>
   </header>

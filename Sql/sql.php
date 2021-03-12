@@ -40,7 +40,7 @@ if ( !isset($_SESSION['productArray'])) {
               'category' => 'cat Food'
             ],
 
-              ['name' => 'McCormick Sloppy Joes Seasoning Mix 1.31oz',
+              ['name' => 'McCormick Sloppy Joes Seasoning Mix',
                'image' => 'mccormicksloppyjoesseasoningmix131oz.jpg',
                'price' => '1.19',
                'quantity' => '15',
@@ -49,7 +49,7 @@ if ( !isset($_SESSION['productArray'])) {
                'category' => 'seasoning'
              ],
 
-              ['name' => 'Til the Cows Come Home Dough-Mo Arigato, Mr. Roboto Ice Cream',
+              ['name' => 'Til the Cows Come Home Dough-Mo Arigato',
                 'image' => '0075450222460_CF_default_default_large.jpeg',
                 'price' => '17.19',
                 'quantity' => '16',
@@ -58,7 +58,7 @@ if ( !isset($_SESSION['productArray'])) {
                 'category' => 'Ice Cream'
               ],
 
-              ['name' => 'Gala Apples (1 Pound)',
+              ['name' => 'Gala Apples',
                 'image' => '0000000041330_CL_hyvee_default_large.jpeg',
                 'price' => '0.50',
                 'quantity' => '100',
@@ -98,7 +98,7 @@ if ( !isset($_SESSION['productArray'])) {
                 'on_sale' => 'false',
                 'category' => 'toilet paper'
               ],
-              ['name' => 'Safeguard Alcohol Hand Sanitizer, Fresh Clean Scent 2 fl oz',
+              ['name' => 'Safeguard Alcohol Hand Sanitizer',
                 'image' => '0037000744390_CL_default_default_large.jpeg',
                 'price' => '1.69',
                 'quantity' => '46',
