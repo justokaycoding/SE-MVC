@@ -42,7 +42,7 @@ if($sql->isAdmin()){
 $class .=  str_replace('/',' ', $_SERVER['REQUEST_URI'])
 ?>
 
-<body class="<?php echo $class; ?>">
+<body class="<?php echo strtolower($class); ?>">
   <header>
     <div id="loginData" class="section">
       <div class="constraint" style="">

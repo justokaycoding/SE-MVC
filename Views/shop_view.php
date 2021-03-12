@@ -193,7 +193,6 @@ class ShopView extends View{
 
         if(!empty($itemArray)){
 
-
           $output .= '<div id="" class="section singleProduct">';
           $output .= '<div class="constraint">';
           $output .= '<div id="" class="column width-12">';
@@ -212,28 +211,46 @@ class ShopView extends View{
           $output .= '<a href="/shop" class="button add">Back To Shopping</a>';
           $output .= '</div>';
 
-          $output .= '<div id="" class="wrapper text">';
-          $output .= '<h2>Nutrition Facts</h2>';
-          $output .= '<p>'.$itemArray['nutrition_facts'].'</p>';
-          $output .= '</div>';
-
-          $output .= '<div id="" class="wrapper text">';
-          $output .= '<h2>Description</h2>';
-          $output .= '<p>'.$itemArray['description'].'</p>';
-          $output .= '</div>';
-
-          $output .= '<div id="" class="wrapper text">';
-          $output .= '<h2>Ingredients</h2>';
-          $output .= '<p>'.$itemArray['ingredients'].'</p>';
-          $output .= '</div>';
+          if(!empty($itemArray['nutrition_facts'])){
+            $output .= '<div id="" class="wrapper text">';
+            $output .= '<h2>Nutrition Facts</h2>';
+            $output .= '<p>'.$itemArray['nutrition_facts'].'</p>';
+            $output .= '</div>';
+          }
+          if(!empty($itemArray['description'])){
+            $output .= '<div id="" class="wrapper text">';
+            $output .= '<h2>Description</h2>';
+            $output .= '<p>'.$itemArray['description'].'</p>';
+            $output .= '</div>';
+          }
+          if(!empty($itemArray['ingredients'])){
+            $output .= '<div id="" class="wrapper text">';
+            $output .= '<h2>Ingredients</h2>';
+            $output .= '<p>'.$itemArray['ingredients'].'</p>';
+            $output .= '</div>';
+          }
 
           $output .= '</div>';
           $output .= '</div>';
           $output .= '</div>';
         } else{
-
+            $output = '<div id="" class="section missing product">';
+            $output .= '<div class="constraint" style="">';
+            $output .= '<div id="" class="column width-12">';
+            $output .= '<div id="" class="wrapper text">';
+            $output .= '<h1>HMMMMMMMM,</h1>';
+            $output .= '<h2>I CAN\'T SEEM TO FIND THAT ONE!</h2>';
+            $output .= '</div>';
+            $output .= '<div id="" class="wrapper img">';
+            $output .= '<img src="/../Images/missing.png" alt="logo">';
+            $output .= '</div>';
+            $output .= '</div>';
+            $output .= '<div id="" class="wrapper code">';
+            $output .= '<a href="/shop" class="button add">Back To Shopping</a>';
+            $output .= '</div>';
+            $output .= '</div>';
+            $output .= '  </div>';
         }
-
 
         echo $this->contentIdWrap($output);
         }
