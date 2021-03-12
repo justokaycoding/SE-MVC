@@ -1,6 +1,6 @@
 (function($) {
 
-  let elements = ['p.productTitle'];
+  let elements = ['a.productTitle'];
 
   $(document).ready(function() {
     if (window.matchMedia('(max-width: 767px)').matches) return;

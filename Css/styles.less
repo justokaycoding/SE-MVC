@@ -12,13 +12,13 @@
 }
 
 h1{
-  font-size: ~'clamp(28px, 2vw, 46px)';
+  font-size: ~'clamp(24px, 2vw, 46px)';
 }
 h2{
-  font-size: ~'clamp(24px, 2vw, 44px)';
+  font-size: ~'clamp(20px, 2vw, 44px)';
 }
 p{
-  font-size: ~'clamp(16px, 2vw, 20px)';
+  font-size: ~'clamp(14px, 2vw, 20px)';
   line-height: 1.5;
   margin: 0 auto;
   @media all and (max-width: 1024px){
@@ -75,8 +75,12 @@ body {
   .wrapper {
     margin: 0 auto;
   }
+  .width-6{
+    height: min-content;
+  }
   .constraint {
     flex-wrap: nowrap;
+    align-items: center;
   }
 
   .img {
@@ -432,6 +436,7 @@ article {
     position: absolute;
     z-index: 9;
     top: 0;
+    pointer-events: none;
   }
   @media all and (max-width: 1365px) {
     width: 33%;
@@ -449,6 +454,14 @@ article {
 
   .img {
     text-align: center;
+
+    > a{
+      transition: all .2s ease-in-out;
+      &:hover{
+        display: block;
+        opacity: .8;
+      }
+    }
 
     > a > div:nth-of-type(1) {
       height: 200px;
@@ -485,6 +498,12 @@ article {
     color: @color-blue;
     font-weight: 600;
     max-width: 28ch;
+    padding-top: 8px;
+    display: block;
+    transition: all .2s ease-in-out;
+    &:hover{
+      color:@color-green;
+    }
   }
 
   p {
@@ -610,6 +629,10 @@ article {
     color: #fff;
     font-size: 12px;
     cursor: pointer;
+    transition: all .2s ease-in-out;
+    &:hover{
+      background-color: @color-green;
+    }
   }
 
   .total {
@@ -633,7 +656,7 @@ article {
     width: 28px;
     text-align: center;
     cursor: pointer;
-
+    transition: all .2s ease-in-out;
     &:hover {
       background-color: @color-red;
       color: #fff;
@@ -958,6 +981,12 @@ article {
   .singleProductInfo{
     @media all and (min-width: 1025px){
       padding-left: 30px;
+    }
+  }
+  img{
+    max-height: 600px;
+    @media all and (max-height: 1024px){
+      max-height: 300px;
     }
   }
   p{

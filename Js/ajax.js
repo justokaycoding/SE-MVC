@@ -155,7 +155,7 @@
   $(document).on("keyup", "input.seach", function(e) {
     if ($(this).val() && $(this).val() != '') {
       var textBits = $(this).val().indexOf(' ') >= 0 ? $(this).val().split(' ') : [$(this).val()];
-      $('p.productTitle').each(function() {
+      $('a.productTitle').each(function() {
         for (var i = 0; i < textBits.length; i++) {
           if ($(this).text().toLowerCase().indexOf(textBits[i].toLowerCase()) == -1) {
             $(this).closest('article').hide();

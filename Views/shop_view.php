@@ -56,7 +56,7 @@ class ShopView extends View{
         $output .= '<div class="img"><div style="background-image: url(../../Images/products/'.$product['image'].');"></div>';
         $output .= '</a>';
         $output .= '<div class="content">';
-        $output .= '<p class="productTitle" data-quantity="'.$product["quantity"].'">'.$product['name'].'</p>';
+        $output .= '<a href="/shop/product/'. $this->clean($product['name']).'" class="productTitle" data-quantity="'.$product["quantity"].'">'.$product['name'].'</a>';
         if($product["on_sale"] == 'false'){
           $output .= '<p class="price">$'.$product["price"].'</p>';
         }
@@ -92,7 +92,11 @@ class ShopView extends View{
         $item = $this->sql->getItem('productArray',$vaule);
         if(!empty($item)){
           $output .='<tr>';
-          $output .='<td class="product_image"><i class="fas fa-times"></i><img src="../../Images/products/'.$item['image'].'"></td>';
+          $output .='<td class="product_image">';
+          $output .='<a href="/shop/product/'.str_replace(" ","-",$item['name']).'">';
+          $output .='<i class="fas fa-times"></i><img src="../../Images/products/'.$item['image'].'">';
+          $output .='</a>';
+          $output .='</td>';
           $output .='<td class="product_name">'.$item['name'].'</td>';
           if($item['on_sale'] == 'false'){
             $price = $item['price'];
