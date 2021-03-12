@@ -191,12 +191,11 @@ class ShopView extends View{
     public function product($item){
       $output = '';
       if(is_array($item)){
-        $item[0];
+        // $item[0];
         $itemName = str_replace('-',' ',$item[0]);
         $itemArray = $this->sql->getItem('productArray', $itemName);
-        $id = str_replace(" ","-",$itemArray['name']);
         if(!empty($itemArray)){
-
+        $id = str_replace(" ","-",$itemArray['name']);
           $output .= '<div id="" class="section singleProduct">';
           $output .= '<div class="constraint">';
           $output .= '<div id="" class="column width-12">';
@@ -233,7 +232,6 @@ class ShopView extends View{
             $output .= '<p>'.$itemArray['ingredients'].'</p>';
             $output .= '</div>';
           }
-
           $output .= '</div>';
           $output .= '</div>';
           $output .= '</div>';
