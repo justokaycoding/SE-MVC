@@ -68,6 +68,9 @@ class AdminView extends View{
                        'price' => $_POST["productPrice"],
                        'quantity' => $_POST["productQuantity"],
                        'sale_price' => $_POST["productSalePrice"],
+                       'nutrition_facts' => $_POST["nutrition_facts"],
+                       'description' => $_POST["description"],
+                       'ingredients' => $_POST["ingredients"],
                        'on_sale' => $checked,
                        'category' => $_POST["productCategory"]
                      ];
@@ -104,40 +107,43 @@ class AdminView extends View{
       $output .= '</form>';
 
       $output .= '<form  class="adminSingleProduct" action="" method="post" enctype="multipart/form-data">';
+      $output .= '<div class="textAreaAdmin left">';
       $output .= '<input type="hidden" name="productChange" value="productChange">';
       $output .= '<label for="productName">Product Name:</label>';
       $output .= '<input type="hidden" name="orginalProductName" value="'.$product['name'].'">';
       $output .= '<input type="text" id="productName" name="productName" value="'.$product['name'].'">';
-
       $output .= '<label for="productImage">Product Image:</label>';
-
       $output .= '<div class="img_container">';
-        $output .= '<div class="inner img">';
-        $output .= '<img src="../../Images/products/'.$product['image'].'">';
-        $output .= '</div>';
-        $output .= '<div class="inner imgEdit">';
-        $output .= '<input type="file" name="fileToUpload" id="fileToUpload">';
-        $output .= '<p><strong>Note:</strong> Only .jpg, .jpeg, .gif, .png formats allowed to a max size of 5 MB.</p>';
-        $output .= '</div>';
+      $output .= '<div class="inner img">';
+      $output .= '<img src="../../Images/products/'.$product['image'].'">';
       $output .= '</div>';
-
-
+      $output .= '<div class="inner imgEdit">';
+      $output .= '<input type="file" name="fileToUpload" id="fileToUpload">';
+      $output .= '<p><strong>Note:</strong> Only .jpg, .jpeg, .gif, .png formats allowed to a max size of 5 MB.</p>';
+      $output .= '</div>';
+      $output .= '</div>';
       $output .= '<label for="productPrice">Price:</label>';
       $output .= '<input type="text" id="productPrice" name="productPrice" value="'.$product['price'].'">';
-
       $output .= '<label for="productQuantity">Quantity:</label>';
       $output .= '<input type="number" id="productQuantity" name="productQuantity" value="'.$product['quantity'].'">';
-
       $output .= '<label for="productSalePrice">Sale Price:</label>';
       $output .= '<input type="text" id="productSalePrice" name="productSalePrice" value="'.$product['sale_price'].'">';
-
       $output .= '<div class="formContainer">';
       $output .= '<label for="productOnSale">On Sale:</label>';
       $output .= '<input type="checkbox" id="productOnSale" name="productOnSale" '.$checked.'>';
       $output .= '</div>';
-
       $output .= '<label for="productCategory">Category:</label>';
       $output .= '<input type="text" id="productCategory" name="productCategory" value="'.$product['category'].'">';
+      $output .= '</div>';
+
+      $output .= '<div class="textAreaAdmin right">';
+      $output .= '<label for="nutrition_facts">Nutrition Facts:</label>';
+      $output .= '<textarea id="nutrition_facts" name="nutrition_facts">'.$product['nutrition_facts'].'</textarea>';
+      $output .= '<label for="description">Description:</label>';
+      $output .= '<textarea id="description" name="description">'.$product['description'].'</textarea>';
+      $output .= '<label for="ingredients">Ingredients:</label>';
+      $output .= '<textarea id="ingredients" name="ingredients">'.$product['ingredients'].'</textarea>';
+      $output .= '</div>';
 
       $output .= '<div class="formControl">';
       $output .= '<span class="close button">Cancel</span>';
@@ -181,6 +187,25 @@ class AdminView extends View{
       $output .= '<label for="productSalePrice">Sale Price:</label>';
       $output .= '<input type="text" id="productSalePrice" name="productSalePrice" value="">';
       $output .= '</div>';
+
+      $output .= '<div>';
+      $output .= '<label for="nutrition_facts">Nutrition Facts:</label>';
+      $output .= '<textarea id="nutrition_facts" name="nutrition_facts"></textarea>';
+      // $output .= '<input type="text" id="nutrition_facts" name="nutrition_facts" value="">';
+      $output .= '</div>';
+
+      $output .= '<div>';
+      $output .= '<label for="description">Description:</label>';
+      $output .= '<textarea id="description" name="description"></textarea>';
+      // $output .= '<input type="text" id="description" name="description" value="">';
+      $output .= '</div>';
+
+      $output .= '<div>';
+      $output .= '<label for="ingredients">Ingredients:</label>';
+      $output .= '<textarea id="ingredients" name="ingredients"></textarea>';
+      // $output .= '<input type="text" id="ingredients" name="ingredients" value="">';
+      $output .= '</div>';
+
       $output .= '<div class="formContainer">';
       $output .= '<label for="productOnSale">On Sale:</label>';
       $output .= '<input type="checkbox" id="productOnSale" name="productOnSale">';
@@ -207,6 +232,9 @@ class AdminView extends View{
         $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'price', $_POST['productPrice']);
         $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'quantity', $_POST['productQuantity']);
         $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'sale_price', $_POST['productSalePrice']);
+        $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'nutrition_facts', $_POST['nutrition_facts']);
+        $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'description', $_POST['description']);
+        $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'ingredients', $_POST['ingredients']);
         $this->sql->updateItem( 'productArray', $_POST['orginalProductName'], 'category', $_POST['productCategory']);
 
         if(isset($_POST['productOnSale'])){

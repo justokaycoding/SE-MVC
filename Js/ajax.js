@@ -23,7 +23,7 @@
 
   $(document).on("click", "article .button.add", function(e) {
     e.preventDefault();
-    let title = $(this).siblings('.productTitle').text();
+    let title = $(this).closest('.buttonWrap').siblings('.productTitle').text();
     $(this).siblings('.added').addClass('clicked');
     var $this = $(this);
     let ajaxnum;
@@ -46,10 +46,10 @@
 
           switch (response) {
             case 'true':
-              ajaxnum = $this.siblings('.productTitle').attr("data-quantity");
+              ajaxnum = $this.closest('.buttonWrap').siblings('.productTitle').attr("data-quantity");
               console.log(num);
               ajaxnum = ajaxnum - 1;
-              $this.siblings('.productTitle').attr('data-quantity', ajaxnum);
+              $this.closest('.buttonWrap').siblings('.productTitle').attr('data-quantity', ajaxnum);
               break;
             case 'false':
               if (!$this.closest('article').hasClass('soldOut')) {

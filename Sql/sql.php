@@ -37,6 +37,9 @@ if ( !isset($_SESSION['productArray'])) {
               'quantity' => '12',
               'sale_price' => '14.20',
               'on_sale' => 'false',
+              'nutrition_facts' => '',
+              'description' => '',
+              'ingredients' => '',
               'category' => 'cat Food'
             ],
 
@@ -46,15 +49,21 @@ if ( !isset($_SESSION['productArray'])) {
                'quantity' => '15',
                'sale_price' => '0.50',
                'on_sale' => 'true',
+               'nutrition_facts' => '',
+               'description' => '',
+               'ingredients' => '',
                'category' => 'seasoning'
              ],
 
-              ['name' => 'Til the Cows Come Home Dough-Mo Arigato',
+              ['name' => 'Til the Cows Come Home Dough Mo Arigato',
                 'image' => '0075450222460_CF_default_default_large.jpeg',
                 'price' => '17.19',
                 'quantity' => '16',
                 'sale_price' => '5.50',
                 'on_sale' => 'true',
+                'nutrition_facts' => '',
+                'description' => '',
+                'ingredients' => '',
                 'category' => 'Ice Cream'
               ],
 
@@ -64,22 +73,31 @@ if ( !isset($_SESSION['productArray'])) {
                 'quantity' => '100',
                 'sale_price' => '0.25',
                 'on_sale' => 'false',
+                'nutrition_facts' => '',
+                'description' => '',
+                'ingredients' => '',
                 'category' => 'fruit'
               ],
-              ['name' => 'Light & Fit Strawberry Cheesecake Greek Yogurt 4Pk Cups',
+              ['name' => 'Light And Fit Strawberry Cheesecake Greek Yogurt 4Pk Cups',
                 'image' => '0036632028480_CF_default_default_large.jpeg',
                 'price' => '2.50',
                 'quantity' => '87',
                 'sale_price' => '1.25',
                 'on_sale' => 'false',
+                'nutrition_facts' => '',
+                'description' => '',
+                'ingredients' => '',
                 'category' => 'Yogurt'
               ],
-              ['name' => 'Jennie-O Turkey Bacon',
+              ['name' => 'JennieO Turkey Bacon',
                 'image' => '0042222870000_CF_default_default_large.jpeg',
                 'price' => '3.99',
                 'quantity' => '38',
                 'sale_price' => '2.25',
                 'on_sale' => 'false',
+                'nutrition_facts' => '',
+                'description' => '',
+                'ingredients' => '',
                 'category' => 'bacon'
               ],
               ['name' => 'Bacon Cheddar Twice Baked Potato',
@@ -88,6 +106,9 @@ if ( !isset($_SESSION['productArray'])) {
                 'quantity' => '46',
                 'sale_price' => '1.15',
                 'on_sale' => 'false',
+                'nutrition_facts' => '',
+                'description' => '',
+                'ingredients' => '',
                 'category' => 'otato'
               ],
               ['name' => 'Charmin Ultra Strong Toilet Paper Mega Roll',
@@ -96,6 +117,9 @@ if ( !isset($_SESSION['productArray'])) {
                 'quantity' => '46',
                 'sale_price' => '12.00',
                 'on_sale' => 'false',
+                'nutrition_facts' => '',
+                'description' => '',
+                'ingredients' => '',
                 'category' => 'toilet paper'
               ],
               ['name' => 'Safeguard Alcohol Hand Sanitizer',
@@ -104,6 +128,9 @@ if ( !isset($_SESSION['productArray'])) {
                 'quantity' => '46',
                 'sale_price' => '0.50',
                 'on_sale' => 'true',
+                'nutrition_facts' => '',
+                'description' => '',
+                'ingredients' => '',
                 'category' => 'clean'
               ],
               ['name' => '5oz Alaska Snow Crab Clusters',
@@ -112,6 +139,9 @@ if ( !isset($_SESSION['productArray'])) {
                 'quantity' => '5',
                 'sale_price' => '0.25',
                 'on_sale' => 'false',
+                'nutrition_facts' => '',
+                'description' => '',
+                'ingredients' => '',
                 'category' => 'crab legs'
               ],
             );

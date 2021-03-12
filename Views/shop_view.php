@@ -63,8 +63,10 @@ class ShopView extends View{
         else{
           $output .= '<p class="price">$'.$product["sale_price"].'</p>';
         }
-        $output .= '<span class="button add">Add To Cart</span>';
-        $output .= '<span class="button added">Added</span>';
+        $output .= '<div class="buttonWrap">';
+          $output .= '<span class="button add">Add To Cart</span>';
+          $output .= '<span class="button added">Added</span>';
+        $output .= '</div>';
         $output .= '</div>';
         $output .= '</article>';
       }
@@ -183,11 +185,57 @@ class ShopView extends View{
     }
 
     public function product($item){
+      $output = '';
       if(is_array($item)){
-        echo '<pre style="display:dnone;">';
-        var_dump($item[0]);
-        echo '</pre>';
-        echo $this->contentIdWrap($template_html);
+        $item[0];
+        $itemName = str_replace('-',' ',$item[0]);
+        $itemArray = $this->sql->getItem('productArray', $itemName);
+
+        if(!empty($itemArray)){
+
+
+          $output .= '<div id="" class="section singleProduct">';
+          $output .= '<div class="constraint">';
+          $output .= '<div id="" class="column width-12">';
+          $output .= '<div id="" class="wrapper text">';
+          $output .= '<h1>'.$itemArray['name'].'</h1>';
+          $output .= '</div>';
+          $output .= '</div>';
+          $output .= '<div id="" class="column width-6">';
+          $output .= '<div id="" class="wrapper img">';
+          $output .= '<img src="/../../Images/products/'.$itemArray['image'].'" alt="'.$itemArray['name'].'">';
+          $output .= '</div>';
+          $output .= '</div>';
+
+          $output .= '<div id="" class="column width-6 singleProductInfo">';
+          $output .= '<div id="" class="wrapper code">';
+          $output .= '<a href="/shop" class="button add">Back To Shopping</a>';
+          $output .= '</div>';
+
+          $output .= '<div id="" class="wrapper text">';
+          $output .= '<h2>Nutrition Facts</h2>';
+          $output .= '<p>'.$itemArray['nutrition_facts'].'</p>';
+          $output .= '</div>';
+
+          $output .= '<div id="" class="wrapper text">';
+          $output .= '<h2>Description</h2>';
+          $output .= '<p>'.$itemArray['description'].'</p>';
+          $output .= '</div>';
+
+          $output .= '<div id="" class="wrapper text">';
+          $output .= '<h2>Ingredients</h2>';
+          $output .= '<p>'.$itemArray['ingredients'].'</p>';
+          $output .= '</div>';
+
+          $output .= '</div>';
+          $output .= '</div>';
+          $output .= '</div>';
+        } else{
+
+        }
+
+
+        echo $this->contentIdWrap($output);
         }
     }
 }
