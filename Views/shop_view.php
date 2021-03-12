@@ -51,9 +51,9 @@ class ShopView extends View{
           $output .= '<div class="sale" style="background-image: url(../../Images/sale.png);"></div>';
         }
 
-        $url =
+        $id = str_replace(" ","-",$product['name']);
         $output .= '<a href="/shop/product/'. $this->clean($product['name']).'">';
-        $output .= '<div class="img"><div style="background-image: url(../../Images/products/'.$product['image'].');"></div>';
+        $output .= '<div id="'.$id.'" class="img"><div style="background-image: url(../../Images/products/'.$product['image'].');"></div>';
         $output .= '</a>';
         $output .= '<div class="content">';
         $output .= '<a href="/shop/product/'. $this->clean($product['name']).'" class="productTitle" data-quantity="'.$product["quantity"].'">'.$product['name'].'</a>';
@@ -194,7 +194,7 @@ class ShopView extends View{
         $item[0];
         $itemName = str_replace('-',' ',$item[0]);
         $itemArray = $this->sql->getItem('productArray', $itemName);
-
+        $id = str_replace(" ","-",$itemArray['name']);
         if(!empty($itemArray)){
 
           $output .= '<div id="" class="section singleProduct">';
@@ -212,7 +212,7 @@ class ShopView extends View{
 
           $output .= '<div id="" class="column width-6 singleProductInfo">';
           $output .= '<div id="" class="wrapper code">';
-          $output .= '<a href="/shop" class="button add">Back To Shopping</a>';
+          $output .= '<a href="/shop#'.$id.'" class="button add">Back To Shopping</a>';
           $output .= '</div>';
 
           if(!empty($itemArray['nutrition_facts'])){
