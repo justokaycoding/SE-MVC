@@ -337,6 +337,6 @@ table th {
 
 @media all and (max-width: 767px) {
   .constraint {
-    width: 90%;
+    width: 98%;
   }
 }

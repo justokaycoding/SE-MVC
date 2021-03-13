@@ -76,13 +76,13 @@ class ShopView extends View{
     public function cartLoop(){
       $grandTotal = 0;
       $output = '';
-      $output = '<table>';
+      $output = '<table id="cartItem">';
       $output .= '<tr>';
-      $output .= '<th></th>';
-      $output .= '<th>Product</th>';
-      $output .= '<th>Price</th>';
-      $output .= '<th>Quantity</th>';
-      $output .= '<th>Amount</th>';
+      $output .= '<th scope="col"></th>';
+      $output .= '<th scope="col">Product</th>';
+      $output .= '<th scope="col">Price</th>';
+      $output .= '<th scope="col">Quantity</th>';
+      $output .= '<th scope="col">Amount</th>';
       $output .= '</tr>';
 
       $value = array_count_values($this->cart->returnCart());
@@ -92,23 +92,23 @@ class ShopView extends View{
         $item = $this->sql->getItem('productArray',$vaule);
         if(!empty($item)){
           $output .='<tr>';
-          $output .='<td class="product_image">';
+          $output .='<td class="product_image" data-label="">';
           $output .='<a href="/shop/product/'.str_replace(" ","-",$item['name']).'">';
           $output .='<i class="fas fa-times"></i><img src="../../Images/products/'.$item['image'].'">';
           $output .='</a>';
           $output .='</td>';
-          $output .='<td class="product_name">'.$item['name'].'</td>';
+          $output .='<td class="product_name" data-label="Product">'.$item['name'].'</td>';
           if($item['on_sale'] == 'false'){
             $price = $item['price'];
           } else{
             $price = $item['sale_price'];
           }
-          $output .='<td class="product_price">$'.$price.'</td>';
-          $output .='<td class="product_quantity"><div class="amount"><i class="fas fa-minus"></i><span class="total">'.$singleCart.'</span><i class="fas fa-plus"></i></td>';
+          $output .='<td class="product_price" data-label="Price">$'.$price.'</td>';
+          $output .='<td class="product_quantity" data-label="Quantity"><div class="amount"><i class="fas fa-minus"></i><span class="total">'.$singleCart.'</span><i class="fas fa-plus"></i></td>';
 
           $itemPrice = (float)$price * $singleCart;
           $grandTotal += $itemPrice;
-          $output .= '<td class="product_grandCost">$'.number_format((float)$itemPrice, 2).'</td>';
+          $output .= '<td class="product_grandCost" data-label="Amount">$'.number_format((float)$itemPrice, 2).'</td>';
           $output .='</tr>';
         }
 
@@ -137,7 +137,7 @@ class ShopView extends View{
       $output .='<td class="taxCost">$0.00</td>';
       $output .='</tr>';
       $output .='<tr>';
-      $output .='<td class="GrandCost">Tax:</td>';
+      $output .='<td class="GrandCost">Grand Total:</td>';
       $output .='<td class="GrandCost">$'.number_format($grandTotal,2).'</td>';
       $output .='</tr>';
       $output .= '</table>';
