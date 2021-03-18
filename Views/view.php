@@ -118,4 +118,16 @@ class View{
 
    return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
   }
+
+  public function tacoTime(){
+    $jsonData = json_decode(file_get_contents('http://taco-randomizer.herokuapp.com/random/'));
+    $output = '';
+    $output .= '<div class="api">'.$jsonData->condiment->recipe.'</div>';
+    $search  = array('=', '_', '#', '-');
+    $replace = array('', '','','');
+    $output = str_replace($search,$replace,$output);
+    $output = preg_replace("/[\n]/","</p><p>",$output);
+    return $output;
+  }
+
 }
