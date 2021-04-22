@@ -370,6 +370,11 @@ span.price {
 
 
       ';
+      $index = 0;
+      foreach($_SESSION['cart'] as $single){
+        unset($_SESSION['cart'][$index]);
+        $index++;
+      }
       return $var;
     }
 
@@ -452,6 +457,5 @@ span.price {
     }
 
     public function thankyou(){
-      //$_SESSION["cart"] = '';
     }
 }
