@@ -328,7 +328,7 @@ span.price {
 
                 <div class="col-50">
                   <h3>Payment</h3>
-                  <label for="fname">Accepted Cards</label>
+                  <label for="fname">Accepted Payment</label>
                   <div class="icon-container">
                     <img src="/Images/pay.jpg" alt="money">
                   </div>
@@ -370,11 +370,6 @@ span.price {
 
 
       ';
-      $index = 0;
-      foreach($_SESSION['cart'] as $single){
-        unset($_SESSION['cart'][$index]);
-        $index++;
-      }
       return $var;
     }
 
@@ -457,5 +452,19 @@ span.price {
     }
 
     public function thankyou(){
+
+      ob_start();
+      include(URL.'/Template/basefile.html');
+      $template_html = ob_get_contents();
+      ob_end_clean();
+
+
+
+      $var = '<h1>Thanks '.strtoupper($_POST['firstname']).' for your business!</h1>';
+      $var .= '<p>An receipt has been sent to '.$_POST['email'].'</p>';
+      $var .= '<p>Please call if you have any issues!!</p>';
+
+      $template_html = $this->contentFill($template_html, $var);
+      echo $this->contentIdWrap($template_html);
     }
 }
