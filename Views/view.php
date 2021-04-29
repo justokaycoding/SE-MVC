@@ -58,7 +58,7 @@ class View{
   }
 
   public function loginInfo(){
-      if( (!empty($_POST) && !$this->sql->isAdmin()) && isset($_POST["formType"]) ){
+      if(!empty($_POST) && !$this->sql->isAdmin()){
         $type = $_POST["formType"];
         switch ($type) {
           case "signUp":
