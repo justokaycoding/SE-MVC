@@ -6,13 +6,6 @@
      $output .= '<a href="/logout" id="logoutButton" class="button">Sign Out</a>';
   }
 
-  if($_SERVER['REQUEST_URI'] == '/shop/thankyou'){
-    $index = 0;
-    foreach($_SESSION['cart'] as $single){
-      unset($_SESSION['cart'][$index]);
-      $index++;
-    }
-  }
   if($_SESSION['cart'] != ''){
     $cart = new Cart();
     $cart->getCartSize();
